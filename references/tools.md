@@ -66,6 +66,10 @@ Pythonic signal-processing package with an MRI submodule. GPU via CuPy, a clean
   Kaiser–Bessel gridding NUFFT in pure PyTorch; drop into a learned recon.
 - **gpuNUFFT** — https://github.com/andyschwarzl/gpuNUFFT — CUDA gridding with
   MATLAB/Python interfaces; fast 3D.
+- **mri-nufft** — https://github.com/mind-inria/mri-nufft — a unified Python
+  interface that wraps many NUFFT backends (FINUFFT, cuFINUFFT, gpuNUFFT,
+  torchkbnufft, …) behind one API, with MRI-oriented trajectory helpers. Use it
+  when you want to swap NUFFT backends without rewriting your recon.
 - BART `nufft` and SigPy's NUFFT are also solid, and integrate with their
   respective recon stacks.
 
@@ -79,6 +83,16 @@ Pythonic signal-processing package with an MRI submodule. GPU via CuPy, a clean
   matches the challenge metrics.
 - **mridc** — https://github.com/wdika/mridc — data-consistency-focused
   toolbox collecting many DL recon methods.
+- **DeepInPy** — https://github.com/utcsilab/deepinpy — "deep inverse problems
+  in Python"; a lightweight framework for prototyping unrolled/model-based recon
+  (from Tamir's group). Good when you want to iterate on a new unrolled method
+  quickly rather than adopt a large framework.
+- **TensorFlow MRI** — https://github.com/mrphys/tensorflow-mri — a library of
+  computational-MRI operators (NUFFT, coil ops, losses) for TensorFlow/Keras
+  users.
+- **pygrappa** — https://github.com/mckib2/pygrappa — Python implementations of
+  GRAPPA and many GRAPPA-like variants; handy for classical k-space parallel
+  imaging without leaving Python.
 
 ## Scanner / streaming recon
 

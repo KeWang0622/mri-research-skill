@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use this skill in your research or tooling, please cite it as below."
+title: "mri-research: A Claude skill for MRI reconstruction research"
+abstract: >-
+  A curated, verified reference-hub skill for Claude that provides fluent
+  orientation across the magnetic resonance imaging (MRI) reconstruction
+  research ecosystem: MR physics and k-space foundations, landmark
+  reconstruction methods (parallel imaging, compressed sensing, low-rank,
+  deep learning, and diffusion/score-based recon), software toolboxes, raw-data
+  formats and open datasets, pulse-sequence and trajectory design, MRI
+  hardware, and programmatic literature access. It points to the community's
+  primary resources rather than bundling datasets or copyrighted text.
+type: software
+authors:
+  - family-names: Wang
+    given-names: Ke
+version: 0.1.0
+date-released: "2026-09-19"
+license: MIT
+repository-code: "https://github.com/KeWang0622/mri-research-skill"
+url: "https://github.com/KeWang0622/mri-research-skill"
+keywords:
+  - MRI
+  - magnetic resonance imaging
+  - image reconstruction
+  - compressed sensing
+  - parallel imaging
+  - deep learning
+  - diffusion models
+  - ISMRMRD
+  - Claude
+  - Claude Code
+  - AI agent skill

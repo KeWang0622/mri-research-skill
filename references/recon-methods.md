@@ -37,6 +37,12 @@ paste paper bodies — cite and summarize.
   Uecker M, Lai P, Murphy MJ, Virtue P, Elad M, Pauly JM, Vasanawala SS,
   Lustig M. *Magn Reson Med* 2014;71(3):990–1001. doi:10.1002/mrm.24751.
   Code: https://github.com/mikgroup/espirit-python (and BART `ecalib`).
+- **NLINV** — regularized nonlinear inversion that jointly estimates the image
+  and coil sensitivities (calibrationless; strong for real-time/radial). Uecker
+  M, Hohage T, Block KT, Frahm J. "Image reconstruction by regularized
+  nonlinear inversion—joint estimation of coil sensitivities and image
+  content." *Magn Reson Med* 2008;60(3):674–682. doi:10.1002/mrm.21691.
+  Available as BART `nlinv`.
 
 ## Compressed sensing MRI
 
@@ -55,6 +61,11 @@ paste paper bodies — cite and summarize.
 - **L+S (low-rank plus sparse)** for dynamic MRI — Otazo R, Candès E, Sodickson
   DK. "Low-rank plus sparse matrix decomposition for accelerated dynamic MRI."
   *Magn Reson Med* 2015;73(3):1125–1136.
+- **k-t BLAST / k-t SENSE** — the classic spatiotemporal-correlation approach to
+  dynamic MRI; useful background and still a baseline for cine/perfusion.
+  Tsao J, Boesiger P, Pruessmann KP. "k-t BLAST and k-t SENSE: Dynamic MRI with
+  high frame rate exploiting spatiotemporal correlations." *Magn Reson Med*
+  2003;50(5):1031–1042. doi:10.1002/mrm.10611.
 - **Structured low-rank matrix completion** — SAKE (Shin et al., *MRM* 2014)
   and ALOHA (Jin et al., *IEEE TCI* 2016) exploit annihilating-filter / Hankel
   structure; calibrationless. Good when calibration data is unavailable.
@@ -80,6 +91,18 @@ measured data-consistency step.
 - **Deep cascade** — Schlemper J, et al. "A Deep Cascade of CNNs for Dynamic MR
   Image Reconstruction." *IEEE TMI* 2018. Code:
   https://github.com/js3611/Deep-MRI-Reconstruction
+- **SSDU (self-supervised, no fully-sampled data)** — trains a physics-guided
+  unrolled network by splitting the acquired k-space into a data-consistency
+  set and a loss set; crucial when fully-sampled references don't exist. Yaman
+  B, et al. "Self-supervised learning of physics-guided reconstruction neural
+  networks without fully sampled reference data." *Magn Reson Med*
+  2020;84(6):3172–3191. doi:10.1002/mrm.28378. Code:
+  https://github.com/byaman14/SSDU
+- **AUTOMAP** — learns the entire sensor→image domain transform end-to-end
+  (a different philosophy from unrolling); memory-heavy but instructive. Zhu B,
+  Liu JZ, Cauley SF, Rosen BR, Rosen MS. "Image reconstruction by domain-
+  transform manifold learning." *Nature* 2018;555:487–492.
+  doi:10.1038/nature25988 (arXiv:1704.08841).
 - **Frameworks that collect many DL methods:** DIRECT
   (https://github.com/NKI-AI/direct), the fastMRI repo
   (https://github.com/facebookresearch/fastMRI), mridc
@@ -116,6 +139,19 @@ heavy at inference. Codebases the user specifically wants to know:
 - Also watch **SPIRiT-Diffusion** (arXiv:2304.05060) for self-consistency-
   driven diffusion. For anything newer, check the awesome-lists and
   `literature-access.md`.
+
+## Quantitative & fingerprinting
+
+- **MR Fingerprinting (MRF)** — acquires with pseudo-randomized sequence
+  parameters so each tissue yields a unique signal "fingerprint," then matches
+  against a Bloch-simulated dictionary to map T1/T2/etc. in one scan. A distinct
+  paradigm where reconstruction and quantification are intertwined (and where
+  low-rank/subspace and deep-learning acceleration are active research). Ma D,
+  Gulani V, Seiberlich N, Liu K, Sunshine JL, Duerk JL, Griswold MA. "Magnetic
+  resonance fingerprinting." *Nature* 2013;495:187–192. doi:10.1038/nature11971.
+- Related: quantitative susceptibility mapping (QSM), relaxometry, and
+  subspace/low-rank quantitative recon are adjacent areas worth a pointer when a
+  user's goal is parameter maps rather than a single image.
 
 ## Related recon-adjacent methods
 

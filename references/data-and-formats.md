@@ -57,8 +57,25 @@ trajectories.md`).
     prostate: https://github.com/cai2r/fastMRI_prostate
 - **OCMR** — open cardiovascular multi-coil k-space (real-time cardiac):
   https://ocmr.info . Good for dynamic/non-Cartesian cardiac recon.
+- **SKM-TEA** (Stanford Knee MRI Multi-Task Evaluation) — quantitative DESS knee
+  scans with raw k-space, DICOMs, tissue segmentations, and pathology bounding
+  boxes; enables joint recon + segmentation + detection evaluation. Desai AD, et
+  al., NeurIPS 2021 Datasets (arXiv:2203.06823).
+  Code/data: https://github.com/StanfordMIMI/skm-tea ·
+  https://aimi.stanford.edu/datasets/skm-tea-knee-mri
+- **Calgary-Campinas (CC-359)** — multi-coil 3D T1 brain raw k-space; a common
+  brain-recon benchmark. https://sites.google.com/view/calgary-campinas-dataset/home
+- **CMRxRecon (MICCAI 2023 / 2024)** — cardiac MRI reconstruction challenge
+  datasets (cine, mapping, and more). Code:
+  https://github.com/CmrxRecon/CMRxRecon and
+  https://github.com/CmrxRecon/CMRxRecon2024 . Results:
+  "The state-of-the-art in cardiac MRI reconstruction: Results of the CMRxRecon
+  challenge in MICCAI 2023," *Medical Image Analysis* 2025 (arXiv:2404.01082).
+- **M4Raw** — multi-contrast, multi-repetition, multi-channel k-space for
+  **low-field** MRI research. *Scientific Data* 2023;10:264.
 - Do NOT help bypass any access gate. If a user lacks access, point them to the
-  official application and to fully-open alternatives (mridata.org, OCMR).
+  official application and to fully-open alternatives (mridata.org, OCMR,
+  Calgary-Campinas).
 
 ## Getting from raw to image (sanity pipeline)
 

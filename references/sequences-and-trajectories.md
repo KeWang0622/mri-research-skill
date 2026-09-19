@@ -55,6 +55,20 @@ If a user is prototyping a *method*, steer them to Pulseq first (portable,
 open, fast to iterate); reserve vendor SDKs for when they need product-level
 integration or features Pulseq can't express.
 
+## RF pulse design
+
+Sequence programming also means designing the RF pulses themselves (excitation,
+refocusing, inversion, saturation; slice/slab-selective, spectral-spatial,
+adiabatic, multiband, and parallel-transmit/pTx pulses).
+
+- **SigPy.RF** (`sigpy.mri.rf`) — a Python RF-pulse-design toolbox within SigPy:
+  SLR pulses, adiabatic pulses, multiband, small-tip and large-tip designs, and
+  pTx. Docs via https://sigpy.readthedocs.io/ ; SigPy repo in `tools.md`.
+- **PyPulseq** defines the RF and gradient *events* that make up the sequence,
+  so RF design and sequence assembly live in the same Python workflow.
+- Be mindful of **RF power / SAR** limits (a safety constraint), especially for
+  refocusing-heavy or high-flip designs.
+
 ## Simulation (test a sequence without scanner time)
 
 - **KomaMRI.jl** — https://github.com/JuliaHealth/KomaMRI.jl — GPU-accelerated,
