@@ -1,136 +1,110 @@
-<h1 align="center">mri-research</h1>
+<h1 align="center">MRI Research</h1>
 
 <p align="center">
-  <strong>A Claude skill that turns Claude into a fluent MRI reconstruction research assistant.</strong><br>
-  A curated, verified reference hub for MR physics, reconstruction methods, tools, datasets, sequences, and hardware.
+  <strong>A curated, verified knowledge hub for magnetic resonance imaging research.</strong><br>
+  Physics · acquisition · reconstruction · analysis · quantitative MRI · spectroscopy · hardware.<br>
+  Installs into your AI coding agent with one command.
 </p>
 
 <p align="center">
-  <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg">
-  <img alt="Claude Code Skill" src="https://img.shields.io/badge/Claude%20Code-Skill-8A2BE2">
-  <img alt="Domain: MRI reconstruction" src="https://img.shields.io/badge/domain-MRI%20reconstruction-1f6feb">
-  <img alt="Status: v0.1.0" src="https://img.shields.io/badge/status-v0.1.0-brightgreen">
-  <img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg">
+  <a href="https://github.com/KeWang0622/mri-research-skill/blob/main/LICENSE"><img alt="License: MIT" src="https://img.shields.io/github/license/KeWang0622/mri-research-skill?style=for-the-badge&labelColor=000000"></a>
+  <img alt="Version" src="https://img.shields.io/badge/version-0.2.0-1f6feb?style=for-the-badge&labelColor=000000">
+  <img alt="Install: npx skills add" src="https://img.shields.io/badge/install-npx%20skills%20add-000000?style=for-the-badge">
+  <a href="https://github.com/KeWang0622/mri-research-skill/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/KeWang0622/mri-research-skill?style=for-the-badge&labelColor=000000"></a>
 </p>
 
 ---
 
-## Contents
+## Install
 
-- [What it is](#what-it-is)
-- [Why it exists](#why-it-exists)
-- [What's inside](#whats-inside)
-- [Install](#install)
-- [Example prompts](#example-prompts)
-- [Design principles](#design-principles)
-- [Scope & disclaimers](#scope--disclaimers)
-- [Contributing](#contributing)
-- [Citing](#citing)
-- [Acknowledgements](#acknowledgements)
-- [License](#license)
+Using the open [`skills`](https://github.com/vercel-labs/skills) CLI — works across Claude Code, Codex, Cursor, OpenCode, and many more agents:
+
+```bash
+npx skills add KeWang0622/mri-research-skill
+```
+
+<details>
+<summary>More install options</summary>
+
+```bash
+# Install globally (user directory) instead of the current project
+npx skills add KeWang0622/mri-research-skill -g
+
+# Target a specific agent
+npx skills add KeWang0622/mri-research-skill -a claude-code
+
+# List what's in the repo without installing
+npx skills add KeWang0622/mri-research-skill --list
+
+# Try it without installing — pipe a generated prompt straight into an agent
+npx skills use KeWang0622/mri-research-skill | claude
+```
+
+Or add it manually by copying `skills/mri-research/` into your agent's skills
+directory (e.g., `~/.claude/skills/`). No dependencies — it's Markdown.
+</details>
 
 ## What it is
 
-`mri-research` is a [Claude](https://claude.com/claude-code) **skill** — a
-packaged set of instructions and curated references that Claude loads when a
-conversation turns to magnetic resonance imaging. Once installed, Claude can
-immediately reason about k-space, pick the right reconstruction method and
-toolbox for a task, tell Siemens *twix* from a GE *P-file*, and point you to the
-canonical paper, course, dataset, or repository — with verified links.
+A fluent, well-oriented guide to the **whole MRI pipeline** — from spins to
+statistics. It's a **pointer / reference** hub, not a data dump: MRI datasets
+run from hundreds of GB to multiple TB and sit behind data-use agreements, and
+textbooks are copyrighted, so it teaches *where the authoritative resources
+live* and *which tool fits a given task*, then links out to the community's own
+repositories, papers, courses, and datasets.
 
-It is a **pointer / reference skill**, not a data dump. MR datasets run from
-hundreds of GB to multiple TB and are governed by data-use agreements, and
-textbooks are copyrighted — so the skill teaches Claude *where the authoritative
-resources live* and *which tool fits a given task*, and links out to the
-community's own repositories, papers, courses, and datasets.
+Once installed, your agent can immediately reason about k-space, pick the right
+reconstruction method and toolbox, tell Siemens *twix* from a GE *P-file*,
+preprocess an fMRI dataset with fMRIPrep, or point you to the canonical paper,
+course, handbook, or dataset — with verified links.
 
-## Why it exists
-
-Getting a coding agent genuinely useful for MRI reconstruction research usually
-means re-explaining the same landscape every session: which of a dozen
-toolboxes to use, what the landmark papers are, how a vendor raw file is laid
-out, where an open dataset lives and under what license. This skill encodes
-that orientation once, as a navigable, verified map of the field, so Claude
-starts every MR conversation already fluent and pointing at primary sources —
-a professional starting point that builds **on top of** the open MRI community
-rather than duplicating it.
+It builds **on top of, and in credit to,** the open MRI community.
 
 ## What's inside
 
-| File | Covers |
-|---|---|
-| [`SKILL.md`](SKILL.md) | Navigator: core MR mental model, ground rules, and a question → reference routing table |
-| [`references/foundations.md`](references/foundations.md) | MR physics / k-space and where to learn (Berkeley EE225E, Stanford EE369B/C, Hornak, MRIquestions, ISMRM) |
-| [`references/recon-methods.md`](references/recon-methods.md) | Landmark-paper reading list: parallel imaging, compressed sensing, low-rank & dynamic, deep learning, diffusion/score-based, MR fingerprinting — with a "which method for which task" guide |
-| [`references/tools.md`](references/tools.md) | Toolbox decision guide + usage patterns: BART, SigPy, MIRT.jl, MRIReco.jl, torchkbnufft, gpuNUFFT, mri-nufft, pygrappa, DIRECT, fastMRI, DeepInPy, TensorFlow MRI, Gadgetron |
-| [`references/data-and-formats.md`](references/data-and-formats.md) | ISMRMRD & vendor raw (Siemens twix, GE P-file, Philips raw), converters, and open datasets (fastMRI, mridata.org, OCMR, SKM-TEA, Calgary-Campinas, CMRxRecon, M4Raw) |
-| [`references/sequences-and-trajectories.md`](references/sequences-and-trajectories.md) | Pulse-sequence programming (Pulseq/PyPulseq, vendor SDKs), trajectory design, simulation (KomaMRI) |
-| [`references/hardware.md`](references/hardware.md) | MRI hardware and the open-hardware community (OSI², MaRCoS, OCRA, low-field, coils, gradients, safety) |
-| [`references/literature-access.md`](references/literature-access.md) | Literature/data APIs, API-key handling, and paper-search MCP servers (arXiv, PubMed, Semantic Scholar, OpenAlex, Crossref) |
-| [`references/radiology-primer.md`](references/radiology-primer.md) | MR image-contrast orientation (T1/T2/FLAIR/DWI) — non-diagnostic background only |
+The navigator (`skills/mri-research/SKILL.md`) holds a core MR mental model and
+routes each question to one of ten reference files:
 
-## Install
-
-**Claude Code (personal skill):**
-
-```bash
-git clone https://github.com/KeWang0622/mri-research-skill ~/.claude/skills/mri-research
-```
-
-Claude Code auto-discovers skills in `~/.claude/skills/`. The skill's invocation
-name comes from the `name:` field in `SKILL.md` (`mri-research`), so the folder
-name is flexible — cloning into `~/.claude/skills/mri-research` just keeps things
-tidy.
-
-**Project-scoped install** (share it with a repo's collaborators):
-
-```bash
-git clone https://github.com/KeWang0622/mri-research-skill .claude/skills/mri-research
-```
-
-No dependencies to install — the skill is Markdown. It will use whatever tools
-your Claude session already has (e.g., web search, `gh`, or a paper-search MCP
-server) when it needs to fetch or verify something live.
+| Stage | File | Covers |
+|---|---|---|
+| Foundations | `foundations.md` | MR physics / k-space and where to learn — Berkeley EE225E, Stanford EE369B/C, Hornak, MRIquestions, ISMRM, and the canonical handbooks/textbooks |
+| Acquisition | `sequences-and-trajectories.md` | Pulse-sequence programming (Pulseq/PyPulseq, vendor SDKs), trajectory design, RF pulse design, simulation (KomaMRI) |
+| Hardware | `hardware.md` | Low-field, open-source consoles (OSI², MaRCoS, OCRA), coils, gradients, safety |
+| Reconstruction | `recon-methods.md` | Landmark-paper reading list: parallel imaging, compressed sensing, low-rank, deep learning, diffusion/score-based, MR fingerprinting |
+| Recon tools | `tools.md` | BART, SigPy, MIRT.jl, MRIReco.jl, torchkbnufft, gpuNUFFT, mri-nufft, DIRECT, fastMRI, Gadgetron |
+| Data | `data-and-formats.md` | ISMRMRD & vendor raw (twix/P-file/Philips), DICOM/NIfTI/BIDS, and open datasets |
+| Analysis | `analysis-processing.md` | Structural, functional, and diffusion MRI; segmentation & registration — FreeSurfer, FSL, SPM, AFNI, ANTs, fMRIPrep, MRtrix3, DIPY, nnU-Net, MONAI |
+| Quantitative | `quantitative-and-spectroscopy.md` | Relaxometry, QSM, perfusion/ASL, MT, and MR spectroscopy (LCModel, Osprey, FSL-MRS) |
+| Literature | `literature-access.md` | APIs, API keys, and paper-search MCP servers (arXiv, PubMed, Semantic Scholar, OpenAlex, Crossref) |
+| Interpretation | `radiology-primer.md` | How MR contrast reads (T1/T2/FLAIR/DWI) — background orientation only |
 
 ## Example prompts
 
-Once installed, try:
-
-- *"I have 8-channel knee k-space undersampled 4×. Walk me through a PI+CS
-  reconstruction and give me the BART commands."*
-- *"What's the canonical paper for ESPIRiT, and how is it different from
-  SENSE and GRAPPA?"*
-- *"I was handed a `meas.dat` file. What is it and how do I get it into
-  something I can reconstruct in Python?"*
-- *"Design a golden-angle radial gradient-echo sequence in PyPulseq and
-  simulate it before I book scanner time."*
-- *"Which open dataset should I use to benchmark a cardiac cine reconstruction,
-  and what are the access terms?"*
-- *"Summarize the current state of diffusion-model MRI reconstruction and point
-  me to codebases."*
+- *"I have 8-channel knee k-space undersampled 4×. Walk me through a PI+CS reconstruction with BART."*
+- *"What's the canonical paper for ESPIRiT, and how does it differ from SENSE and GRAPPA?"*
+- *"I was handed a `meas.dat` file — what is it and how do I reconstruct it in Python?"*
+- *"Design a golden-angle radial gradient-echo sequence in PyPulseq and simulate it first."*
+- *"Preprocess this task-fMRI dataset and run a first-level GLM — what pipeline should I use?"*
+- *"Which open dataset should I benchmark a cardiac cine reconstruction on, and what are the access terms?"*
+- *"Summarize the state of diffusion-model MRI reconstruction and point me to codebases."*
 
 ## Design principles
 
-- **Point, don't vendor.** Link and summarize; never bundle datasets or
-  copyrighted text.
-- **Primary sources first.** Cite the original paper/repo; use awesome-lists as
-  living indexes.
-- **Decide, don't just enumerate.** Reference files are organized to help a
-  researcher choose the right method/tool.
-- **Verify load-bearing links.** Links rot; the skill instructs Claude to
-  confirm a link before acting on it.
+- **Point, don't vendor.** Link and summarize; never bundle datasets or copyrighted text.
+- **Primary sources first.** Cite the original paper/repo; use awesome-lists as living indexes.
+- **Decide, don't just enumerate.** Reference files help you choose the right method/tool.
+- **Verify load-bearing links.** Links rot; confirm a link before acting on it.
 
 ## Scope & disclaimers
 
-- **Radiology reading is orientation, not diagnosis.** The reading primer helps
-  Claude follow research conversations about image contrast; it is explicitly
-  not clinical or diagnostic advice. Interpretation of real scans belongs to a
-  qualified radiologist.
-- **Respect dataset licenses.** fastMRI requires a signed data-use agreement;
-  mridata.org datasets carry per-dataset terms. The skill never helps
+- **Image reading is orientation, not diagnosis.** The reading primer helps
+  follow research conversations about contrast; it is not clinical or diagnostic
+  advice. Interpretation of real scans belongs to a qualified radiologist.
+- **Respect dataset licenses.** Many datasets (fastMRI, HCP, UK Biobank, ADNI,
+  OASIS, BraTS) require registration or a data-use agreement; this never helps
   circumvent an access gate.
 - **Links can rot.** Every link was verified at release, but repositories move
-  and course pages change each semester.
+  and course pages change.
 
 ## Contributing
 
@@ -140,21 +114,21 @@ citation you add.
 
 ## Citing
 
-If this skill helps your research or tooling, please cite it via the
+If this helps your research or tooling, please cite it via the
 [`CITATION.cff`](CITATION.cff) metadata (GitHub's "Cite this repository" button
-will format it for you).
+formats it for you).
 
 ## Acknowledgements
 
-This skill is a navigation layer built **on top of, and in credit to,** the open
-MRI community — among them the Lustig group (UC Berkeley) and the Pauly/Nishimura
-lineage (Stanford); the BART, SigPy, ISMRMRD, Gadgetron, and Pulseq ecosystems;
-the fastMRI, mridata.org, OCMR, SKM-TEA, Calgary-Campinas, and CMRxRecon dataset
-efforts; the [ISMRM](https://www.ismrm.org); and the maintainers of the
-community awesome-lists. All primary work belongs to its respective authors.
+Built **on top of, and in credit to,** the open MRI community — among them the
+Lustig group (UC Berkeley) and the Pauly/Nishimura lineage (Stanford); the BART,
+SigPy, ISMRMRD, Gadgetron, and Pulseq ecosystems; the FreeSurfer/FSL/SPM/AFNI/
+ANTs and nipreps analysis communities; the fastMRI, mridata.org, HCP, OpenNeuro,
+and other dataset efforts; the [ISMRM](https://www.ismrm.org); and the
+maintainers of the community awesome-lists. All primary work belongs to its
+respective authors. Distribution uses the open [`skills`](https://github.com/vercel-labs/skills) CLI.
 
 ## License
 
-Released under the [MIT License](LICENSE). Note that the **external resources**
-this skill links to (papers, datasets, software) are governed by their own
-licenses and terms — always check them before use.
+Released under the [MIT License](LICENSE). External resources this hub links to
+(papers, datasets, software) are governed by their own licenses and terms.

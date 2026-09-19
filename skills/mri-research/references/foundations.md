@@ -62,15 +62,29 @@ words rather than reproducing copyrighted text.
   Its journals *Magnetic Resonance in Medicine* (MRM) and *JMRI* are where most
   landmark methods appear.
 
+**Canonical textbooks & handbooks (not free, but the standard references):**
+
+- **McRobbie, Moore, Graves & Prince, *MRI from Picture to Proton*** (Cambridge
+  University Press) — the most approachable rigorous introduction; ideal for
+  building intuition.
+- **Westbrook (& Talbot), *MRI in Practice*** (Wiley-Blackwell) — practical and
+  widely used by technologists and clinicians.
+- **Bernstein, King & Zhou, *Handbook of MRI Pulse Sequences*** (Elsevier /
+  Academic Press, 2004) — the definitive reference for pulse-sequence and
+  gradient design; the book to reach for when implementing a sequence (pairs
+  with `sequences-and-trajectories.md`).
+- **Haacke, Brown, Thompson & Venkatesan, *Magnetic Resonance Imaging: Physical
+  Principles and Sequence Design*** (Wiley) — deep physics and sequence design.
+
 **Broad living index:**
 
 - dangom/awesome-mri — https://github.com/dangom/awesome-mri (curated list
   spanning physics, sequences, analysis, and reconstruction).
 
-## How to teach an MR concept to this user
+## Calibrating explanations to the reader
 
-The user has a PhD in MRI (advisor: Miki Lustig). Assume fluency with k-space,
-Fourier, parallel imaging, and optimization. Skip first-principles derivations
-unless asked; lead with the precise result, the canonical citation, and the
-practical tool. For anyone less experienced, start from Hornak/MRIquestions and
-the course notes above.
+Gauge the reader's level and match it. For an experienced MR researcher, assume
+fluency with k-space, Fourier, parallel imaging, and optimization — skip
+first-principles derivations and lead with the precise result, the canonical
+citation, and the practical tool. For someone newer, start from Hornak /
+MRIquestions and the course notes above, building intuition before formalism.

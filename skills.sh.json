@@ -1,0 +1,11 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "MRI Research",
+      "description": "A curated, verified knowledge hub for magnetic resonance imaging research — physics, acquisition, reconstruction, analysis, quantitative MRI, and spectroscopy.",
+      "skills": ["mri-research"]
+    }
+  ]
+}

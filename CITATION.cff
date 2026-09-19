@@ -1,20 +1,22 @@
 cff-version: 1.2.0
-message: "If you use this skill in your research or tooling, please cite it as below."
-title: "mri-research: A Claude skill for MRI reconstruction research"
+message: "If you use this in your research or tooling, please cite it as below."
+title: "mri-research: A curated knowledge hub for magnetic resonance imaging research"
 abstract: >-
-  A curated, verified reference-hub skill for Claude that provides fluent
-  orientation across the magnetic resonance imaging (MRI) reconstruction
-  research ecosystem: MR physics and k-space foundations, landmark
-  reconstruction methods (parallel imaging, compressed sensing, low-rank,
-  deep learning, and diffusion/score-based recon), software toolboxes, raw-data
-  formats and open datasets, pulse-sequence and trajectory design, MRI
-  hardware, and programmatic literature access. It points to the community's
-  primary resources rather than bundling datasets or copyrighted text.
+  A curated, verified reference hub that gives an AI coding agent fluent
+  orientation across the whole magnetic resonance imaging (MRI) research
+  pipeline: MR physics and k-space foundations; acquisition, pulse-sequence and
+  trajectory design; image reconstruction (parallel imaging, compressed
+  sensing, low-rank, deep learning, diffusion/score-based, MR fingerprinting)
+  and reconstruction toolboxes; raw and image data formats and open datasets;
+  image analysis and processing (structural, functional, and diffusion MRI,
+  segmentation, registration); quantitative MRI and spectroscopy; MRI hardware;
+  and programmatic literature access. It points to the community's primary
+  resources rather than bundling datasets or copyrighted text.
 type: software
 authors:
   - family-names: Wang
     given-names: Ke
-version: 0.1.0
+version: 0.2.0
 date-released: "2026-09-19"
 license: MIT
 repository-code: "https://github.com/KeWang0622/mri-research-skill"
@@ -27,7 +29,9 @@ keywords:
   - parallel imaging
   - deep learning
   - diffusion models
+  - quantitative MRI
+  - MR spectroscopy
+  - neuroimaging
   - ISMRMRD
-  - Claude
-  - Claude Code
-  - AI agent skill
+  - BIDS
+  - agent skill

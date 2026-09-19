@@ -1,8 +1,10 @@
-# Raw-data formats, vendor conversion, and datasets
+# Data formats, vendor conversion, and datasets
 
-Use this when the user has (or wants) raw MR data: to identify a vendor format,
-convert it to something workable, or find an open dataset. Always respect each
-dataset's license / data-use agreement (see ground rules in SKILL.md).
+Use this when the user has (or wants) MR data — raw k-space or reconstructed
+images: to identify a format, convert it to something workable, or find an open
+dataset. Always respect each dataset's license / data-use agreement (see ground
+rules in SKILL.md). For analysis-oriented handling of DICOM/NIfTI/BIDS, see also
+`analysis-processing.md`.
 
 ## The interchange standard: ISMRMRD
 
@@ -41,7 +43,24 @@ reconstruct with the toolbox of their choice (`tools.md`). If they only need
 the trajectory/sampling, that lives in the sequence (`sequences-and-
 trajectories.md`).
 
+## Image-level formats (DICOM, NIfTI, BIDS)
+
+Once data is reconstructed into images, the analysis world uses different
+formats:
+
+- **DICOM** — the clinical/scanner image standard (pixel data + rich metadata).
+  Read/write in Python with **pydicom** (https://github.com/pydicom/pydicom).
+- **NIfTI** — the neuroimaging analysis volume format. Convert DICOM→NIfTI with
+  **dcm2niix** (https://github.com/rordenlab/dcm2niix); read/write with
+  **nibabel** (https://github.com/nipy/nibabel).
+- **BIDS** — the standard for organizing a whole study so pipelines run
+  automatically: https://bids.neuroimaging.io/ (convert with heudiconv/dcm2bids).
+
+See `analysis-processing.md` for how these feed the analysis pipelines.
+
 ## Open datasets (mind the license/DUA)
+
+### Raw k-space (reconstruction)
 
 - **mridata.org** — http://mridata.org — open archive of multi-vendor raw
   k-space (knee, brain, …), auto-converted to ISMRMRD, with parameters and
@@ -73,9 +92,34 @@ trajectories.md`).
   challenge in MICCAI 2023," *Medical Image Analysis* 2025 (arXiv:2404.01082).
 - **M4Raw** — multi-contrast, multi-repetition, multi-channel k-space for
   **low-field** MRI research. *Scientific Data* 2023;10:264.
+
+### Image-level (analysis / ML)
+
+Reconstructed-image datasets for analysis, segmentation, and machine learning
+(not raw k-space). Access terms vary — check each before use:
+
+- **OpenNeuro** — https://openneuro.org — 1000+ public BIDS datasets
+  (MRI/fMRI/EEG/MEG/PET). **Fully open** (mostly CC0), no application.
+- **IXI** — https://brain-development.org/ixi-dataset/ — ~600 healthy-subject
+  brain scans (T1/T2/PD/MRA/DTI). **Fully open** (CC BY-SA 3.0).
+- **Human Connectome Project (HCP)** — https://www.humanconnectome.org —
+  high-quality multimodal brain MRI (structural, dMRI, rest/task fMRI).
+  Registration (ConnectomeDB) + open-access terms; sensitive variables need a
+  restricted-access DUA.
+- **UK Biobank** (imaging) —
+  https://www.ukbiobank.ac.uk/enable-your-research/about-our-data/imaging-data —
+  large-scale multi-organ MRI (brain, cardiac, abdominal) + linked health data.
+  **Application required** (approved project + access fee).
+- **ADNI** — https://adni.loni.usc.edu — longitudinal Alzheimer's brain MRI +
+  PET/clinical/biomarkers. **Application + DUA** via LONI IDA.
+- **OASIS** — https://www.oasis-brains.org — cross-sectional/longitudinal brain
+  MRI for aging/Alzheimer's (OASIS-1/2/3/4). **Registration + DUA**.
+- **BraTS** — https://www.synapse.org/brats — multi-institutional brain-tumor
+  MRI with expert tumor segmentations. **Registration + DUA** via Synapse.
+
 - Do NOT help bypass any access gate. If a user lacks access, point them to the
-  official application and to fully-open alternatives (mridata.org, OCMR,
-  Calgary-Campinas).
+  official application and to fully-open alternatives (OpenNeuro, IXI,
+  mridata.org, OCMR, Calgary-Campinas).
 
 ## Getting from raw to image (sanity pipeline)
 

@@ -5,6 +5,33 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] — 2026-09-19
+
+Broadened from a reconstruction-focused reference into a **general MRI** research
+hub, and switched distribution to the open `skills` CLI (`npx skills add`).
+
+### Added
+- `references/analysis-processing.md` — image analysis & processing: structural,
+  functional, and diffusion MRI; segmentation and registration; DICOM/NIfTI/BIDS
+  handling. Tools include FreeSurfer, FSL, SPM, AFNI, ANTs, fMRIPrep, nilearn,
+  MRtrix3, DIPY, nnU-Net, TotalSegmentator, MONAI, Nipype, dcm2niix, nibabel.
+- `references/quantitative-and-spectroscopy.md` — quantitative MRI (relaxometry,
+  QSM, perfusion/ASL, MT) and MR spectroscopy (LCModel, Osprey, FSL-MRS, Gannet,
+  qMRLab, SEPIA).
+- `references/data-and-formats.md` — image-level formats (DICOM, NIfTI, BIDS) and
+  image-level datasets (HCP, OpenNeuro, UK Biobank, ADNI, OASIS, IXI, BraTS) with
+  access-term notes.
+- `references/foundations.md` — canonical textbooks/handbooks (McRobbie,
+  Westbrook, Bernstein *Handbook of MRI Pulse Sequences*, Haacke).
+- `skills.sh.json` registry metadata for the `skills` ecosystem.
+
+### Changed
+- `SKILL.md` reframed around the full MRI pipeline (physics → acquisition →
+  reconstruction → analysis → quantification) with an expanded routing table.
+- Repository restructured to the `skills` layout (`skills/mri-research/`) so it
+  installs with `npx skills add KeWang0622/mri-research-skill`.
+- README rewritten: MRI-first framing, `npx skills` install, working badges.
+
 ## [0.1.0] — 2026-09-19
 
 Initial public release.
