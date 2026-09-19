@@ -1,0 +1,133 @@
+# Reconstruction methods & the landmark-paper reading list
+
+Use this to (a) pick the right method for a task and (b) hand the user the
+canonical paper. Every citation below was verified; include the DOI/arXiv id
+when you cite so the user can find it behind their own library access. Do not
+paste paper bodies — cite and summarize.
+
+## Choosing a method (quick decision guide)
+
+- **Fully sampled, just need an image?** Inverse FFT (Cartesian) or NUFFT
+  (non-Cartesian) + coil combination (root-sum-of-squares or sensitivity-
+  weighted). See `tools.md`.
+- **Undersampled, multi-coil, no training data?** Parallel imaging
+  (ESPIRiT/SENSE/GRAPPA) — possibly combined with compressed sensing (L1-
+  wavelet / TV) if acceleration is high and sampling is incoherent.
+- **Undersampled + want state-of-the-art quality + have training data?**
+  Deep-learning recon (unrolled/variational network); diffusion/score-based if
+  you want a sampling-pattern-agnostic generative prior and can afford the
+  inference cost.
+- **Dynamic / multi-contrast / high-dimensional?** Low-rank + sparse (L+S),
+  structured low-rank (e.g., SAKE/ALOHA-style), or subspace/low-rank DL.
+
+## Parallel imaging
+
+- **SENSE** — image-domain unfolding using coil sensitivity maps.
+  Pruessmann KP, Weiger M, Scheidegger MB, Boesiger P. "SENSE: sensitivity
+  encoding for fast MRI." *Magn Reson Med* 1999;42(5):952–962.
+- **GRAPPA** — k-space interpolation from autocalibration lines (no explicit
+  sensitivity maps). Griswold MA, et al. "Generalized autocalibrating partially
+  parallel acquisitions (GRAPPA)." *Magn Reson Med* 2002;47(6):1202–1210.
+- **SPIRiT** — iterative self-consistent k-space parallel imaging; unifies the
+  above and handles arbitrary sampling. Lustig M, Pauly JM. "SPIRiT: Iterative
+  self-consistent parallel imaging reconstruction from arbitrary k-space."
+  *Magn Reson Med* 2010;64(2):457–471.
+- **ESPIRiT** — eigenvalue-based autocalibration for robust sensitivity maps;
+  "where SENSE meets GRAPPA." The default way to estimate coil maps today.
+  Uecker M, Lai P, Murphy MJ, Virtue P, Elad M, Pauly JM, Vasanawala SS,
+  Lustig M. *Magn Reson Med* 2014;71(3):990–1001. doi:10.1002/mrm.24751.
+  Code: https://github.com/mikgroup/espirit-python (and BART `ecalib`).
+
+## Compressed sensing MRI
+
+- **Sparse MRI (the foundational CS-MRI paper)** — Lustig M, Donoho D,
+  Pauly JM. "Sparse MRI: The application of compressed sensing for rapid MR
+  imaging." *Magn Reson Med* 2007;58(6):1182–1195. doi:10.1002/mrm.21391.
+  Core idea: incoherent undersampling + transform sparsity (wavelets, finite
+  differences) + nonlinear L1-regularized reconstruction.
+- **L1-ESPIRiT / combined PI+CS** is the practical workhorse: ESPIRiT maps +
+  L1-wavelet regularization, solved with BART `pics` or SigPy's app. See
+  `tools.md`.
+- Curated CS/DL index: https://github.com/mosaf/Awesome-DL-based-CS-MRI
+
+## Low-rank & structured low-rank
+
+- **L+S (low-rank plus sparse)** for dynamic MRI — Otazo R, Candès E, Sodickson
+  DK. "Low-rank plus sparse matrix decomposition for accelerated dynamic MRI."
+  *Magn Reson Med* 2015;73(3):1125–1136.
+- **Structured low-rank matrix completion** — SAKE (Shin et al., *MRM* 2014)
+  and ALOHA (Jin et al., *IEEE TCI* 2016) exploit annihilating-filter / Hankel
+  structure; calibrationless. Good when calibration data is unavailable.
+
+## Deep-learning reconstruction
+
+The dominant paradigm is the **unrolled network**: unroll N iterations of an
+iterative solver and learn the regularizer/updates end-to-end, keeping the
+measured data-consistency step.
+
+- **Variational Network (VN)** — Hammernik K, et al. "Learning a variational
+  network for reconstruction of accelerated MRI data." *Magn Reson Med*
+  2018;79(6):3055–3071. Code: https://github.com/VLOGroup/mri-variationalnetwork
+  (PyTorch reimplementation: https://github.com/khammernik/sigmanet ).
+- **MoDL** — model-based DL with a CNN prior and conjugate-gradient data
+  consistency, weight-shared across iterations. Aggarwal HK, Mani MP, Jacob M.
+  "MoDL: Model-Based Deep Learning Architecture for Inverse Problems." *IEEE
+  TMI* 2019;38(2):394–405. Code: https://github.com/hkaggarwal/modl
+- **End-to-End VarNet** — the strong fastMRI baseline that also learns coil
+  sensitivities. Sriram A, et al. "End-to-End Variational Networks for
+  Accelerated MRI Reconstruction." MICCAI 2020. Implemented in the fastMRI repo
+  (below).
+- **Deep cascade** — Schlemper J, et al. "A Deep Cascade of CNNs for Dynamic MR
+  Image Reconstruction." *IEEE TMI* 2018. Code:
+  https://github.com/js3611/Deep-MRI-Reconstruction
+- **Frameworks that collect many DL methods:** DIRECT
+  (https://github.com/NKI-AI/direct), the fastMRI repo
+  (https://github.com/facebookresearch/fastMRI), mridc
+  (https://github.com/wdika/mridc), and the reproducible benchmark
+  (https://github.com/zaccharieramzi/fastmri-reproducible-benchmark).
+
+### fastMRI challenge (benchmarks & what won)
+
+- 2019/2020 challenges established the modern benchmarks. Results paper:
+  Muckley MJ, et al. "Results of the 2020 fastMRI Challenge for Machine
+  Learning MR Image Reconstruction." *IEEE TMI* 2021;40(9):2306–2317.
+  arXiv:2012.06318. Takeaway: unrolled/variational approaches with learned
+  sensitivities led; SSIM and radiologist evaluation both mattered, and
+  transfer to unseen scanners was a distinct, harder track.
+
+## Diffusion / score-based reconstruction (generative priors)
+
+Rapidly evolving; these use a learned generative prior and enforce measurement
+consistency during sampling. Sampling-pattern-agnostic but computationally
+heavy at inference. Codebases the user specifically wants to know:
+
+- **Score-based diffusion for MRI** — Chung H, Ye JC. "Score-based diffusion
+  models for accelerated MRI." *Medical Image Analysis* 2022;80:102479.
+  arXiv:2110.05243. Code: https://github.com/hyungjin-chung/score-MRI
+- **CSGM / posterior sampling via Langevin dynamics** — Jalal A, Arvinte M,
+  Daras G, Price E, Dimakis AG, Tamir JI. "Robust Compressed Sensing MRI with
+  Deep Generative Priors." NeurIPS 2021. arXiv:2108.01368.
+  Code: https://github.com/utcsilab/csgm-mri-langevin
+- **Foundational (not MRI-specific) score-SDE** that these build on: Song Y, et
+  al. "Score-Based Generative Modeling through SDEs." ICLR 2021.
+  Code: https://github.com/yang-song/score_sde_pytorch
+- **High-frequency space diffusion (HFS-SDE)** — *IEEE TMI* 2024.
+  Code: https://github.com/Aboriginer/HFS-SDE
+- Also watch **SPIRiT-Diffusion** (arXiv:2304.05060) for self-consistency-
+  driven diffusion. For anything newer, check the awesome-lists and
+  `literature-access.md`.
+
+## Related recon-adjacent methods
+
+- **Deep J-Sense** (joint sensitivity + image, unrolled):
+  https://github.com/utcsilab/deep-jsense
+- **Complex-valued networks** for MR: https://github.com/MRSRL/complex-networks-release
+- **Memory-efficient learning** for high-dimensional recon:
+  https://github.com/mikgroup/MEL_MRI
+- **UFLoss** (unsupervised feature loss for sharper recon):
+  https://github.com/mikgroup/UFLoss
+- **Extreme MRI** (huge-scale volumetric/dynamic recon):
+  https://github.com/mikgroup/extreme_mri
+- **Subtle inverse crimes** (a caution about over-idealized retrospective
+  experiments — worth citing when reviewing methodology):
+  https://github.com/mikgroup/data_crimes

@@ -1,0 +1,88 @@
+# Pulse sequence programming & k-space trajectory design
+
+Use this when the user wants to design/program a pulse sequence, define or
+analyze a k-space trajectory, or simulate an acquisition. Sequence design and
+trajectory design are two sides of the same coin: the gradient waveforms in the
+sequence *are* what traces k-space.
+
+## Trajectory families (and when each is used)
+
+- **Cartesian** — line-by-line raster; simplest recon (FFT), robust to
+  off-resonance; the clinical default. Undersample phase-encode lines for
+  parallel imaging / CS.
+- **Radial (spokes)** — samples through k-space center every readout; motion-
+  robust, benign undersampling artifacts (streaks), great for dynamic imaging.
+  **Golden-angle** radial gives near-uniform coverage for any temporal window.
+- **Spiral** — very efficient k-space coverage per readout (fast); sensitive to
+  off-resonance/blurring and gradient imperfections; needs NUFFT + often
+  off-resonance correction.
+- **EPI** — single/multi-shot zig-zag; the workhorse for fMRI and diffusion;
+  fast but prone to geometric distortion, N/2 ghosting, and dropout.
+- **3D variants / stack-of-stars / cones / rosettes / PROPELLER** — chosen for
+  coverage, motion robustness, or SNR efficiency.
+
+Non-Cartesian trajectories require gridding/NUFFT for reconstruction (see the
+NUFFT tools in `tools.md`) and an accurate description of the sampled
+coordinates (the "trajectory"), which recon needs as input.
+
+## Vendor-neutral sequence programming: Pulseq
+
+**Pulseq** is the open, vendor-agnostic pulse-sequence standard. You describe a
+sequence once as a `.seq` file; a vendor-specific interpreter plays it on the
+scanner. This decouples research sequences from proprietary environments.
+
+- Standard & MATLAB: https://github.com/pulseq/pulseq ·
+  Tutorials: https://pulseq.github.io/
+- **PyPulseq** (Python): https://github.com/pulseq/pypulseq ·
+  docs: https://pypulseq.readthedocs.io . Paper: Ravi, Geethanath, Vaughan,
+  "PyPulseq," *JOSS* 4(42):1725, 2019.
+- Interpreters exist for **Siemens, GE, Bruker, and (more recently) Philips**;
+  a `.seq` file is portable across scanner software versions once the
+  interpreter is installed.
+
+## Vendor-native sequence environments (when Pulseq isn't enough)
+
+Research needing tight vendor integration or product features still uses the
+native SDKs (proprietary; require vendor research agreements — point the user
+to their vendor collaboration, don't try to reproduce SDK internals):
+
+- **Siemens — IDEA** (sequence build) + **ICE** (recon), C++.
+- **GE — EPIC** (sequence) + **Orchestra** (recon SDK), C/C++.
+- **Philips — Paradise / GOAL-C** research pulse-programming environment.
+- **Bruker — ParaVision** method programming (preclinical).
+
+If a user is prototyping a *method*, steer them to Pulseq first (portable,
+open, fast to iterate); reserve vendor SDKs for when they need product-level
+integration or features Pulseq can't express.
+
+## Simulation (test a sequence without scanner time)
+
+- **KomaMRI.jl** — https://github.com/JuliaHealth/KomaMRI.jl — GPU-accelerated,
+  Pulseq-compatible Bloch simulator; purpose-built for pulse-sequence
+  development. Feed it a `.seq` and a phantom, get simulated signal/images.
+- **MRzero / MRiLab / JEMRIS** — other open Bloch simulators worth knowing
+  (JEMRIS is a long-standing C++/MATLAB simulator; MRiLab is GPU-based).
+- BART includes analytical phantoms for quick recon testing.
+
+## Designing/analyzing trajectories in code
+
+- **BART** `traj` generates common trajectories (radial, spiral, custom) and
+  `nufft` reconstructs them: https://mrirecon.github.io/bart/
+- **SigPy** builds NUFFT linops from arbitrary coordinate arrays; good for
+  prototyping novel trajectories in Python.
+- **PyPulseq** computes the k-space trajectory implied by your gradient
+  waveforms (`calculate_kspace`), so you can verify coverage and slew/gradient
+  limits before playing the sequence.
+- Always check **hardware constraints**: max gradient amplitude, max slew rate,
+  PNS (peripheral nerve stimulation) limits, and duty cycle. A trajectory that
+  violates these can't be played (or is unsafe). KomaMRI/PyPulseq help validate.
+
+## Typical workflows
+
+- *"Prototype a new golden-angle radial sequence and test it"* → design in
+  PyPulseq → validate trajectory + slew limits → simulate in KomaMRI → export
+  `.seq` → (with vendor interpreter) run → convert raw to ISMRMRD
+  (`data-and-formats.md`) → reconstruct with BART/SigPy NUFFT + PICS.
+- *"Analyze the trajectory in this dataset"* → read the ISMRMRD header /
+  trajectory arrays; if absent, reconstruct the nominal trajectory from the
+  gradient description or sequence parameters.
