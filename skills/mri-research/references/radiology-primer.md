@@ -31,7 +31,7 @@ is the point, and it's why datasets are labeled by contrast.
 - **DWI / ADC** (diffusion-weighted): sensitizes to water diffusion via strong
   gradients (b-value). Restricted diffusion (e.g., acute stroke, some tumors)
   is bright on high-b DWI and dark on the computed ADC map. DWI is usually
-  EPI-based (see `sequences-and-trajectories.md`), so it inherits EPI
+  EPI-based (see [`sequences-and-trajectories.md`](sequences-and-trajectories.md)), so it inherits EPI
   distortions.
 - **T2\*** / **GRE / SWI**: sensitive to susceptibility — blood products,
   calcium, iron show as signal loss/blooming.
@@ -60,4 +60,4 @@ is the point, and it's why datasets are labeled by contrast.
   when advising on evaluation.
 
 For deeper (still non-diagnostic) physics of why each contrast arises, see
-Elster's MRIquestions.com and Hornak's *Basics of MRI* in `foundations.md`.
+Elster's MRIquestions.com and Hornak's *Basics of MRI* in [`foundations.md`](foundations.md).

@@ -4,7 +4,7 @@ Use this when the goal is **parameter maps or metabolite concentrations**, not a
 single qualitative image — relaxometry, susceptibility, perfusion, magnetization
 transfer, and spectroscopy. These methods pair a specialized acquisition with a
 model-fitting step, so they sit between acquisition (`sequences-and-
-trajectories.md`) and analysis (`analysis-processing.md`). Links verified;
+trajectories.md`) and analysis ([`analysis-processing.md`](analysis-processing.md)). Links verified;
 point users to each tool's own docs.
 
 ## Quantitative MRI (parameter mapping)
@@ -24,7 +24,7 @@ weighted images.
 - **Relaxometry basics:** T1 mapping (e.g., variable flip angle, MP2RAGE,
   inversion recovery), T2/T2\* mapping (multi-echo). For **MR fingerprinting**
   — a one-shot route to simultaneous T1/T2 maps — see the fingerprinting entry
-  in `recon-methods.md`; its reconstruction and quantification are intertwined.
+  in [`recon-methods.md`](recon-methods.md); its reconstruction and quantification are intertwined.
 
 ## Quantitative susceptibility mapping (QSM)
 

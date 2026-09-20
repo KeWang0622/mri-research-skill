@@ -17,7 +17,7 @@ their communities.
   safety limits.
 - **RF system** — transmit coil(s) for excitation and receive coil arrays for
   signal; RF power amplifier, T/R switch, preamps. Multi-channel receive arrays
-  are what make parallel imaging possible (`recon-methods.md`).
+  are what make parallel imaging possible ([`recon-methods.md`](recon-methods.md)).
 - **Console / spectrometer** — generates RF/gradient waveforms with precise
   timing and digitizes the received signal (ADCs/DACs). This is where
   open-source consoles focus.

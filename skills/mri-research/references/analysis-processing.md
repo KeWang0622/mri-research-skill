@@ -4,8 +4,8 @@ Use this once you have **images** (not raw k-space): organizing, converting,
 registering, segmenting, and analyzing MR data. This is the "after
 reconstruction" half of MRI research — structural, functional, and diffusion
 analysis, plus the neuroimaging pipelines the community standardizes on. For
-getting from scanner raw data to images, see `reconstruction.md`
-(`references/recon-methods.md`) and `references/data-and-formats.md`.
+getting from scanner raw data to images, see [`recon-methods.md`](recon-methods.md) and
+[`data-and-formats.md`](data-and-formats.md).
 
 All tools below were link-verified; pick by task, and point users to each
 project's own docs for depth (pointer-not-dump).
@@ -62,7 +62,7 @@ segmentation, stats). Choose by ecosystem and modality:
   (https://fsl.fmrib.ox.ac.uk/fsl/docs/#/registration/mcflirt) and SPM
   **Realign** align a time series after acquisition; fMRIPrep does this within
   its pipeline. (Prospective/real-time motion correction is an acquisition
-  topic — see `sequences-and-trajectories.md`.)
+  topic — see [`sequences-and-trajectories.md`](sequences-and-trajectories.md).)
 
 ## Diffusion MRI (dMRI)
 
@@ -93,7 +93,7 @@ feature extraction dominate:
 
 - **Cardiac** — cine segmentation (LV/RV/myocardium), strain, and parametric
   mapping. **nnU-Net** (above) is the de-facto backbone; benchmark on the ACDC
-  and M&Ms cardiac datasets (see `data-and-formats.md`), and use **MONAI** for
+  and M&Ms cardiac datasets (see [`data-and-formats.md`](data-and-formats.md)), and use **MONAI** for
   custom models.
 - **Body & MSK** — abdominal-organ and musculoskeletal segmentation:
   **TotalSegmentator** (100+ structures) and nnU-Net are the usual starting

@@ -9,7 +9,7 @@ paste paper bodies — cite and summarize.
 
 - **Fully sampled, just need an image?** Inverse FFT (Cartesian) or NUFFT
   (non-Cartesian) + coil combination (root-sum-of-squares or sensitivity-
-  weighted). See `tools.md`.
+  weighted). See [`tools.md`](tools.md).
 - **Undersampled, multi-coil, no training data?** Parallel imaging
   (ESPIRiT/SENSE/GRAPPA) — possibly combined with compressed sensing (L1-
   wavelet / TV) if acceleration is high and sampling is incoherent.
@@ -53,7 +53,7 @@ paste paper bodies — cite and summarize.
   differences) + nonlinear L1-regularized reconstruction.
 - **L1-ESPIRiT / combined PI+CS** is the practical workhorse: ESPIRiT maps +
   L1-wavelet regularization, solved with BART `pics` or SigPy's app. See
-  `tools.md`.
+  [`tools.md`](tools.md).
 - Curated CS/DL index: https://github.com/mosaf/Awesome-DL-based-CS-MRI
 
 ## Low-rank, dynamic & structured low-rank
@@ -146,7 +146,7 @@ heavy at inference. Codebases the user specifically wants to know:
   Code: https://github.com/Aboriginer/HFS-SDE
 - Also watch **SPIRiT-Diffusion** (arXiv:2304.05060) for self-consistency-
   driven diffusion. For anything newer, check the awesome-lists and
-  `literature-access.md`.
+  [`literature-access.md`](literature-access.md).
 
 ## Quantitative & fingerprinting
 
@@ -166,7 +166,7 @@ heavy at inference. Codebases the user specifically wants to know:
 - Related: quantitative susceptibility mapping (QSM), relaxometry, and other
   quantitative recon are adjacent areas worth a pointer when a user's goal is
   parameter maps rather than a single image (see
-  `quantitative-and-spectroscopy.md`).
+  [`quantitative-and-spectroscopy.md`](quantitative-and-spectroscopy.md)).
 
 ## Denoising
 

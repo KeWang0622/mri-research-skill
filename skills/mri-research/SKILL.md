@@ -107,17 +107,17 @@ what you need):
 
 | If the user is asking about… | Open |
 |---|---|
-| MR physics, k-space intuition, contrast, where to *learn* (courses, handbooks, free books) | `references/foundations.md` |
-| Designing/programming pulse sequences and k-space trajectories, RF pulse design, simulation | `references/sequences-and-trajectories.md` |
-| MRI hardware: low-field, open-source consoles, coils, gradients, safety | `references/hardware.md` |
-| Which reconstruction method/paper applies + the landmark reading list (parallel imaging → CS → low-rank → DL → diffusion → fingerprinting) | `references/recon-methods.md` |
-| Which reconstruction *software* to use and how (BART, SigPy, MIRT.jl, MRIReco.jl, torchkbnufft, DIRECT, Gadgetron) | `references/tools.md` |
-| Raw & image data formats (ISMRMRD, twix/P-file/Philips, DICOM, NIfTI, BIDS) and where to get data | `references/data-and-formats.md` |
-| Image analysis & processing: structural, fMRI, diffusion MRI, segmentation, registration, pipelines | `references/analysis-processing.md` |
-| Quantitative MRI (relaxometry, QSM, perfusion/ASL, MT) and MR spectroscopy | `references/quantitative-and-spectroscopy.md` |
-| Programmatic access to papers/data — APIs, keys, and MCP servers | `references/literature-access.md` |
-| Writing up & submitting — MR journals, LaTeX templates, reporting standards, abstracts, preprints | `references/publishing.md` |
-| How MR image contrast reads (T1/T2/FLAIR/DWI) — background orientation only | `references/radiology-primer.md` |
+| MR physics, k-space intuition, contrast, where to *learn* (courses, handbooks, free books) | [`references/foundations.md`](references/foundations.md) |
+| Designing/programming pulse sequences and k-space trajectories, RF pulse design, simulation | [`references/sequences-and-trajectories.md`](references/sequences-and-trajectories.md) |
+| MRI hardware: low-field, open-source consoles, coils, gradients, safety | [`references/hardware.md`](references/hardware.md) |
+| Which reconstruction method/paper applies + the landmark reading list (parallel imaging → CS → low-rank → DL → diffusion → fingerprinting) | [`references/recon-methods.md`](references/recon-methods.md) |
+| Which reconstruction *software* to use and how (BART, SigPy, MIRT.jl, MRIReco.jl, torchkbnufft, DIRECT, Gadgetron) | [`references/tools.md`](references/tools.md) |
+| Raw & image data formats (ISMRMRD, twix/P-file/Philips, DICOM, NIfTI, BIDS) and where to get data | [`references/data-and-formats.md`](references/data-and-formats.md) |
+| Image analysis & processing: structural, fMRI, diffusion MRI, segmentation, registration, pipelines | [`references/analysis-processing.md`](references/analysis-processing.md) |
+| Quantitative MRI (relaxometry, QSM, perfusion/ASL, MT) and MR spectroscopy | [`references/quantitative-and-spectroscopy.md`](references/quantitative-and-spectroscopy.md) |
+| Programmatic access to papers/data — APIs, keys, and MCP servers | [`references/literature-access.md`](references/literature-access.md) |
+| Writing up & submitting — MR journals, LaTeX templates, reporting standards, abstracts, preprints | [`references/publishing.md`](references/publishing.md) |
+| How MR image contrast reads (T1/T2/FLAIR/DWI) — background orientation only | [`references/radiology-primer.md`](references/radiology-primer.md) |
 
 Cross-cutting requests pull from several files — e.g., "reproduce this spiral CS
 paper on real scanner data" → `recon-methods` (method) + `tools` (BART/SigPy) +

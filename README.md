@@ -2,7 +2,7 @@
 
 <p align="center">
   <strong>A curated, verified knowledge hub for magnetic resonance imaging research — built for AI agents.</strong><br>
-  Physics · acquisition · reconstruction · analysis · quantitative MRI · spectroscopy · hardware.<br>
+  <a href="skills/mri-research/references/foundations.md">Physics</a> · <a href="skills/mri-research/references/sequences-and-trajectories.md">acquisition</a> · <a href="skills/mri-research/references/recon-methods.md">reconstruction</a> · <a href="skills/mri-research/references/analysis-processing.md">analysis</a> · <a href="skills/mri-research/references/quantitative-and-spectroscopy.md">quantitative MRI</a> · <a href="skills/mri-research/references/quantitative-and-spectroscopy.md">spectroscopy</a> · <a href="skills/mri-research/references/hardware.md">hardware</a>.<br>
   One command makes any AI agent fluent in MRI — so the field's knowledge is open to everyone.
 </p>
 
@@ -89,22 +89,23 @@ flowchart LR
 
 ## What's inside
 
-The navigator (`skills/mri-research/SKILL.md`) holds a core MR mental model and
-routes each question to one of ten reference files:
+The navigator ([`SKILL.md`](skills/mri-research/SKILL.md)) holds a core MR mental
+model and routes each question to one of **eleven** reference files — click any
+to read it:
 
-| Stage | File | Covers |
+| Stage | Reference | Covers |
 |---|---|---|
-| Foundations | `foundations.md` | MR physics / k-space and where to learn — Berkeley EE225E, Stanford EE369B/C, Hornak, MRIquestions, ISMRM, and the canonical handbooks/textbooks |
-| Acquisition | `sequences-and-trajectories.md` | Pulse-sequence programming (Pulseq/PyPulseq, vendor SDKs), trajectory design, RF pulse design, simulation (KomaMRI) |
-| Hardware | `hardware.md` | Low-field, open-source consoles (OSI², MaRCoS, OCRA), coils, gradients, safety |
-| Reconstruction | `recon-methods.md` | Landmark-paper reading list: parallel imaging, compressed sensing, low-rank, deep learning, diffusion/score-based, MR fingerprinting |
-| Recon tools | `tools.md` | BART, SigPy, MIRT.jl, MRIReco.jl, torchkbnufft, gpuNUFFT, mri-nufft, DIRECT, fastMRI, Gadgetron |
-| Data | `data-and-formats.md` | ISMRMRD & vendor raw (twix/P-file/Philips), DICOM/NIfTI/BIDS, and open datasets |
-| Analysis | `analysis-processing.md` | Structural, functional, and diffusion MRI; segmentation & registration — FreeSurfer, FSL, SPM, AFNI, ANTs, fMRIPrep, MRtrix3, DIPY, nnU-Net, MONAI |
-| Quantitative | `quantitative-and-spectroscopy.md` | Relaxometry, QSM, perfusion/ASL, MT, and MR spectroscopy (LCModel, Osprey, FSL-MRS) |
-| Literature | `literature-access.md` | APIs, API keys, and paper-search MCP servers (arXiv, PubMed, Semantic Scholar, OpenAlex, Crossref) |
-| Publishing | `publishing.md` | MR journals + author guidelines, LaTeX templates, reporting/reproducibility standards, abstracts, preprints |
-| Interpretation | `radiology-primer.md` | How MR contrast reads (T1/T2/FLAIR/DWI) — background orientation only |
+| [Foundations](skills/mri-research/references/foundations.md) | [`foundations.md`](skills/mri-research/references/foundations.md) | MR physics / k-space and where to learn — Berkeley EE225E, Stanford EE369B/C, Hornak, MRIquestions, ISMRM, and the canonical handbooks/textbooks |
+| [Acquisition](skills/mri-research/references/sequences-and-trajectories.md) | [`sequences-and-trajectories.md`](skills/mri-research/references/sequences-and-trajectories.md) | Pulse-sequence programming (Pulseq/PyPulseq, vendor SDKs), trajectory design, RF pulse design, SMS/multiband, field mapping, off-resonance, simulation (KomaMRI) |
+| [Hardware](skills/mri-research/references/hardware.md) | [`hardware.md`](skills/mri-research/references/hardware.md) | Low-field, open-source consoles (OSI², MaRCoS, OCRA), coils, gradients, MRI safety |
+| [Reconstruction](skills/mri-research/references/recon-methods.md) | [`recon-methods.md`](skills/mri-research/references/recon-methods.md) | Landmark-paper reading list: parallel imaging, compressed sensing, low-rank, deep learning, diffusion/score-based, MR fingerprinting, GRASP, denoising, metrics |
+| [Recon tools](skills/mri-research/references/tools.md) | [`tools.md`](skills/mri-research/references/tools.md) | BART, SigPy, MIRT.jl, MRIReco.jl, torchkbnufft, gpuNUFFT, mri-nufft, DIRECT, fastMRI, Gadgetron |
+| [Data](skills/mri-research/references/data-and-formats.md) | [`data-and-formats.md`](skills/mri-research/references/data-and-formats.md) | ISMRMRD & vendor raw (twix/P-file/Philips), DICOM/NIfTI/BIDS, and open datasets |
+| [Analysis](skills/mri-research/references/analysis-processing.md) | [`analysis-processing.md`](skills/mri-research/references/analysis-processing.md) | Structural, functional, diffusion MRI; segmentation & registration; cardiac/body/MSK; radiomics — FreeSurfer, FSL, SPM, ANTs, fMRIPrep, MRtrix3, nnU-Net, MONAI |
+| [Quantitative](skills/mri-research/references/quantitative-and-spectroscopy.md) | [`quantitative-and-spectroscopy.md`](skills/mri-research/references/quantitative-and-spectroscopy.md) | Relaxometry, QSM, perfusion/ASL, MT, and MR spectroscopy (LCModel, Osprey, FSL-MRS) |
+| [Literature](skills/mri-research/references/literature-access.md) | [`literature-access.md`](skills/mri-research/references/literature-access.md) | APIs, API keys, and paper-search MCP servers (arXiv, PubMed, Semantic Scholar, OpenAlex, Crossref) |
+| [Publishing](skills/mri-research/references/publishing.md) | [`publishing.md`](skills/mri-research/references/publishing.md) | MR journals + author guidelines, LaTeX templates, reporting/reproducibility standards, abstracts, preprints |
+| [Interpretation](skills/mri-research/references/radiology-primer.md) | [`radiology-primer.md`](skills/mri-research/references/radiology-primer.md) | How MR contrast reads (T1/T2/FLAIR/DWI) — background orientation only |
 
 ## Example prompts
 

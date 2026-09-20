@@ -9,7 +9,7 @@ words rather than reproducing copyrighted text.
 - **Signal & relaxation:** net magnetization, RF excitation (flip angle), free
   induction decay; **T1** (longitudinal recovery), **T2** (transverse decay),
   **T2\*** (incl. field inhomogeneity), proton density. Contrast comes from how
-  a sequence weights these (see `radiology-primer.md`).
+  a sequence weights these (see [`radiology-primer.md`](radiology-primer.md)).
 - **Spatial encoding:** slice-selective excitation, frequency encoding
   (readout gradient), phase encoding. Gradients make resonant frequency a
   function of position — this is what writes the image into k-space.
@@ -72,7 +72,7 @@ words rather than reproducing copyrighted text.
 - **Bernstein, King & Zhou, *Handbook of MRI Pulse Sequences*** (Elsevier /
   Academic Press, 2004) — the definitive reference for pulse-sequence and
   gradient design; the book to reach for when implementing a sequence (pairs
-  with `sequences-and-trajectories.md`).
+  with [`sequences-and-trajectories.md`](sequences-and-trajectories.md)).
 - **Haacke, Brown, Thompson & Venkatesan, *Magnetic Resonance Imaging: Physical
   Principles and Sequence Design*** (Wiley) — deep physics and sequence design.
 

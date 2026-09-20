@@ -97,8 +97,8 @@ Increasingly expected — and often required — especially for ML/quantitative 
 
 - **Match venue to contribution:** a new recon algorithm → MRM or IEEE TMI; a
   clinical validation → JMRI/Radiology; a neuroimaging analysis → NeuroImage.
-- **Share code and data** (respecting dataset DUAs — see `data-and-formats.md`):
+- **Share code and data** (respecting dataset DUAs — see [`data-and-formats.md`](data-and-formats.md)):
   a public repo with a fixed release/DOI (e.g., via Zenodo) strengthens review
   and satisfies reproducibility policies.
-- **Cite primary methods** from `recon-methods.md` and tools from `tools.md`
+- **Cite primary methods** from [`recon-methods.md`](recon-methods.md) and tools from [`tools.md`](tools.md)
   correctly; many MR toolboxes request a specific citation.

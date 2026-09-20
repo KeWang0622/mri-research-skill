@@ -4,7 +4,7 @@ Use this when the user has (or wants) MR data — raw k-space or reconstructed
 images: to identify a format, convert it to something workable, or find an open
 dataset. Always respect each dataset's license / data-use agreement (see ground
 rules in SKILL.md). For analysis-oriented handling of DICOM/NIfTI/BIDS, see also
-`analysis-processing.md`.
+[`analysis-processing.md`](analysis-processing.md).
 
 ## The interchange standard: ISMRMRD
 
@@ -39,7 +39,7 @@ orientation (details vary by software baseline/version):
 
 Rule of thumb when a user shows you a raw file: identify the vendor from the
 extension/structure, convert to ISMRMRD with the matching converter above, then
-reconstruct with the toolbox of their choice (`tools.md`). If they only need
+reconstruct with the toolbox of their choice ([`tools.md`](tools.md)). If they only need
 the trajectory/sampling, that lives in the sequence (`sequences-and-
 trajectories.md`).
 
@@ -56,7 +56,7 @@ formats:
 - **BIDS** — the standard for organizing a whole study so pipelines run
   automatically: https://bids.neuroimaging.io/ (convert with heudiconv/dcm2bids).
 
-See `analysis-processing.md` for how these feed the analysis pipelines.
+See [`analysis-processing.md`](analysis-processing.md) for how these feed the analysis pipelines.
 
 ## Open datasets (mind the license/DUA)
 
@@ -137,6 +137,6 @@ Reconstructed-image datasets for analysis, segmentation, and machine learning
    MRIReco.jl).
 3. Estimate coil sensitivities (ESPIRiT: BART `ecalib` / SigPy `EspiritCalib`).
 4. Reconstruct (FFT/NUFFT for fully sampled; PICS/CS/DL for undersampled — see
-   `recon-methods.md` and `tools.md`).
+   [`recon-methods.md`](recon-methods.md) and [`tools.md`](tools.md)).
 5. Coil-combine and inspect. Watch for FOV/orientation and readout-oversampling
    conventions, which differ by vendor.

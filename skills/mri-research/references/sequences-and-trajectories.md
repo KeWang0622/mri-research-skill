@@ -22,7 +22,7 @@ sequence *are* what traces k-space.
   coverage, motion robustness, or SNR efficiency.
 
 Non-Cartesian trajectories require gridding/NUFFT for reconstruction (see the
-NUFFT tools in `tools.md`) and an accurate description of the sampled
+NUFFT tools in [`tools.md`](tools.md)) and an accurate description of the sampled
 coordinates (the "trajectory"), which recon needs as input.
 
 ## Vendor-neutral sequence programming: Pulseq
@@ -63,7 +63,7 @@ adiabatic, multiband, and parallel-transmit/pTx pulses).
 
 - **SigPy.RF** (`sigpy.mri.rf`) — a Python RF-pulse-design toolbox within SigPy:
   SLR pulses, adiabatic pulses, multiband, small-tip and large-tip designs, and
-  pTx. Docs via https://sigpy.readthedocs.io/ ; SigPy repo in `tools.md`.
+  pTx. Docs via https://sigpy.readthedocs.io/ ; SigPy repo in [`tools.md`](tools.md).
 - **PyPulseq** defines the RF and gradient *events* that make up the sequence,
   so RF design and sequence assembly live in the same Python workflow.
 - Be mindful of **RF power / SAR** limits (a safety constraint), especially for
@@ -95,7 +95,7 @@ adiabatic, multiband, and parallel-transmit/pTx pulses).
 
 Modern scans lean on these acquisition-side methods; recon-side acceleration
 (parallel imaging, compressed sensing, deep learning) lives in
-`recon-methods.md`.
+[`recon-methods.md`](recon-methods.md).
 
 - **Simultaneous Multi-Slice (SMS) / multiband** — excite and read several
   slices at once for large speedups, then unalias them using coil
@@ -111,20 +111,20 @@ Modern scans lean on these acquisition-side methods; recon-side acceleration
   https://fsl.fmrib.ox.ac.uk/fsl/docs/#/registration/fugue).
 - **B1 mapping** — transmit-field (B1+) mapping (double-angle, Bloch–Siegert,
   AFI) matters for quantitative and high-field work; feeds qMRI
-  (`quantitative-and-spectroscopy.md`).
+  ([`quantitative-and-spectroscopy.md`](quantitative-and-spectroscopy.md)).
 - **Off-resonance correction** for long-readout spiral/EPI — conjugate-phase /
   multi-frequency interpolation. Representative reference: Man L-C, Pauly JM,
   Macovski A. *Magn Reson Med* 1997;37(5):785–792 (doi:10.1002/mrm.1910370523).
 - **Prospective motion correction** — track motion during the scan (navigators,
   optical tracking, FID/PACE) and update the acquisition geometry in real time.
-  Retrospective correction and QC tools are in `analysis-processing.md`.
+  Retrospective correction and QC tools are in [`analysis-processing.md`](analysis-processing.md).
 
 ## Typical workflows
 
 - *"Prototype a new golden-angle radial sequence and test it"* → design in
   PyPulseq → validate trajectory + slew limits → simulate in KomaMRI → export
   `.seq` → (with vendor interpreter) run → convert raw to ISMRMRD
-  (`data-and-formats.md`) → reconstruct with BART/SigPy NUFFT + PICS.
+  ([`data-and-formats.md`](data-and-formats.md)) → reconstruct with BART/SigPy NUFFT + PICS.
 - *"Analyze the trajectory in this dataset"* → read the ISMRMRD header /
   trajectory arrays; if absent, reconstruct the nominal trajectory from the
   gradient description or sequence parameters.
