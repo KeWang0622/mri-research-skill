@@ -8,9 +8,9 @@
 
 <p align="center">
   <a href="https://github.com/KeWang0622/mri-research-skill/blob/main/LICENSE"><img alt="License: MIT" src="https://img.shields.io/github/license/KeWang0622/mri-research-skill?style=for-the-badge&labelColor=000000"></a>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.5.0-1f6feb?style=for-the-badge&labelColor=000000">
+  <img alt="Version" src="https://img.shields.io/badge/version-0.5.1-1f6feb?style=for-the-badge&labelColor=000000">
   <img alt="Install: npx skills add" src="https://img.shields.io/badge/install-npx%20skills%20add-000000?style=for-the-badge">
-  <a href="https://github.com/KeWang0622/mri-research-skill/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/KeWang0622/mri-research-skill?style=for-the-badge&labelColor=000000"></a>
+  <a href="https://github.com/KeWang0622/mri-research-skill"><img alt="Stars" src="https://img.shields.io/github/stars/KeWang0622/mri-research-skill?style=for-the-badge&labelColor=000000"></a>
 </p>
 
 ---
@@ -169,7 +169,10 @@ coordinating the other agents and helping you write it.
 
 Issues and PRs are welcome — see [`CONTRIBUTING.md`](CONTRIBUTING.md). The one
 firm rule: preserve the pointer-not-dump philosophy and verify every link and
-citation you add.
+citation you add. By participating you agree to our
+[Code of Conduct](CODE_OF_CONDUCT.md); to report a vulnerability see
+[SECURITY.md](SECURITY.md). CI validates structure, lints the helper script, and
+checks every link on each change.
 
 ## Citing
 

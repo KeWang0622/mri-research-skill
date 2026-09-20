@@ -1,0 +1,57 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * 1" # weekly, to catch link rot
+
+permissions:
+  contents: read
+
+jobs:
+  structure:
+    name: Structure & frontmatter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate skills.sh.json
+        run: python3 -c "import json; json.load(open('skills.sh.json')); print('skills.sh.json: valid JSON')"
+      - name: Every SKILL.md has name + description
+        run: |
+          fail=0
+          for f in skills/*/SKILL.md; do
+            grep -qE '^name:' "$f"        || { echo "::error file=$f::missing 'name' in frontmatter"; fail=1; }
+            grep -qE '^description:' "$f" || { echo "::error file=$f::missing 'description' in frontmatter"; fail=1; }
+          done
+          [ "$fail" -eq 0 ] && echo "all SKILL.md frontmatter OK"
+          exit $fail
+
+  shellcheck:
+    name: ShellCheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ludeeus/action-shellcheck@master
+
+  links:
+    name: Link check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check links (lychee)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # Publisher pages (Wiley/Elsevier/RSNA/…) block bots with 403 but are
+          # valid in a browser; GitHub can rate-limit with 429 — accept both.
+          args: >-
+            --accept 200,206,301,302,307,308,403,429
+            --max-concurrency 8
+            --max-retries 3
+            --no-progress
+            "**/*.md"
+          fail: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

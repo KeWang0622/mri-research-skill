@@ -5,6 +5,26 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.1] — 2026-09-19
+
+Industry-standard hardening (no skill-content changes).
+
+### Added
+- Community health: `CODE_OF_CONDUCT.md` (Contributor Covenant 2.1),
+  `SECURITY.md`, issue templates, and a pull-request template.
+- CI (`.github/workflows/validate.yml`): validates `skills.sh.json` and every
+  SKILL.md's frontmatter, runs ShellCheck on the helper script, and link-checks
+  all Markdown (tolerant of publisher bot-blocks) on each change and weekly.
+- `.editorconfig`.
+
+### Fixed
+- Repointed the README stars-badge link to the repo home (the `/stargazers` path
+  returned 404 to link checkers).
+
+### Verified
+- Full link sweep across every file: 172 URLs return 200; the remainder are
+  publisher pages that bot-block (403/429) but load in a browser.
+
 ## [0.5.0] — 2026-09-19
 
 Added an end-to-end **research-workflow** agent that shepherds a project from
