@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://github.com/KeWang0622/mri-research-skill/blob/main/LICENSE"><img alt="License: MIT" src="https://img.shields.io/github/license/KeWang0622/mri-research-skill?style=for-the-badge&labelColor=000000"></a>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.2.0-1f6feb?style=for-the-badge&labelColor=000000">
+  <img alt="Version" src="https://img.shields.io/badge/version-0.3.0-1f6feb?style=for-the-badge&labelColor=000000">
   <img alt="Install: npx skills add" src="https://img.shields.io/badge/install-npx%20skills%20add-000000?style=for-the-badge">
   <a href="https://github.com/KeWang0622/mri-research-skill/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/KeWang0622/mri-research-skill?style=for-the-badge&labelColor=000000"></a>
 </p>
@@ -60,6 +60,21 @@ course, handbook, or dataset — with verified links.
 
 It builds **on top of, and in credit to,** the open MRI community.
 
+## The MRI pipeline it maps
+
+```mermaid
+flowchart LR
+  P[Physics and k-space] --> ACQ[Acquisition - sequences, trajectories, RF]
+  ACQ --> HW[Hardware]
+  ACQ --> RAW[Raw data - ISMRMRD, twix, P-file]
+  RAW --> REC[Reconstruction]
+  REC --> IMG[Images - DICOM, NIfTI, BIDS]
+  IMG --> AN[Analysis - structural, fMRI, dMRI, segmentation]
+  REC --> Q[Quantitative MRI and MR spectroscopy]
+  AN --> APP[Interpretation and applications]
+  Q --> APP
+```
+
 ## What's inside
 
 The navigator (`skills/mri-research/SKILL.md`) holds a core MR mental model and
@@ -76,6 +91,7 @@ routes each question to one of ten reference files:
 | Analysis | `analysis-processing.md` | Structural, functional, and diffusion MRI; segmentation & registration — FreeSurfer, FSL, SPM, AFNI, ANTs, fMRIPrep, MRtrix3, DIPY, nnU-Net, MONAI |
 | Quantitative | `quantitative-and-spectroscopy.md` | Relaxometry, QSM, perfusion/ASL, MT, and MR spectroscopy (LCModel, Osprey, FSL-MRS) |
 | Literature | `literature-access.md` | APIs, API keys, and paper-search MCP servers (arXiv, PubMed, Semantic Scholar, OpenAlex, Crossref) |
+| Publishing | `publishing.md` | MR journals + author guidelines, LaTeX templates, reporting/reproducibility standards, abstracts, preprints |
 | Interpretation | `radiology-primer.md` | How MR contrast reads (T1/T2/FLAIR/DWI) — background orientation only |
 
 ## Example prompts

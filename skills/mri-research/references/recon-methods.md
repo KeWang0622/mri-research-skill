@@ -56,7 +56,7 @@ paste paper bodies — cite and summarize.
   `tools.md`.
 - Curated CS/DL index: https://github.com/mosaf/Awesome-DL-based-CS-MRI
 
-## Low-rank & structured low-rank
+## Low-rank, dynamic & structured low-rank
 
 - **L+S (low-rank plus sparse)** for dynamic MRI — Otazo R, Candès E, Sodickson
   DK. "Low-rank plus sparse matrix decomposition for accelerated dynamic MRI."
@@ -66,6 +66,14 @@ paste paper bodies — cite and summarize.
   Tsao J, Boesiger P, Pruessmann KP. "k-t BLAST and k-t SENSE: Dynamic MRI with
   high frame rate exploiting spatiotemporal correlations." *Magn Reson Med*
   2003;50(5):1031–1042. doi:10.1002/mrm.10611.
+- **GRASP** — golden-angle radial sparse parallel MRI; combines compressed
+  sensing, parallel imaging, and golden-angle radial for continuous dynamic
+  imaging. Feng L, et al. *Magn Reson Med* 2014;72(3):707–717.
+  doi:10.1002/mrm.24980.
+- **XD-GRASP** — extra-dimensional, **motion-resolved** golden-angle recon: sort
+  data into extra motion dimensions (respiratory/cardiac) instead of fighting
+  motion. Feng L, et al. *Magn Reson Med* 2016;75(2):775–788.
+  doi:10.1002/mrm.25665.
 - **Structured low-rank matrix completion** — SAKE (Shin et al., *MRM* 2014)
   and ALOHA (Jin et al., *IEEE TCI* 2016) exploit annihilating-filter / Hankel
   structure; calibrationless. Good when calibration data is unavailable.
@@ -149,9 +157,48 @@ heavy at inference. Codebases the user specifically wants to know:
   low-rank/subspace and deep-learning acceleration are active research). Ma D,
   Gulani V, Seiberlich N, Liu K, Sunshine JL, Duerk JL, Griswold MA. "Magnetic
   resonance fingerprinting." *Nature* 2013;495:187–192. doi:10.1038/nature11971.
-- Related: quantitative susceptibility mapping (QSM), relaxometry, and
-  subspace/low-rank quantitative recon are adjacent areas worth a pointer when a
-  user's goal is parameter maps rather than a single image.
+- **Subspace / low-rank model-based recon** for MRF and multi-contrast qMRI —
+  project the signal time series onto a low-dimensional temporal subspace so
+  highly-undersampled quantitative recon becomes tractable. Zhao B, et al.
+  *Magn Reson Med* 2018;79(2):933–942 (doi:10.1002/mrm.26701); see also
+  Assländer J, et al. *Magn Reson Med* 2018;79(1):83–96 (low-rank ADMM,
+  doi:10.1002/mrm.26639).
+- Related: quantitative susceptibility mapping (QSM), relaxometry, and other
+  quantitative recon are adjacent areas worth a pointer when a user's goal is
+  parameter maps rather than a single image (see
+  `quantitative-and-spectroscopy.md`).
+
+## Denoising
+
+Thermal-noise denoising can act like extra acceleration (higher effective SNR):
+
+- **NORDIC** — locally low-rank thermal-noise removal for MRI/fMRI. Repo:
+  https://github.com/SteenMoeller/NORDIC_Raw . Vizioli L, et al. *Nat Commun*
+  2021;12:5181 (doi:10.1038/s41467-021-25431-8).
+- **MP-PCA (Marchenko–Pastur PCA)** — random-matrix-theory denoising, widely
+  used for diffusion MRI via MRtrix3 `dwidenoise`
+  (https://github.com/MRtrix3/mrtrix3). Veraart J, et al. *NeuroImage*
+  2016;142:394–406 (doi:10.1016/j.neuroimage.2016.08.016).
+- **Patch2Self** — self-supervised diffusion-MRI denoising (in DIPY,
+  https://github.com/dipy/dipy). Fadnavis S, Batson J, Garyfallidis E. NeurIPS
+  2020 (arXiv:2011.01355).
+
+## Evaluation & image-quality metrics
+
+How to judge a reconstruction — and the pitfalls:
+
+- **Fidelity metrics:** SSIM (Wang Z, et al. *IEEE Trans Image Process*
+  2004;13(4):600–612, doi:10.1109/TIP.2003.819861), plus PSNR, NMSE, and
+  perceptual metrics (VIF, LPIPS). Report several — no single number guarantees
+  diagnostic quality.
+- **Reader studies matter.** SSIM/PSNR can miss clinically-relevant errors, which
+  is why the fastMRI challenges paired metrics with radiologist reads.
+- **Beware DL hallucination.** Learned/generative recon can synthesize
+  realistic-looking but false structure at high acceleration; test for
+  stability, evaluate out-of-distribution, and prefer data-consistency-anchored
+  methods. (The public fastMRI leaderboard was retired in 2023; test sets are now
+  self-evaluated — download from https://fastmri.med.nyu.edu and compute metrics
+  locally.)
 
 ## Related recon-adjacent methods
 

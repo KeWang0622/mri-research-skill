@@ -5,6 +5,34 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] — 2026-09-19
+
+Deepened coverage (review-driven) and added a publishing reference.
+
+### Added
+- `references/publishing.md` — MR journals + author guidelines (MRM, JMRI, NMR in
+  Biomedicine, MAGMA, IEEE TMI, Medical Image Analysis, NeuroImage, Imaging
+  Neuroscience, Radiology), LaTeX templates/classes (MRM class, IEEEtran,
+  elsarticle, Springer, Overleaf, arXiv), reporting/reproducibility standards
+  (COBIDAS, CLAIM, TRIPOD+AI, ISMRM RRSG), and abstract submission.
+- `sequences-and-trajectories.md` — acquisition-side acceleration & correction:
+  SMS/multiband (Moeller 2010, Setsompop 2012, CMRR), B0 field mapping &
+  distortion correction (FSL topup/FUGUE), B1 mapping, off-resonance correction,
+  prospective motion.
+- `recon-methods.md` — GRASP/XD-GRASP (motion-resolved), subspace/low-rank
+  model-based qMRI, a denoising section (NORDIC, MP-PCA, Patch2Self), and an
+  evaluation & image-quality-metrics section (SSIM/PSNR/…, DL-hallucination
+  caveat, retired-leaderboard note).
+- `analysis-processing.md` — quality control & motion (MRIQC, MCFLIRT), and a
+  cardiac/body/MSK + radiomics section (pyradiomics; ACDC/M&Ms benchmarks).
+- `data-and-formats.md` — ACDC and M&Ms cardiac datasets.
+- `hardware.md` — a dedicated, non-clinical MRI safety section (ACR,
+  MRIsafety.com, ISMRM).
+- README Mermaid pipeline diagram.
+
+### Changed
+- `SKILL.md` routing and triggers extended (publishing, safety); version 0.3.0.
+
 ## [0.2.0] — 2026-09-19
 
 Broadened from a reconstruction-focused reference into a **general MRI** research

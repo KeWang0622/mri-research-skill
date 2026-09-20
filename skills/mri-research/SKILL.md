@@ -19,13 +19,15 @@ description: >-
   (relaxometry, QSM, perfusion/ASL, MT) and MR spectroscopy (LCModel, Osprey,
   FSL-MRS), datasets (fastMRI, mridata.org, HCP, OpenNeuro, UK Biobank, ADNI,
   BraTS), MRI hardware (low-field, open-source consoles, coils, gradients),
-  finding the right paper/course/handbook for an MR topic, or reading MR image
-  contrast. This resource knows WHERE the authoritative resources live and WHICH
+  finding the right paper/course/handbook for an MR topic, MRI safety, writing
+  up and submitting a paper (journals, LaTeX templates, reporting standards), or
+  reading MR image contrast. This resource knows WHERE the authoritative
+  resources live and WHICH
   tool fits a given task; it points to external repos, papers, courses, and
   datasets rather than bundling them.
 metadata:
   author: Ke Wang
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # MRI Research Hub
@@ -112,6 +114,7 @@ what you need):
 | Image analysis & processing: structural, fMRI, diffusion MRI, segmentation, registration, pipelines | `references/analysis-processing.md` |
 | Quantitative MRI (relaxometry, QSM, perfusion/ASL, MT) and MR spectroscopy | `references/quantitative-and-spectroscopy.md` |
 | Programmatic access to papers/data — APIs, keys, and MCP servers | `references/literature-access.md` |
+| Writing up & submitting — MR journals, LaTeX templates, reporting standards, abstracts, preprints | `references/publishing.md` |
 | How MR image contrast reads (T1/T2/FLAIR/DWI) — background orientation only | `references/radiology-primer.md` |
 
 Cross-cutting requests pull from several files — e.g., "reproduce this spiral CS

@@ -91,6 +91,34 @@ adiabatic, multiband, and parallel-transmit/pTx pulses).
   PNS (peripheral nerve stimulation) limits, and duty cycle. A trajectory that
   violates these can't be played (or is unsafe). KomaMRI/PyPulseq help validate.
 
+## Acceleration & correction (acquisition side)
+
+Modern scans lean on these acquisition-side methods; recon-side acceleration
+(parallel imaging, compressed sensing, deep learning) lives in
+`recon-methods.md`.
+
+- **Simultaneous Multi-Slice (SMS) / multiband** — excite and read several
+  slices at once for large speedups, then unalias them using coil
+  sensitivities. Foundational: Moeller S, et al. *Magn Reson Med*
+  2010;63(5):1144–1153 (doi:10.1002/mrm.22361); blipped-CAIPI to cut the
+  g-factor penalty: Setsompop K, et al. *Magn Reson Med* 2012;67(5):1210–1224
+  (doi:10.1002/mrm.23097). Widely-used product sequences from CMRR (Minnesota):
+  https://www.cmrr.umn.edu/multiband/
+- **B0 field mapping & distortion correction** — EPI/spiral suffer geometric
+  distortion from B0 inhomogeneity. Correct with **FSL `topup`** (reversed
+  phase-encode pairs, https://fsl.fmrib.ox.ac.uk/fsl/docs/#/diffusion/topup) or
+  **FUGUE** (fieldmap-based unwarping,
+  https://fsl.fmrib.ox.ac.uk/fsl/docs/#/registration/fugue).
+- **B1 mapping** — transmit-field (B1+) mapping (double-angle, Bloch–Siegert,
+  AFI) matters for quantitative and high-field work; feeds qMRI
+  (`quantitative-and-spectroscopy.md`).
+- **Off-resonance correction** for long-readout spiral/EPI — conjugate-phase /
+  multi-frequency interpolation. Representative reference: Man L-C, Pauly JM,
+  Macovski A. *Magn Reson Med* 1997;37(5):785–792 (doi:10.1002/mrm.1910370523).
+- **Prospective motion correction** — track motion during the scan (navigators,
+  optical tracking, FID/PACE) and update the acquisition geometry in real time.
+  Retrospective correction and QC tools are in `analysis-processing.md`.
+
 ## Typical workflows
 
 - *"Prototype a new golden-angle radial sequence and test it"* → design in

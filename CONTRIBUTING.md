@@ -26,8 +26,16 @@ is in accurate navigation and good judgment, so:
   reference hub worse than nothing.
 - **Cite consistently.** Papers as `Author(s). "Title." Venue Year;Vol(Issue):
   Pages. doi:…` (or an `arXiv:XXXX.XXXXX` id). Repos as full GitHub URLs.
-- **Match the file.** Put methods/papers in `recon-methods.md`, software in
-  `tools.md`, formats/datasets in `data-and-formats.md`, and so on. If a topic
+- **Match the file.** The reference set (under `skills/mri-research/references/`)
+  is: `foundations.md` (physics/courses/handbooks), `sequences-and-trajectories.md`
+  (acquisition, RF, trajectories, SMS, correction), `hardware.md` (hardware +
+  safety), `recon-methods.md` (reconstruction methods/papers + denoising +
+  metrics), `tools.md` (reconstruction software), `data-and-formats.md`
+  (formats + datasets), `analysis-processing.md` (structural/fMRI/dMRI, cardiac/
+  body/MSK, segmentation, radiomics), `quantitative-and-spectroscopy.md`
+  (qMRI + MRS), `literature-access.md` (paper/data APIs & MCP), `publishing.md`
+  (journals, LaTeX, reporting standards), `radiology-primer.md` (contrast
+  reading, non-diagnostic). Put each addition in the matching file; if a topic
   spans files, add a short cross-reference rather than duplicating.
 - **Stay concise.** Each entry should earn its place — one to three lines of
   what it is and when to reach for it.

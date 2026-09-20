@@ -53,6 +53,17 @@ segmentation, stats). Choose by ecosystem and modality:
   in SPM, FSL (FEAT), and AFNI. Covers task and resting-state (functional
   connectivity) designs.
 
+## Quality control & motion correction
+
+- **MRIQC** — https://github.com/nipreps/mriqc — automated image-quality metrics
+  and visual reports for structural and functional MRI; run it before analysis
+  to catch bad scans.
+- **Retrospective motion correction:** FSL **MCFLIRT**
+  (https://fsl.fmrib.ox.ac.uk/fsl/docs/#/registration/mcflirt) and SPM
+  **Realign** align a time series after acquisition; fMRIPrep does this within
+  its pipeline. (Prospective/real-time motion correction is an acquisition
+  topic — see `sequences-and-trajectories.md`.)
+
 ## Diffusion MRI (dMRI)
 
 - **MRtrix3** — https://github.com/MRtrix3/mrtrix3 — advanced diffusion modeling
@@ -75,6 +86,25 @@ segmentation, stats). Choose by ecosystem and modality:
   medical-imaging deep learning (transforms, networks, losses, training);
   build custom pipelines when nnU-Net's fixed recipe isn't enough.
 
+## Cardiac, body, MSK & radiomics
+
+Analysis beyond the brain — where deep-learning segmentation and quantitative
+feature extraction dominate:
+
+- **Cardiac** — cine segmentation (LV/RV/myocardium), strain, and parametric
+  mapping. **nnU-Net** (above) is the de-facto backbone; benchmark on the ACDC
+  and M&Ms cardiac datasets (see `data-and-formats.md`), and use **MONAI** for
+  custom models.
+- **Body & MSK** — abdominal-organ and musculoskeletal segmentation:
+  **TotalSegmentator** (100+ structures) and nnU-Net are the usual starting
+  points.
+- **Radiomics** — extract reproducible quantitative image features (shape,
+  first-order intensity, texture) from images + masks for downstream modeling.
+  **pyradiomics** — https://github.com/AIM-Harvard/pyradiomics — is the standard
+  (van Griethuysen JJM, et al. *Cancer Res* 2017;77(21):e104–e107,
+  doi:10.1158/0008-5472.CAN-17-0339). Follow **IBSI** conventions for feature
+  standardization.
+
 ## Workflow & reproducibility
 
 - **Nipype** — https://github.com/nipy/nipype — wraps FSL/SPM/FreeSurfer/ANTs/
@@ -96,3 +126,6 @@ segmentation, stats). Choose by ecosystem and modality:
 - *Segment an organ/structure/lesion* → try TotalSegmentator (if covered) or
   nnU-Net; MONAI to build a custom model.
 - *Glue several tools into one reproducible pipeline* → Nipype + BIDS.
+- *Check data quality before analysis* → MRIQC.
+- *Segment cardiac cine / benchmark a model* → nnU-Net on ACDC or M&Ms.
+- *Extract radiomic features for modeling* → pyradiomics (follow IBSI).

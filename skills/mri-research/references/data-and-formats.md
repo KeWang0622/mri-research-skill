@@ -116,6 +116,15 @@ Reconstructed-image datasets for analysis, segmentation, and machine learning
   MRI for aging/Alzheimer's (OASIS-1/2/3/4). **Registration + DUA**.
 - **BraTS** — https://www.synapse.org/brats — multi-institutional brain-tumor
   MRI with expert tumor segmentations. **Registration + DUA** via Synapse.
+- **ACDC** (Automated Cardiac Diagnosis Challenge) — cine cardiac MRI with
+  LV/RV/myocardium segmentations and diagnosis labels (150 patients); free
+  download after registration on the CREATIS platform.
+  https://www.creatis.insa-lyon.fr/Challenge/acdc/ (Bernard O, et al. *IEEE TMI*
+  2018;37(11):2514–2525).
+- **M&Ms** (Multi-Centre, Multi-Vendor & Multi-Disease Cardiac Segmentation) —
+  cine cardiac MRI across 4 vendors and multiple centres (375 subjects);
+  registration required. https://www.ub.edu/mnms/ (Campello VM, et al.
+  *IEEE TMI* 2021;40(12):3543–3554).
 
 - Do NOT help bypass any access gate. If a user lacks access, point them to the
   official application and to fully-open alternatives (OpenNeuro, IXI,

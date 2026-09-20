@@ -56,6 +56,37 @@ research; the OSI² projects directory is the best living index.
   the site's physicist, IRB/ethics approval, and vendor/hardware safety specs —
   never improvise around safety limits.
 
+## MRI safety (research orientation — not clinical guidance)
+
+MRI is generally safe but has real, physics-driven hazards. This is background
+orientation for researchers; it is **not** a substitute for your site's MR
+safety program, screening, or a qualified MR safety officer / medical physicist.
+For anything involving a real magnet or human/animal subjects, follow local
+policy, IRB/ethics approval, and vendor specifications.
+
+Main hazard classes:
+- **Static field (B0):** the always-on magnet turns ferromagnetic objects into
+  projectiles and can disrupt implants — strict ferromagnetic screening and zone
+  control are essential.
+- **Gradients:** rapidly switched fields cause peripheral nerve stimulation
+  (PNS) and loud acoustic noise (hearing protection).
+- **RF (B1):** deposits power as heat — **SAR** limits guard against tissue
+  heating/burns (mind conductive loops and leads).
+- **Cryogens / quench:** superconducting magnets can quench and vent cryogens;
+  quench pathways and oxygen monitoring matter.
+- **Implants & devices:** must be checked for MR-conditional/safe labeling at the
+  relevant field strength before scanning.
+- **Contrast agents:** gadolinium-based agents carry their own considerations
+  (e.g., NSF in severe renal impairment, gadolinium retention) — a clinical
+  decision, out of scope here.
+
+Authoritative references:
+- **ACR Manual on MR Safety** —
+  https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/radiology-safety/mr-safety
+- **MRIsafety.com** (Shellock R&D / IMRSER), incl. implant/device lookup —
+  https://www.mrisafety.com/
+- **ISMRM** safety resources — https://www.ismrm.org/
+
 ## How to help on hardware questions
 
 Hardware is where "point, don't reproduce" matters most: the user should engage
