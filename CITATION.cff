@@ -11,7 +11,9 @@ abstract: >-
   image analysis and processing (structural, functional, and diffusion MRI,
   segmentation, registration); quantitative MRI and spectroscopy; MRI hardware;
   and programmatic literature access. It points to the community's primary
-  resources rather than bundling datasets or copyrighted text.
+  resources rather than bundling datasets or copyrighted text. Built for AI
+  agents, its aim is to make the MRI community's collective knowledge accessible
+  to everyone.
 type: software
 authors:
   - family-names: Wang

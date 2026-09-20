@@ -1,9 +1,9 @@
 <h1 align="center">MRI Research</h1>
 
 <p align="center">
-  <strong>A curated, verified knowledge hub for magnetic resonance imaging research.</strong><br>
+  <strong>A curated, verified knowledge hub for magnetic resonance imaging research — built for AI agents.</strong><br>
   Physics · acquisition · reconstruction · analysis · quantitative MRI · spectroscopy · hardware.<br>
-  Installs into your AI coding agent with one command.
+  One command makes any AI agent fluent in MRI — so the field's knowledge is open to everyone.
 </p>
 
 <p align="center">
@@ -59,6 +59,18 @@ preprocess an fMRI dataset with fMRIPrep, or point you to the canonical paper,
 course, handbook, or dataset — with verified links.
 
 It builds **on top of, and in credit to,** the open MRI community.
+
+## Why it exists
+
+Built for **AI agents**. MRI expertise is scattered — across papers, course
+notes, vendor manuals, and dozens of toolboxes — which makes it slow even for
+experts and daunting for newcomers. This packages that landscape into a form an
+agent can use directly, so any researcher's agent starts already fluent in MRI.
+
+The goal is simple: **make the MRI community's collective knowledge accessible
+to everyone**, through whatever AI agent they already use — an open,
+community-maintained starting point rather than know-how locked inside
+individual labs.
 
 ## The MRI pipeline it maps
 

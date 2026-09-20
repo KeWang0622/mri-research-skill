@@ -35,7 +35,9 @@ metadata:
 ## What this is (and is not)
 
 A fluent, well-oriented guide to the whole MRI research landscape — from spins
-to statistics. Its job is **navigation and judgment**, not storage:
+to statistics. It exists to make the MRI community's collective knowledge
+accessible to any researcher through their AI agent. Its job is **navigation and
+judgment**, not storage:
 
 - **It IS** a curated, verified map of the MRI ecosystem — the physics and
   courses, the acquisition and pulse-sequence tools, the reconstruction methods
