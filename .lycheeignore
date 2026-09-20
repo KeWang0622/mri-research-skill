@@ -1,0 +1,6 @@
+# URLs excluded from CI link-checking because the HOST's TLS certificate is
+# misconfigured (untrusted chain or expired) even though the page loads fine in
+# a browser. The links remain valid and useful in the docs — re-check these
+# periodically in case the site fixes its certificate.
+https://www.cis.rit.edu/htbooks/mri/
+http://www.lcmodel.com/
