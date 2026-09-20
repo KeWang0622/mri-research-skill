@@ -5,6 +5,29 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] — 2026-09-19
+
+Turned the repo into a multi-agent MRI **team**: five specialized, installable
+expert skills alongside the generalist hub, with the reconstruction agent made
+**actionable** (it runs BART/SigPy).
+
+### Added
+- `skills/mri-reconstruction/` — actionable reconstruction agent (ESPIRiT +
+  PI/CS via BART/SigPy) including a runnable `scripts/bart_recon.sh`.
+- `skills/diffusion-mri/` — diffusion MRI (DTI/DKI/NODDI, topup/eddy, CSD,
+  tractography; MRtrix3, DIPY, FSL, AMICO, TractSeg, QSIPrep).
+- `skills/pulse-sequence-design/` — Pulseq/PyPulseq, KomaMRI, RF/SMS design, and
+  Siemens (IDEA/ICE) / GE (EPIC/Orchestra) / Philips (Paradise) sequence dev.
+- `skills/deep-learning-recon/` — unrolled / self-supervised / diffusion recon,
+  DIRECT/fastMRI/mridc, evaluation & hallucination caveats.
+- `skills/mri-hardware/` — low-field, open-source consoles, coils, MR safety.
+- `skills.sh.json` groups the hub and the expert team.
+
+### Changed
+- `mri-research` hub gains an "expert team" section pointing to the siblings
+  (version 0.4.0). README documents the team and per-skill install
+  (`--skill <name>` / `--all`).
+
 ## [0.3.0] — 2026-09-19
 
 Deepened coverage (review-driven) and added a publishing reference.

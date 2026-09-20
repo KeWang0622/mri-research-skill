@@ -27,7 +27,7 @@ description: >-
   datasets rather than bundling them.
 metadata:
   author: Ke Wang
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # MRI Research Hub
@@ -53,6 +53,21 @@ Act like a knowledgeable lab-mate: someone who can say "for that, read Uecker's
 ESPIRiT paper and use `bart ecalib`," "that raw file is Siemens twix — convert
 with `siemens_to_ismrmrd`," or "preprocess that with fMRIPrep, then analyze in
 nilearn."
+
+## The expert team (sibling skills)
+
+This hub is the generalist. The repo also ships focused expert agents — install
+any with `npx skills add KeWang0622/mri-research-skill --skill <name>`:
+
+- **mri-reconstruction** — actionable BART/SigPy reconstruction ("reconstruct
+  this k-space" — it runs the pipeline).
+- **diffusion-mri** — DTI/DKI/NODDI, preprocessing (topup/eddy), tractography.
+- **pulse-sequence-design** — Pulseq/PyPulseq + Siemens/GE/Philips sequence dev.
+- **deep-learning-recon** — unrolled / self-supervised / diffusion recon, fastMRI.
+- **mri-hardware** — low-field, open-source consoles, coils, MR safety.
+
+Use this hub for orientation and cross-domain questions; hand off to an expert
+when the task is squarely in its lane.
 
 ## Ground rules
 

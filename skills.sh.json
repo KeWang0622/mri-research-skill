@@ -3,9 +3,14 @@
   "notGrouped": "bottom",
   "groupings": [
     {
-      "title": "MRI Research",
-      "description": "A curated, verified knowledge hub for magnetic resonance imaging research — physics, acquisition, reconstruction, analysis, quantitative MRI, and spectroscopy.",
+      "title": "MRI Research (generalist hub)",
+      "description": "The generalist navigator and curated reference hub across the whole MRI pipeline — physics, acquisition, reconstruction, analysis, quantitative MRI, spectroscopy, hardware, and publishing.",
       "skills": ["mri-research"]
+    },
+    {
+      "title": "Expert agents",
+      "description": "Specialized, task-focused MRI experts — install one or the whole team. mri-reconstruction actually runs BART/SigPy.",
+      "skills": ["mri-reconstruction", "diffusion-mri", "pulse-sequence-design", "deep-learning-recon", "mri-hardware"]
     }
   ]
 }

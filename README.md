@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://github.com/KeWang0622/mri-research-skill/blob/main/LICENSE"><img alt="License: MIT" src="https://img.shields.io/github/license/KeWang0622/mri-research-skill?style=for-the-badge&labelColor=000000"></a>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.3.0-1f6feb?style=for-the-badge&labelColor=000000">
+  <img alt="Version" src="https://img.shields.io/badge/version-0.4.0-1f6feb?style=for-the-badge&labelColor=000000">
   <img alt="Install: npx skills add" src="https://img.shields.io/badge/install-npx%20skills%20add-000000?style=for-the-badge">
   <a href="https://github.com/KeWang0622/mri-research-skill/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/KeWang0622/mri-research-skill?style=for-the-badge&labelColor=000000"></a>
 </p>
@@ -23,6 +23,10 @@ Using the open [`skills`](https://github.com/vercel-labs/skills) CLI — works a
 npx skills add KeWang0622/mri-research-skill
 ```
 
+The repo ships a **team of skills** (a generalist hub + focused experts, below).
+The CLI lets you install one, several, or all — pick when prompted, or use
+`--skill <name>` / `--all`.
+
 <details>
 <summary>More install options</summary>
 
@@ -35,6 +39,12 @@ npx skills add KeWang0622/mri-research-skill -a claude-code
 
 # List what's in the repo without installing
 npx skills add KeWang0622/mri-research-skill --list
+
+# Install just one expert (e.g., the actionable reconstruction agent)
+npx skills add KeWang0622/mri-research-skill --skill mri-reconstruction
+
+# Install the whole team
+npx skills add KeWang0622/mri-research-skill --all
 
 # Try it without installing — pipe a generated prompt straight into an agent
 npx skills use KeWang0622/mri-research-skill | claude
@@ -106,6 +116,22 @@ to read it:
 | [Literature](skills/mri-research/references/literature-access.md) | [`literature-access.md`](skills/mri-research/references/literature-access.md) | APIs, API keys, and paper-search MCP servers (arXiv, PubMed, Semantic Scholar, OpenAlex, Crossref) |
 | [Publishing](skills/mri-research/references/publishing.md) | [`publishing.md`](skills/mri-research/references/publishing.md) | MR journals + author guidelines, LaTeX templates, reporting/reproducibility standards, abstracts, preprints |
 | [Interpretation](skills/mri-research/references/radiology-primer.md) | [`radiology-primer.md`](skills/mri-research/references/radiology-primer.md) | How MR contrast reads (T1/T2/FLAIR/DWI) — background orientation only |
+
+## The expert team
+
+Beyond the generalist hub, the repo ships focused **expert agents** — each an
+installable skill a coding agent invokes when the task fits. `mri-reconstruction`
+is **actionable**: it runs BART/SigPy (bundled script included), so
+*"reconstruct this k-space with BART"* just works.
+
+| Agent | Skill | What it does |
+|---|---|---|
+| Generalist hub | [`mri-research`](skills/mri-research/SKILL.md) | Navigator + curated reference across the whole pipeline |
+| Reconstruction | [`mri-reconstruction`](skills/mri-reconstruction/SKILL.md) | **Runs** ESPIRiT + PI/CS reconstruction with BART/SigPy on your k-space |
+| Diffusion MRI | [`diffusion-mri`](skills/diffusion-mri/SKILL.md) | DTI/DKI/NODDI, preprocessing (topup/eddy), tractography (MRtrix3, DIPY) |
+| Sequence design | [`pulse-sequence-design`](skills/pulse-sequence-design/SKILL.md) | Pulseq/PyPulseq + Siemens/GE/Philips sequence development, RF, SMS |
+| DL reconstruction | [`deep-learning-recon`](skills/deep-learning-recon/SKILL.md) | Unrolled / self-supervised / diffusion recon; DIRECT, fastMRI |
+| Hardware | [`mri-hardware`](skills/mri-hardware/SKILL.md) | Low-field, open-source consoles, coils, gradients, MR safety |
 
 ## Example prompts
 
