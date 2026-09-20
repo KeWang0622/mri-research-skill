@@ -18,7 +18,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Validate skills.sh.json
-        run: python3 -c "import json; json.load(open('skills.sh.json')); print('skills.sh.json: valid JSON')"
+        run: |
+          python3 -c "import json; json.load(open('skills.sh.json')); print('skills.sh.json valid JSON')"
       - name: Every SKILL.md has name + description
         run: |
           fail=0
