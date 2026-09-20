@@ -27,7 +27,7 @@ description: >-
   datasets rather than bundling them.
 metadata:
   author: Ke Wang
-  version: "0.4.0"
+  version: "0.5.0"
 ---
 
 # MRI Research Hub
@@ -59,6 +59,8 @@ nilearn."
 This hub is the generalist. The repo also ships focused expert agents — install
 any with `npx skills add KeWang0622/mri-research-skill --skill <name>`:
 
+- **mri-research-workflow** — end-to-end research assistant: idea → experiments →
+  paper (CVPR/MICCAI/MRM); orchestrates the experts below and helps write it.
 - **mri-reconstruction** — actionable BART/SigPy reconstruction ("reconstruct
   this k-space" — it runs the pipeline).
 - **diffusion-mri** — DTI/DKI/NODDI, preprocessing (topup/eddy), tractography.

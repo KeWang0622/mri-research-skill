@@ -5,6 +5,23 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] — 2026-09-19
+
+Added an end-to-end **research-workflow** agent that shepherds a project from
+idea to a published paper.
+
+### Added
+- `skills/mri-research-workflow/` — orchestrator/assistant for the full research
+  lifecycle (literature → hypothesis → experiment design → running experiments →
+  analysis → figures/tables → manuscript → submission/rebuttal). Venue-aware for
+  **CVPR / MICCAI / NeurIPS / MRM**, with template and reproducibility pointers
+  (cvpr-org/author-kit, Springer LNCS, MRM LaTeX class, Papers with Code,
+  CLAIM/COBIDAS). Hands off to the expert agents.
+
+### Changed
+- `skills.sh.json` adds a "Research workflow" group; README and the hub SKILL.md
+  list the new agent. Version 0.5.0.
+
 ## [0.4.0] — 2026-09-19
 
 Turned the repo into a multi-agent MRI **team**: five specialized, installable

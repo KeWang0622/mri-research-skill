@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://github.com/KeWang0622/mri-research-skill/blob/main/LICENSE"><img alt="License: MIT" src="https://img.shields.io/github/license/KeWang0622/mri-research-skill?style=for-the-badge&labelColor=000000"></a>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.4.0-1f6feb?style=for-the-badge&labelColor=000000">
+  <img alt="Version" src="https://img.shields.io/badge/version-0.5.0-1f6feb?style=for-the-badge&labelColor=000000">
   <img alt="Install: npx skills add" src="https://img.shields.io/badge/install-npx%20skills%20add-000000?style=for-the-badge">
   <a href="https://github.com/KeWang0622/mri-research-skill/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/KeWang0622/mri-research-skill?style=for-the-badge&labelColor=000000"></a>
 </p>
@@ -122,11 +122,14 @@ to read it:
 Beyond the generalist hub, the repo ships focused **expert agents** — each an
 installable skill a coding agent invokes when the task fits. `mri-reconstruction`
 is **actionable**: it runs BART/SigPy (bundled script included), so
-*"reconstruct this k-space with BART"* just works.
+*"reconstruct this k-space with BART"* just works. And `mri-research-workflow`
+shepherds a whole study from idea to a submitted paper (CVPR / MICCAI / MRM),
+coordinating the other agents and helping you write it.
 
 | Agent | Skill | What it does |
 |---|---|---|
 | Generalist hub | [`mri-research`](skills/mri-research/SKILL.md) | Navigator + curated reference across the whole pipeline |
+| Research workflow | [`mri-research-workflow`](skills/mri-research-workflow/SKILL.md) | **End-to-end**: idea → experiments → analysis → paper (CVPR / MICCAI / MRM); orchestrates the experts and helps write it |
 | Reconstruction | [`mri-reconstruction`](skills/mri-reconstruction/SKILL.md) | **Runs** ESPIRiT + PI/CS reconstruction with BART/SigPy on your k-space |
 | Diffusion MRI | [`diffusion-mri`](skills/diffusion-mri/SKILL.md) | DTI/DKI/NODDI, preprocessing (topup/eddy), tractography (MRtrix3, DIPY) |
 | Sequence design | [`pulse-sequence-design`](skills/pulse-sequence-design/SKILL.md) | Pulseq/PyPulseq + Siemens/GE/Philips sequence development, RF, SMS |
@@ -135,6 +138,7 @@ is **actionable**: it runs BART/SigPy (bundled script included), so
 
 ## Example prompts
 
+- *"I want to run reconstruction experiments and publish in MRM (or CVPR) — help me plan the study, run baselines, analyze results, and draft the paper."*
 - *"I have 8-channel knee k-space undersampled 4×. Walk me through a PI+CS reconstruction with BART."*
 - *"What's the canonical paper for ESPIRiT, and how does it differ from SENSE and GRAPPA?"*
 - *"I was handed a `meas.dat` file — what is it and how do I reconstruct it in Python?"*

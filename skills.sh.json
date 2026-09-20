@@ -8,6 +8,11 @@
       "skills": ["mri-research"]
     },
     {
+      "title": "Research workflow (end-to-end)",
+      "description": "Shepherds an MRI / MRI-ML project from idea to a published paper (CVPR, MICCAI, MRM); orchestrates the expert agents and helps write the manuscript.",
+      "skills": ["mri-research-workflow"]
+    },
+    {
       "title": "Expert agents",
       "description": "Specialized, task-focused MRI experts — install one or the whole team. mri-reconstruction actually runs BART/SigPy.",
       "skills": ["mri-reconstruction", "diffusion-mri", "pulse-sequence-design", "deep-learning-recon", "mri-hardware"]

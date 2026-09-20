@@ -15,12 +15,14 @@ abstract: >-
   agents, its aim is to make the MRI community's collective knowledge accessible
   to everyone. It ships as a team of specialized agent skills — reconstruction
   (actionable via BART/SigPy), diffusion MRI, pulse-sequence design,
-  deep-learning reconstruction, and hardware — alongside a generalist hub.
+  deep-learning reconstruction, and hardware — alongside a generalist hub and an
+  end-to-end research-workflow assistant that takes a study from idea to a
+  published paper (CVPR, MICCAI, MRM).
 type: software
 authors:
   - family-names: Wang
     given-names: Ke
-version: 0.4.0
+version: 0.5.0
 date-released: "2026-09-19"
 license: MIT
 repository-code: "https://github.com/KeWang0622/mri-research-skill"
