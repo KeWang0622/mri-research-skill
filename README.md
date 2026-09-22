@@ -1,116 +1,46 @@
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./assets/logo-light.svg">
-    <img alt="mri-research" src="./assets/logo-dark.svg" width="460">
-  </picture>
-</p>
+<div align="center" id="top">
 
-<h3 align="center">A curated, verified knowledge hub for MRI research — built for AI agents</h3>
-<p align="center">One command makes any coding agent fluent in MRI — so the field's knowledge is open to everyone.</p>
+<img src="assets/logo.svg" alt="mri-research" width="88" height="88">
 
-<p align="center">
-  <a href="#install"><strong>Install</strong></a>
-  &nbsp;&bull;&nbsp;
-  <a href="#the-expert-team"><strong>Agents</strong></a>
-  &nbsp;&bull;&nbsp;
-  <a href="#whats-inside"><strong>References</strong></a>
-  &nbsp;&bull;&nbsp;
-  <a href="CONTRIBUTING.md"><strong>Contribute</strong></a>
-  &nbsp;&bull;&nbsp;
-  <a href="CHANGELOG.md"><strong>Changelog</strong></a>
-</p>
+# mri-research
 
-<p align="center">
-  <a href="https://github.com/KeWang0622/mri-research-skill/blob/main/LICENSE"><img alt="License: MIT" src="https://img.shields.io/github/license/KeWang0622/mri-research-skill?style=for-the-badge&labelColor=000000"></a>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.6.0-1f6feb?style=for-the-badge&labelColor=000000">
-  <img alt="Install: npx skills add" src="https://img.shields.io/badge/install-npx%20skills%20add-000000?style=for-the-badge">
-  <a href="https://github.com/KeWang0622/mri-research-skill"><img alt="Stars" src="https://img.shields.io/github/stars/KeWang0622/mri-research-skill?style=for-the-badge&labelColor=000000"></a>
-</p>
+**A curated, verified knowledge hub for MRI research — built for AI agents.**
 
-<p align="center">
-  <a href="skills/mri-research/references/foundations.md">Physics</a> ·
-  <a href="skills/mri-research/references/sequences-and-trajectories.md">Acquisition</a> ·
-  <a href="skills/mri-research/references/recon-methods.md">Reconstruction</a> ·
-  <a href="skills/mri-research/references/analysis-processing.md">Analysis</a> ·
-  <a href="skills/mri-research/references/quantitative-and-spectroscopy.md">Quantitative</a> ·
-  <a href="skills/mri-research/references/hardware.md">Hardware</a> ·
-  <a href="skills/mri-research/references/publishing.md">Publishing</a>
-</p>
+[![CI](https://img.shields.io/github/actions/workflow/status/KeWang0622/mri-research-skill/validate.yml?branch=main&style=flat-square&labelColor=000000&label=CI)](https://github.com/KeWang0622/mri-research-skill/actions/workflows/validate.yml)
+[![License: MIT](https://img.shields.io/github/license/KeWang0622/mri-research-skill?style=flat-square&labelColor=000000)](LICENSE)
+![Version](https://img.shields.io/badge/version-0.6.0-1f6feb?style=flat-square&labelColor=000000)
+![Install](https://img.shields.io/badge/install-npx%20skills%20add-000000?style=flat-square)
+[![Stars](https://img.shields.io/github/stars/KeWang0622/mri-research-skill?style=flat-square&labelColor=000000)](https://github.com/KeWang0622/mri-research-skill)
 
-<p align="center">
-  ⭐ <em>If this helps your research, a star helps other researchers find it.</em>
-</p>
+</div>
 
 ---
 
-## Install
+<p align="center">
+| <a href="#install"><b>Install</b></a> | <a href="#the-expert-team"><b>Agents</b></a> | <a href="#whats-inside"><b>References</b></a> | <a href="CONTRIBUTING.md"><b>Contribute</b></a> | <a href="#citation"><b>Cite</b></a> |
+</p>
 
-Using the open [`skills`](https://github.com/vercel-labs/skills) CLI — works across Claude Code, Codex, Cursor, OpenCode, and many more agents:
+<p align="center">
+One command makes any coding agent — Claude Code, Codex, Cursor, and 20+ more —
+fluent in magnetic resonance imaging, from k-space to publication.
+</p>
 
-```bash
-npx skills add KeWang0622/mri-research-skill
-```
+## News
 
-The repo ships a **team of skills** (a generalist hub + focused experts, below).
-The CLI lets you install one, several, or all — pick when prompted, or use
-`--skill <name>` / `--all`.
+- **[v0.6.0]** More sequence-design and hardware/RF tooling; a multi-agent red-team pass; branch protection + hardened CI. ([release](https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.6.0))
+- **[v0.5.0]** End-to-end **research-workflow** agent — idea → experiments → paper (CVPR / MICCAI / MRM). ([release](https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.5.0))
+- **[v0.4.0]** Split into a **7-skill multi-agent team**; the reconstruction agent runs BART/SigPy. ([release](https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.4.0))
+- **[v0.2.0]** Broadened from reconstruction into a **general-MRI** hub; `npx skills` distribution. ([release](https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.2.0))
 
-<details>
-<summary>More install options</summary>
+Full history in the [CHANGELOG](CHANGELOG.md).
 
-```bash
-# Install globally (user directory) instead of the current project
-npx skills add KeWang0622/mri-research-skill -g
+## About
 
-# Target a specific agent
-npx skills add KeWang0622/mri-research-skill -a claude-code
-
-# List what's in the repo without installing
-npx skills add KeWang0622/mri-research-skill --list
-
-# Install just one expert (e.g., the actionable reconstruction agent)
-npx skills add KeWang0622/mri-research-skill --skill mri-reconstruction
-
-# Install the whole team
-npx skills add KeWang0622/mri-research-skill --all
-
-# Try it without installing — pipe a generated prompt straight into an agent
-npx skills use KeWang0622/mri-research-skill | claude
-```
-
-Or add it manually by copying `skills/mri-research/` into your agent's skills
-directory (e.g., `~/.claude/skills/`). No dependencies — it's Markdown.
-</details>
-
-## What it is
-
-A fluent, well-oriented guide to the **whole MRI pipeline** — from spins to
-statistics. It's a **pointer / reference** hub, not a data dump: MRI datasets
-run from hundreds of GB to multiple TB and sit behind data-use agreements, and
-textbooks are copyrighted, so it teaches *where the authoritative resources
-live* and *which tool fits a given task*, then links out to the community's own
-repositories, papers, courses, and datasets.
-
-Once installed, your agent can immediately reason about k-space, pick the right
-reconstruction method and toolbox, tell Siemens *twix* from a GE *P-file*,
-preprocess an fMRI dataset with fMRIPrep, or point you to the canonical paper,
-course, handbook, or dataset — with verified links.
-
-It builds **on top of, and in credit to,** the open MRI community.
-
-## Why it exists
-
-Built for **AI agents**. MRI expertise is scattered — across papers, course
-notes, vendor manuals, and dozens of toolboxes — which makes it slow even for
-experts and daunting for newcomers. This packages that landscape into a form an
-agent can use directly, so any researcher's agent starts already fluent in MRI.
-
-The goal is simple: **make the MRI community's collective knowledge accessible
-to everyone**, through whatever AI agent they already use — an open,
-community-maintained starting point rather than know-how locked inside
-individual labs.
-
-## The MRI pipeline it maps
+**mri-research** packages the sprawling MRI research landscape — physics, papers,
+toolboxes, data formats, courses, and hardware — into a form an AI agent can use
+directly. Install it once and your agent starts already fluent: it knows the
+canonical reference, which tool fits a task, how vendor raw data differs, and how
+to run a reconstruction — pointing to primary sources rather than bundling them.
 
 ```mermaid
 flowchart LR
@@ -125,45 +55,91 @@ flowchart LR
   Q --> APP
 ```
 
-## What's inside
+**Your agent gets:**
 
-The navigator ([`SKILL.md`](skills/mri-research/SKILL.md)) holds a core MR mental
-model and routes each question to one of **eleven** reference files — click any
-to read it:
+- **Orientation across the whole pipeline** — physics & k-space, acquisition,
+  reconstruction, analysis, quantitative MRI, spectroscopy, hardware, and publishing.
+- **A team of expert agents** — focused skills for reconstruction, diffusion,
+  sequence design, deep-learning recon, and hardware, plus an end-to-end
+  research-workflow agent.
+- **Actionable tools** — e.g. *"reconstruct this Cartesian k-space with BART"*
+  runs a real ESPIRiT + PI/CS pipeline (bundled script).
+- **Verified pointers** — every external link is checked in CI, so citations and
+  repos don't rot.
 
-| Stage | Reference | Covers |
-|---|---|---|
-| [Foundations](skills/mri-research/references/foundations.md) | [`foundations.md`](skills/mri-research/references/foundations.md) | MR physics / k-space and where to learn — Berkeley EE225E, Stanford EE369B/C, Hornak, MRIquestions, ISMRM, and the canonical handbooks/textbooks |
-| [Acquisition](skills/mri-research/references/sequences-and-trajectories.md) | [`sequences-and-trajectories.md`](skills/mri-research/references/sequences-and-trajectories.md) | Pulse-sequence programming (Pulseq/PyPulseq, vendor SDKs), trajectory design, RF pulse design, SMS/multiband, field mapping, off-resonance, simulation (KomaMRI) |
-| [Hardware](skills/mri-research/references/hardware.md) | [`hardware.md`](skills/mri-research/references/hardware.md) | Low-field, open-source consoles (OSI², MaRCoS, OCRA), coils, gradients, MRI safety |
-| [Reconstruction](skills/mri-research/references/recon-methods.md) | [`recon-methods.md`](skills/mri-research/references/recon-methods.md) | Landmark-paper reading list: parallel imaging, compressed sensing, low-rank, deep learning, diffusion/score-based, MR fingerprinting, GRASP, denoising, metrics |
-| [Recon tools](skills/mri-research/references/tools.md) | [`tools.md`](skills/mri-research/references/tools.md) | BART, SigPy, MIRT.jl, MRIReco.jl, torchkbnufft, gpuNUFFT, mri-nufft, DIRECT, fastMRI, Gadgetron |
-| [Data](skills/mri-research/references/data-and-formats.md) | [`data-and-formats.md`](skills/mri-research/references/data-and-formats.md) | ISMRMRD & vendor raw (twix/P-file/Philips), DICOM/NIfTI/BIDS, and open datasets |
-| [Analysis](skills/mri-research/references/analysis-processing.md) | [`analysis-processing.md`](skills/mri-research/references/analysis-processing.md) | Structural, functional, diffusion MRI; segmentation & registration; cardiac/body/MSK; radiomics — FreeSurfer, FSL, SPM, ANTs, fMRIPrep, MRtrix3, nnU-Net, MONAI |
-| [Quantitative](skills/mri-research/references/quantitative-and-spectroscopy.md) | [`quantitative-and-spectroscopy.md`](skills/mri-research/references/quantitative-and-spectroscopy.md) | Relaxometry, QSM, perfusion/ASL, MT, and MR spectroscopy (LCModel, Osprey, FSL-MRS) |
-| [Literature](skills/mri-research/references/literature-access.md) | [`literature-access.md`](skills/mri-research/references/literature-access.md) | APIs, API keys, and paper-search MCP servers (arXiv, PubMed, Semantic Scholar, OpenAlex, Crossref) |
-| [Publishing](skills/mri-research/references/publishing.md) | [`publishing.md`](skills/mri-research/references/publishing.md) | MR journals + author guidelines, LaTeX templates, reporting/reproducibility standards, abstracts, preprints |
-| [Interpretation](skills/mri-research/references/radiology-primer.md) | [`radiology-primer.md`](skills/mri-research/references/radiology-primer.md) | How MR contrast reads (T1/T2/FLAIR/DWI) — background orientation only |
+**Built for researchers:**
+
+- Points to the community's primary papers, courses, handbooks, datasets, and
+  toolboxes — and credits them; it bundles no datasets or copyrighted text.
+- Respects dataset data-use agreements and keeps clinical reading non-diagnostic.
+- Agent-agnostic: the same skills work across every agent the `skills` CLI supports.
+
+## Install
+
+Using the open [`skills`](https://github.com/vercel-labs/skills) CLI — works
+across Claude Code, Codex, Cursor, OpenCode, and many more:
+
+```bash
+npx skills add KeWang0622/mri-research-skill
+```
+
+The repo ships a **team of skills** (a generalist hub + focused experts). Install
+one, several, or all — pick when prompted, or use `--skill <name>` / `--all`.
+
+<details>
+<summary>More install options</summary>
+
+```bash
+# Install globally (user directory) instead of the current project
+npx skills add KeWang0622/mri-research-skill -g
+
+# Just one expert (e.g. the actionable reconstruction agent)
+npx skills add KeWang0622/mri-research-skill --skill mri-reconstruction
+
+# The whole team
+npx skills add KeWang0622/mri-research-skill --all
+
+# Target a specific agent, or list without installing
+npx skills add KeWang0622/mri-research-skill -a claude-code
+npx skills add KeWang0622/mri-research-skill --list
+```
+
+No dependencies — the skills are Markdown. Or clone `skills/mri-research/` into
+your agent's skills directory (e.g. `~/.claude/skills/`).
+</details>
 
 ## The expert team
 
-Beyond the generalist hub, the repo ships focused **expert agents** — each an
-installable skill a coding agent invokes when the task fits. `mri-reconstruction`
-is **actionable**: it runs BART/SigPy (a bundled script included), so
-*"reconstruct this Cartesian k-space with BART"* works out of the box —
-non-Cartesian data just needs a trajectory. And `mri-research-workflow`
-shepherds a whole study from idea to a submitted paper (CVPR / MICCAI / MRM),
-coordinating the other agents and helping you write it.
+Each agent is an installable skill a coding agent invokes when the task fits.
 
 | Agent | Skill | What it does |
 |---|---|---|
 | Generalist hub | [`mri-research`](skills/mri-research/SKILL.md) | Navigator + curated reference across the whole pipeline |
-| Research workflow | [`mri-research-workflow`](skills/mri-research-workflow/SKILL.md) | **End-to-end**: idea → experiments → analysis → paper (CVPR / MICCAI / MRM); orchestrates the experts and helps write it |
+| Research workflow | [`mri-research-workflow`](skills/mri-research-workflow/SKILL.md) | **End-to-end**: idea → experiments → analysis → paper (CVPR / MICCAI / MRM) |
 | Reconstruction | [`mri-reconstruction`](skills/mri-reconstruction/SKILL.md) | **Runs** ESPIRiT + PI/CS reconstruction with BART/SigPy on your k-space |
 | Diffusion MRI | [`diffusion-mri`](skills/diffusion-mri/SKILL.md) | DTI/DKI/NODDI, preprocessing (topup/eddy), tractography (MRtrix3, DIPY) |
-| Sequence design | [`pulse-sequence-design`](skills/pulse-sequence-design/SKILL.md) | Pulseq/PyPulseq + Siemens/GE/Philips sequence development, RF, SMS |
+| Sequence design | [`pulse-sequence-design`](skills/pulse-sequence-design/SKILL.md) | Pulseq/PyPulseq + Siemens/GE/Philips dev, RF, SMS, GIRF, simulators |
 | DL reconstruction | [`deep-learning-recon`](skills/deep-learning-recon/SKILL.md) | Unrolled / self-supervised / diffusion recon; DIRECT, fastMRI |
-| Hardware | [`mri-hardware`](skills/mri-hardware/SKILL.md) | Low-field, open-source consoles, coils, gradients, MR safety |
+| Hardware | [`mri-hardware`](skills/mri-hardware/SKILL.md) | Low-field, open consoles (MaRCoS/OCRA), coils, gradients, MR safety |
+
+## What's inside
+
+The hub ([`SKILL.md`](skills/mri-research/SKILL.md)) routes each question to one
+of eleven reference files — click any to read it:
+
+| Stage | Reference | Covers |
+|---|---|---|
+| [Foundations](skills/mri-research/references/foundations.md) | [`foundations.md`](skills/mri-research/references/foundations.md) | MR physics / k-space and where to learn — Berkeley EE225E, Stanford EE369B/C, Hornak, MRIquestions, ISMRM, handbooks |
+| [Acquisition](skills/mri-research/references/sequences-and-trajectories.md) | [`sequences-and-trajectories.md`](skills/mri-research/references/sequences-and-trajectories.md) | Pulseq/PyPulseq, vendor SDKs, trajectory & RF design, SMS, field mapping, GIRF, simulation |
+| [Hardware](skills/mri-research/references/hardware.md) | [`hardware.md`](skills/mri-research/references/hardware.md) | Low-field, open consoles, coil/shim design (CoilGen, MARIE, Shimming Toolbox), MR safety |
+| [Reconstruction](skills/mri-research/references/recon-methods.md) | [`recon-methods.md`](skills/mri-research/references/recon-methods.md) | Landmark-paper reading list: parallel imaging, CS, low-rank, DL, diffusion, MRF, GRASP, metrics |
+| [Recon tools](skills/mri-research/references/tools.md) | [`tools.md`](skills/mri-research/references/tools.md) | BART, SigPy, MIRT.jl, MRIReco.jl, torchkbnufft, mri-nufft, DIRECT, fastMRI, Gadgetron |
+| [Data](skills/mri-research/references/data-and-formats.md) | [`data-and-formats.md`](skills/mri-research/references/data-and-formats.md) | ISMRMRD & vendor raw (twix/P-file/Philips), DICOM/NIfTI/BIDS, open datasets |
+| [Analysis](skills/mri-research/references/analysis-processing.md) | [`analysis-processing.md`](skills/mri-research/references/analysis-processing.md) | Structural, fMRI, dMRI, segmentation, cardiac/body/MSK, radiomics — FreeSurfer, FSL, fMRIPrep, nnU-Net |
+| [Quantitative](skills/mri-research/references/quantitative-and-spectroscopy.md) | [`quantitative-and-spectroscopy.md`](skills/mri-research/references/quantitative-and-spectroscopy.md) | Relaxometry, QSM, perfusion/ASL, MT, Dixon/CEST, and MR spectroscopy |
+| [Literature](skills/mri-research/references/literature-access.md) | [`literature-access.md`](skills/mri-research/references/literature-access.md) | APIs, API keys, and paper-search MCP servers (arXiv, PubMed, Semantic Scholar, OpenAlex) |
+| [Publishing](skills/mri-research/references/publishing.md) | [`publishing.md`](skills/mri-research/references/publishing.md) | MR journals + author guidelines, LaTeX templates, reporting standards, abstracts |
+| [Interpretation](skills/mri-research/references/radiology-primer.md) | [`radiology-primer.md`](skills/mri-research/references/radiology-primer.md) | How MR contrast reads (T1/T2/FLAIR/DWI) — background orientation only |
 
 ## Example prompts
 
@@ -173,53 +149,57 @@ coordinating the other agents and helping you write it.
 - *"I was handed a `meas.dat` file — what is it and how do I reconstruct it in Python?"*
 - *"Design a golden-angle radial gradient-echo sequence in PyPulseq and simulate it first."*
 - *"Preprocess this task-fMRI dataset and run a first-level GLM — what pipeline should I use?"*
-- *"Which open dataset should I benchmark a cardiac cine reconstruction on, and what are the access terms?"*
-- *"Summarize the state of diffusion-model MRI reconstruction and point me to codebases."*
 
 ## Design principles
 
 - **Point, don't vendor.** Link and summarize; never bundle datasets or copyrighted text.
 - **Primary sources first.** Cite the original paper/repo; use awesome-lists as living indexes.
 - **Decide, don't just enumerate.** Reference files help you choose the right method/tool.
-- **Verify load-bearing links.** Links rot; confirm a link before acting on it.
+- **Verify load-bearing links.** Links rot; CI checks every one on each change.
 
 ## Scope & disclaimers
 
 - **Image reading is orientation, not diagnosis.** The reading primer helps
-  follow research conversations about contrast; it is not clinical or diagnostic
-  advice. Interpretation of real scans belongs to a qualified radiologist.
-- **Respect dataset licenses.** Many datasets (fastMRI, HCP, UK Biobank, ADNI,
-  OASIS, BraTS) require registration or a data-use agreement; this never helps
-  circumvent an access gate.
-- **Links can rot.** Every link was verified at release, but repositories move
-  and course pages change.
+  follow research conversations about contrast; it is not clinical advice.
+- **Respect dataset licenses.** fastMRI, HCP, UK Biobank, ADNI, OASIS, and BraTS
+  require registration or a data-use agreement; this never helps bypass a gate.
+- **Links can rot.** Every link was verified at release and is re-checked in CI.
 
 ## Contributing
 
-Issues and PRs are welcome — see [`CONTRIBUTING.md`](CONTRIBUTING.md). The one
-firm rule: preserve the pointer-not-dump philosophy and verify every link and
-citation you add. By participating you agree to our
-[Code of Conduct](CODE_OF_CONDUCT.md); to report a vulnerability see
-[SECURITY.md](SECURITY.md). CI validates structure, lints the helper script, and
-checks every link on each change.
+Issues and PRs are welcome — see [`CONTRIBUTING.md`](CONTRIBUTING.md). `main` is
+branch-protected: contributions land via a PR that passes CI (structure,
+ShellCheck, and link-checking) and review. By participating you agree to our
+[Code of Conduct](CODE_OF_CONDUCT.md); report vulnerabilities via [SECURITY.md](SECURITY.md).
 
-## Citing
+## Citation
 
-If this helps your research or tooling, please cite it via the
-[`CITATION.cff`](CITATION.cff) metadata (GitHub's "Cite this repository" button
-formats it for you).
+If this helps your research or tooling, please cite it (GitHub's
+"Cite this repository" button reads [`CITATION.cff`](CITATION.cff)):
+
+```bibtex
+@software{wang_mri_research,
+  author  = {Wang, Ke},
+  title   = {mri-research: A curated knowledge hub for MRI research},
+  year    = {2026},
+  version = {0.6.0},
+  url     = {https://github.com/KeWang0622/mri-research-skill}
+}
+```
 
 ## Acknowledgements
 
-Built **on top of, and in credit to,** the open MRI community — among them the
-Lustig group (UC Berkeley) and the Pauly/Nishimura lineage (Stanford); the BART,
-SigPy, ISMRMRD, Gadgetron, and Pulseq ecosystems; the FreeSurfer/FSL/SPM/AFNI/
-ANTs and nipreps analysis communities; the fastMRI, mridata.org, HCP, OpenNeuro,
-and other dataset efforts; the [ISMRM](https://www.ismrm.org); and the
-maintainers of the community awesome-lists. All primary work belongs to its
-respective authors. Distribution uses the open [`skills`](https://github.com/vercel-labs/skills) CLI.
+Built **on top of, and in credit to,** the open MRI community — the Lustig (UC
+Berkeley) and Pauly/Nishimura (Stanford) lineage; the BART, SigPy, ISMRMRD,
+Gadgetron, and Pulseq ecosystems; the FreeSurfer / FSL / SPM / AFNI / ANTs and
+nipreps communities; the fastMRI, mridata.org, HCP, and OpenNeuro dataset
+efforts; the [ISMRM](https://www.ismrm.org); and the maintainers of the
+community awesome-lists. All primary work belongs to its respective authors.
+Distribution uses the open [`skills`](https://github.com/vercel-labs/skills) CLI.
 
 ## License
 
 Released under the [MIT License](LICENSE). External resources this hub links to
 (papers, datasets, software) are governed by their own licenses and terms.
+
+<div align="center"><sub><a href="#top">↑ back to top</a> · ⭐ a star helps other researchers find this</sub></div>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96" role="img" aria-label="mri-research">
+  <title>mri-research</title>
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#132036"/>
+      <stop offset="1" stop-color="#0A1120"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="96" height="96" rx="22" fill="url(#tile)"/>
+  <!-- k-space: radial sampling spokes through the center -->
+  <circle cx="48" cy="48" r="30" fill="none" stroke="#FFFFFF" stroke-width="2.4" opacity="0.85"/>
+  <g stroke="#5B9BFF" stroke-width="2.2" stroke-linecap="round">
+    <line x1="22" y1="48" x2="74" y2="48"/>
+    <line x1="22" y1="48" x2="74" y2="48" transform="rotate(20 48 48)"/>
+    <line x1="22" y1="48" x2="74" y2="48" transform="rotate(40 48 48)"/>
+    <line x1="22" y1="48" x2="74" y2="48" transform="rotate(60 48 48)"/>
+    <line x1="22" y1="48" x2="74" y2="48" transform="rotate(80 48 48)"/>
+    <line x1="22" y1="48" x2="74" y2="48" transform="rotate(100 48 48)"/>
+    <line x1="22" y1="48" x2="74" y2="48" transform="rotate(120 48 48)"/>
+    <line x1="22" y1="48" x2="74" y2="48" transform="rotate(140 48 48)"/>
+    <line x1="22" y1="48" x2="74" y2="48" transform="rotate(160 48 48)"/>
+  </g>
+  <circle cx="48" cy="48" r="4.6" fill="#FFFFFF"/>
+</svg>
