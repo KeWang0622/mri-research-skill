@@ -21,14 +21,21 @@ docs and let the user go deep there.
 The de-facto standard for reproducible computational MRI. C core with CLI tools
 and MATLAB/Python wrappers. From Lustig's and Uecker's groups.
 
-- Repo: https://github.com/mrirecon/bart  ·  Docs: https://mrirecon.github.io/bart/
+- **Repo (active):** https://codeberg.org/mrirecon/bart · **Docs:**
+  https://mrirecon.codeberg.page/ — BART moved to Codeberg; the
+  `github.com/mrirecon/bart` repository was **archived in 2026** and no longer
+  receives updates. Update bookmarks, CI checkouts, and submodules accordingly.
 - Tutorials: https://github.com/mikgroup/espirit-matlab-examples and the
   webinar materials linked from the docs.
 - Canonical mini-pipeline (ESPIRiT maps → L1-regularized PI+CS recon):
   ```
-  bart ecalib -r 24 kspace sens          # estimate ESPIRiT coil maps
+  bart ecalib -m1 -r 24 kspace sens      # estimate ESPIRiT coil maps
   bart pics -l1 -r 0.01 kspace sens img  # parallel-imaging + compressed sensing
   ```
+  `-m1` is not cosmetic: `ecalib` returns **two** ESPIRiT map sets by default
+  (soft-SENSE), so `pics` emits an image with a size-2 MAPS dimension — silently
+  breaking anything downstream that expects a single image. `-r 24` merely caps
+  the calibration region and is already BART's default.
 - Also provides `nufft`/`nufftbase` (non-Cartesian), `traj` (trajectory
   generation: radial, spiral, etc.), `pocsense`, `nlinv`, `rss`, phantom
   simulation, and file I/O in its `.cfl/.hdr` format. Great for scripting whole
@@ -81,8 +88,10 @@ Pythonic signal-processing package with an MRI submodule. GPU via CuPy, a clean
 - **fastMRI** — https://github.com/facebookresearch/fastMRI — reference models
   (U-Net, VarNet, End-to-End VarNet), data transforms, and evaluation code that
   matches the challenge metrics.
-- **mridc** — https://github.com/wdika/mridc — data-consistency-focused
-  toolbox collecting many DL recon methods.
+- **ATOMMIC** — https://github.com/wdika/atommic — "Advanced Toolbox for
+  Multitask Medical Imaging Consistency": data-consistency-focused DL recon plus
+  segmentation/quantitative tasks. **Supersedes `mridc`**, which its author
+  archived (read-only since Apr 2024) and explicitly redirects here.
 - **DeepInPy** — https://github.com/utcsilab/deepinpy — "deep inverse problems
   in Python"; a lightweight framework for prototyping unrolled/model-based recon
   (from Tamir's group). Good when you want to iterate on a new unrolled method

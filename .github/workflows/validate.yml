@@ -26,7 +26,36 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ludeeus/action-shellcheck@master
+      # Pinned to the 2.0.0 release commit rather than @master: a third-party
+      # action tracked by moving ref can change under us between runs.
+      - uses: ludeeus/action-shellcheck@00cae500b08a931fb5698e11e79bfbd38e612a38 # v2.0.0
+
+  upstreams:
+    name: Upstreams exist (repos, DOIs, PyPI)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Hard-fails only on a definite error in this repo: a linked repository,
+      # DOI, or PyPI package that does not exist. Archived/renamed upstreams are
+      # warnings, and network trouble is reported as inconclusive.
+      - name: Check every linked repo, DOI, and package resolves
+        run: python3 .github/scripts/check_upstreams.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  freshness:
+    name: Upstream freshness monitor
+    # Scheduled/manual only: upstream archival is not a contributor's fault, so
+    # it must not block a pull request. This is the job that would have caught
+    # BART moving to Codeberg while every link still returned 200.
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Report archived, renamed, and dormant upstreams
+        run: python3 .github/scripts/check_upstreams.py --warn-only --report-dormant
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   skills-cli:
     name: skills CLI detects all skills

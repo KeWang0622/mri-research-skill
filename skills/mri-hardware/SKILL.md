@@ -8,9 +8,11 @@ description: >-
   (SAR, PNS, implants, quench, contrast agents). Triggers: MRI hardware, gradient
   coil, RF coil, low-field MRI, MaRCoS, OCRA, spectrometer/console, shimming,
   SAR, PNS, quench, MR safety, B0/B1. Orientation only — not clinical advice.
+  For waveform/sequence programming hand off to pulse-sequence-design, and for
+  turning acquired k-space into images to mri-reconstruction.
 metadata:
   author: Ke Wang
-  version: "0.1.0"
+  version: "0.7.0"
 ---
 
 # MRI Hardware & Safety
@@ -67,6 +69,15 @@ RF (SAR heating), cryogens/quench, implants/devices, and contrast agents
 - ACR Manual on MR Safety — https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/radiology-safety/mr-safety
 - MRIsafety.com (Shellock) — https://www.mrisafety.com/
 - ISMRM — https://www.ismrm.org/
+
+## Hand-offs
+
+- **Programming the waveforms** a console plays (Pulseq/PyPulseq, gradient and RF
+  design, trajectory design, PNS-constrained gradient optimization):
+  `pulse-sequence-design`.
+- **Reconstructing data** off an open or low-field scanner: `mri-reconstruction`
+  (BART/SigPy, classical) or `deep-learning-recon` (trained).
+- **Landscape, citations, and the wider MRI map:** the `mri-research` hub.
 
 Deeper reference:
 https://github.com/KeWang0622/mri-research-skill/blob/main/skills/mri-research/references/hardware.md

@@ -38,8 +38,12 @@ their communities.
   repos: **marcos_client** (https://github.com/vnegnev/marcos_client),
   **marcos_server** (https://github.com/vnegnev/marcos_server), **marcos_extras**
   (https://github.com/vnegnev/marcos_extras); streaming successor **marga**
-  (https://github.com/vnegnev/marga). Paper: Guallart-Naval T, et al., *J Magn
-  Reson* 2023.
+  (https://github.com/vnegnev/marga). System paper: Negnevitsky V, Vives-Gilabert
+  Y, Algarín JM, et al. "MaRCoS, an open-source electronic control system for
+  low-field MRI." *J Magn Reson* 2023;350:107424.
+  doi:10.1016/j.jmr.2023.107424. For multi-site benchmarking of MaRCoS-driven
+  scanners, see Guallart-Naval T, et al. *NMR in Biomedicine* 2023;36(1):e4825.
+  doi:10.1002/nbm.4825.
 - **OCRA** — low-cost (~$500) real-time console on the STEMLab/Red Pitaya (Zynq
   SoC, 125 Msps ADC/DAC). Pulseq interpreter: **ocra-pulseq**
   (https://github.com/LincolnCB/ocra-pulseq). Project page:

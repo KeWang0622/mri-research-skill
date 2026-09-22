@@ -1,9 +1,38 @@
-# Contributing to the mri-research skill
+# Contributing to mri-research
 
-Thanks for helping keep this a high-quality entry point for the MRI
-reconstruction research community. Contributions that add landmark papers, new
-toolboxes, corrected or updated links, additional vendor/format notes, or new
-open datasets are all welcome.
+Thanks for helping keep this a high-quality entry point for the **MRI research**
+community — the whole pipeline, not just reconstruction. Contributions that add
+landmark papers, new toolboxes, corrected or updated links, additional
+vendor/format notes, or new open datasets are all welcome.
+
+## The five-minute contribution
+
+You do not need to read the rest of this file to fix one link or add one paper:
+
+1. Find the right file (table below) and edit it on GitHub — the pencil icon
+   creates the branch and the PR for you.
+2. Put the primary source in the PR description: the URL you opened, or the DOI.
+3. Add a line under `## Unreleased` in `CHANGELOG.md`.
+
+That's it. CI does the rest (structure, ShellCheck, link check, and a check that
+every repo/DOI/package you cited actually exists), and a maintainer reviews.
+
+## Where things live (7 skills)
+
+| If your change is about… | Edit |
+|---|---|
+| Orientation, routing, or any of the 11 reference files | [`skills/mri-research/`](skills/mri-research/) |
+| Running a study end-to-end, venues, manuscript mechanics | [`skills/mri-research-workflow/`](skills/mri-research-workflow/) |
+| Classical recon that *executes* (BART/SigPy, ESPIRiT, PICS, NUFFT) | [`skills/mri-reconstruction/`](skills/mri-reconstruction/) |
+| Anything **trained** (unrolled, self-supervised, diffusion priors) | [`skills/deep-learning-recon/`](skills/deep-learning-recon/) |
+| Diffusion MRI: DTI/DKI/NODDI, topup/eddy, CSD, tractography | [`skills/diffusion-mri/`](skills/diffusion-mri/) |
+| Pulse sequences, trajectories, RF, SMS, vendor SDKs | [`skills/pulse-sequence-design/`](skills/pulse-sequence-design/) |
+| Magnets, gradients, coils, consoles, low-field, MR safety | [`skills/mri-hardware/`](skills/mri-hardware/) |
+
+Deep background and citations belong in the hub's `references/*.md`; an expert
+skill should stay short and actionable and link to the hub. Keep each topic in
+**one** owner skill and cross-reference rather than duplicating — if you find a
+topic with two owners or none, that's a bug worth an issue.
 
 ## Design philosophy (please preserve it)
 
@@ -42,12 +71,34 @@ is in accurate navigation and good judgment, so:
 
 ## How to propose a change
 
-1. Fork and create a branch.
-2. Make your edit in the appropriate `references/*.md` (or `SKILL.md` routing
+1. Fork and create a branch (`main` is protected; everything lands via PR).
+2. Make your edit in the appropriate `references/*.md` (or a `SKILL.md` routing
    table if you add a new area).
-3. Add a bullet to `CHANGELOG.md` under an `## [Unreleased]` heading.
+3. Add a bullet to `CHANGELOG.md` under the `## Unreleased` heading.
 4. Open a pull request describing the addition and linking the primary source
    you verified.
+
+Run the checks locally first if you like — both are stdlib-only Python:
+
+```bash
+python3 .github/scripts/validate_repo.py      # structure, versions, links-on-disk
+python3 .github/scripts/check_upstreams.py    # every repo / DOI / package resolves
+```
+
+## Maintainer release checklist
+
+Version lives in **three** places and CI enforces that they agree: every
+`skills/*/SKILL.md` frontmatter, `CITATION.cff`, and the README badge + BibTeX
+block. To cut a release:
+
+1. Bump all three (all seven skills), and date the `CITATION.cff`
+   `date-released`.
+2. Write the `CHANGELOG.md` section and move anything from `## Unreleased` into
+   it.
+3. Merge via PR, tag `vX.Y.Z`, and publish the GitHub release.
+4. Repoint that version's CHANGELOG link definition at the new release tag (it
+   points at a `compare/` range until the tag exists, so link-checking passes on
+   the PR).
 
 ## Scope reminders
 

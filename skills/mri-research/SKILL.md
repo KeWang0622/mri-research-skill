@@ -1,25 +1,23 @@
 ---
 name: mri-research
 description: >-
-  The generalist navigator and curated reference hub for magnetic resonance
-  imaging (MRI) research — use it for orientation, cross-domain questions, and
-  finding the right resource across the whole MRI pipeline: MR physics and
-  k-space, acquisition, reconstruction, analysis, quantitative MRI and
-  spectroscopy, hardware, data formats, and publishing. Reach for this skill
-  when a question spans several MRI sub-areas, when you need the canonical
-  paper / course / handbook / dataset / toolbox for an MR topic, when explaining
-  how MRI concepts relate, or when it isn't yet clear which specialist applies.
-  It ships alongside focused expert skills — mri-reconstruction, diffusion-mri,
-  pulse-sequence-design, deep-learning-recon, mri-hardware, and
-  mri-research-workflow — and defers to whichever is squarely in-lane for a
-  given task; this hub owns the map, the overview, and the hand-off. Triggers:
-  MRI / magnetic-resonance research questions, "where do I find…", "which MRI
-  tool / paper / dataset / course for…", k-space and MR-physics orientation, and
-  cross-cutting MR reconstruction/analysis workflows. It points to external
-  repos, papers, courses, and datasets rather than bundling them.
+  The generalist navigator and curated reference hub for MRI research — use it
+  for orientation, cross-domain questions, and the canonical paper / course /
+  dataset / toolbox across the whole MRI pipeline: MR physics and k-space,
+  acquisition, reconstruction, image analysis, quantitative MRI and
+  spectroscopy, hardware, data formats, and publishing. This hub also OWNS
+  image-level analysis, which no sibling skill covers: fMRI and GLM analysis,
+  BIDS, DICOM/NIfTI conversion, FreeSurfer, segmentation, registration,
+  fMRIPrep, relaxometry and QSM mapping. Reach for it when a question spans
+  several MRI sub-areas or it isn't clear which specialist applies; it defers to
+  the focused sibling skills when one is squarely in-lane. Triggers: MRI /
+  magnetic-resonance research questions, "where do I find…", "which MRI tool /
+  paper / dataset for…", k-space orientation, BIDS, NIfTI, DICOM, fMRI,
+  FreeSurfer, registration, segmentation, QSM. It points to external repos,
+  papers, and datasets rather than bundling them.
 metadata:
   author: Ke Wang
-  version: "0.6.0"
+  version: "0.7.0"
 ---
 
 # MRI Research Hub
@@ -127,6 +125,16 @@ what you need):
 | Programmatic access to papers/data — APIs, keys, and MCP servers | [`references/literature-access.md`](references/literature-access.md) |
 | Writing up & submitting — MR journals, LaTeX templates, reporting standards, abstracts, preprints | [`references/publishing.md`](references/publishing.md) |
 | How MR image contrast reads (T1/T2/FLAIR/DWI) — background orientation only | [`references/radiology-primer.md`](references/radiology-primer.md) |
+| **Actually running a reconstruction** on real k-space (BART/SigPy, `.cfl`, twix, ISMRMRD) | hand off to the **mri-reconstruction** skill — this hub explains, that skill executes |
+
+**What this hub owns outright:** image-level analysis has no sibling expert, so
+fMRI/GLM, BIDS organization, DICOM↔NIfTI conversion, FreeSurfer, segmentation,
+registration, fMRIPrep, and relaxometry/QSM mapping are *this* skill's
+responsibility — answer them here via
+[`references/analysis-processing.md`](references/analysis-processing.md) and
+[`references/quantitative-and-spectroscopy.md`](references/quantitative-and-spectroscopy.md)
+rather than looking for a specialist that doesn't exist. (Diffusion MRI is the
+exception: `diffusion-mri` owns it.)
 
 Cross-cutting requests pull from several files — e.g., "reproduce this spiral CS
 paper on real scanner data" → `recon-methods` (method) + `tools` (BART/SigPy) +

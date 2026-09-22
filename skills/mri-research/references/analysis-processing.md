@@ -34,9 +34,13 @@ segmentation, stats). Choose by ecosystem and modality:
 - **FSL** — https://fsl.fmrib.ox.ac.uk/fsl/docs/ — comprehensive library
   covering fMRI (FEAT), diffusion (FDT), structural (FIRST/FAST), and
   registration (FLIRT/FNIRT); includes perfusion (BASIL) and MRS (FSL-MRS).
-- **SPM (SPM12)** — https://www.fil.ion.ucl.ac.uk/spm/ — MATLAB toolbox for
-  statistical parametric mapping of fMRI/PET (and M/EEG); the classic
-  mass-univariate GLM ecosystem.
+- **SPM** — https://www.fil.ion.ucl.ac.uk/spm/ — MATLAB toolbox for statistical
+  parametric mapping of fMRI/PET (and M/EEG); the classic mass-univariate GLM
+  ecosystem. **Ask which version:** development moved to
+  https://github.com/spm/spm and numbering switched to calendar releases (latest
+  stable **25.01.02**, Jan 2025; 26.01 in release candidate). A great deal of
+  published work and many third-party toolboxes still assume **SPM12**, so paths
+  and scripts are not interchangeable — name the version in a methods section.
 - **AFNI** — https://afni.nimh.nih.gov/ — a broad C/Python suite focused on
   functional MRI processing, analysis, and visualization.
 - **ANTs** (ANTsX) — https://github.com/ANTsX/ANTs — best-in-class registration

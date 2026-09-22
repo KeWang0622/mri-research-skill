@@ -11,7 +11,7 @@
 
 [![CI](https://img.shields.io/github/actions/workflow/status/KeWang0622/mri-research-skill/validate.yml?branch=main&style=flat-square&labelColor=000000&label=CI)](https://github.com/KeWang0622/mri-research-skill/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/github/license/KeWang0622/mri-research-skill?style=flat-square&labelColor=000000)](LICENSE)
-![Version](https://img.shields.io/badge/version-0.6.0-1f6feb?style=flat-square&labelColor=000000)
+![Version](https://img.shields.io/badge/version-0.7.0-1f6feb?style=flat-square&labelColor=000000)
 ![Install](https://img.shields.io/badge/install-npx%20skills%20add-000000?style=flat-square)
 [![Stars](https://img.shields.io/github/stars/KeWang0622/mri-research-skill?style=flat-square&labelColor=000000)](https://github.com/KeWang0622/mri-research-skill)
 
@@ -30,6 +30,7 @@ fluent in magnetic resonance imaging, from k-space to publication.
 
 ## News
 
+- **[v0.7.0]** Second verified review round: **BART moved to Codeberg** (the GitHub repo is archived), the `ecalib` two-map trap is fixed, g-factor/SNR reporting is now required, and CI watches upstreams for archival. ([changelog](CHANGELOG.md))
 - **[v0.6.0]** More sequence-design and hardware/RF tooling; a multi-agent red-team pass; branch protection + hardened CI. ([release](https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.6.0))
 - **[v0.5.0]** End-to-end **research-workflow** agent — idea → experiments → paper (CVPR / MICCAI / MRM). ([release](https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.5.0))
 - **[v0.4.0]** Split into a **7-skill multi-agent team**; the reconstruction agent runs BART/SigPy. ([release](https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.4.0))
@@ -67,8 +68,9 @@ flowchart LR
   research-workflow agent.
 - **Actionable tools** — e.g. *"reconstruct this Cartesian k-space with BART"*
   runs a real ESPIRiT + PI/CS pipeline (bundled script).
-- **Verified pointers** — every external link is checked in CI, so citations and
-  repos don't rot.
+- **268 verified pointers** — 218 links (136 code repositories) plus 50 papers
+  cited by DOI or arXiv id. Each was checked against the source when written, and
+  CI re-checks links on every change and weekly, so dead ends surface fast.
 
 **Built for researchers:**
 
@@ -83,28 +85,34 @@ Using the open [`skills`](https://github.com/vercel-labs/skills) CLI — works
 across Claude Code, Codex, Cursor, OpenCode, and many more:
 
 ```bash
-npx skills add KeWang0622/mri-research-skill
+npx skills add KeWang0622/mri-research-skill -g      # -g = install for all your projects
 ```
 
-The repo ships a **team of skills** (a generalist hub + focused experts). Install
-one, several, or all — pick when prompted, or use `--skill <name>` / `--all`.
+You'll be asked which skills and which agents to install — the repo ships a
+**team of skills** (a generalist hub + focused experts), so take one, several, or
+all. Browse them first at
+[skills.sh/KeWang0622/mri-research-skill](https://skills.sh/KeWang0622/mri-research-skill).
 
 <details>
 <summary>More install options</summary>
 
 ```bash
-# Install globally (user directory) instead of the current project
-npx skills add KeWang0622/mri-research-skill -g
+# Project-local instead of global: just drop -g
+npx skills add KeWang0622/mri-research-skill
 
 # Just one expert (e.g. the actionable reconstruction agent)
 npx skills add KeWang0622/mri-research-skill --skill mri-reconstruction
 
-# The whole team
+# Every skill, for every agent detected, no prompts
+#   (--all is shorthand for --skill '*' --agent '*' -y)
 npx skills add KeWang0622/mri-research-skill --all
 
-# Target a specific agent, or list without installing
+# Target a specific agent, or list the skills without installing
 npx skills add KeWang0622/mri-research-skill -a claude-code
 npx skills add KeWang0622/mri-research-skill --list
+
+# Pull a new release later
+npx skills update mri-research
 ```
 
 No dependencies — the skills are Markdown. Or clone `skills/mri-research/` into
@@ -136,7 +144,7 @@ of eleven reference files — click any to read it:
 | [Acquisition](skills/mri-research/references/sequences-and-trajectories.md) | [`sequences-and-trajectories.md`](skills/mri-research/references/sequences-and-trajectories.md) | Pulseq/PyPulseq, vendor SDKs, trajectory & RF design, SMS, field mapping, GIRF, simulation |
 | [Hardware](skills/mri-research/references/hardware.md) | [`hardware.md`](skills/mri-research/references/hardware.md) | Low-field, open consoles, coil/shim design (CoilGen, MARIE, Shimming Toolbox), MR safety |
 | [Reconstruction](skills/mri-research/references/recon-methods.md) | [`recon-methods.md`](skills/mri-research/references/recon-methods.md) | Landmark-paper reading list: parallel imaging, CS, low-rank, DL, diffusion, MRF, GRASP, metrics |
-| [Recon tools](skills/mri-research/references/tools.md) | [`tools.md`](skills/mri-research/references/tools.md) | BART, SigPy, MIRT.jl, MRIReco.jl, torchkbnufft, mri-nufft, DIRECT, fastMRI, Gadgetron |
+| [Recon tools](skills/mri-research/references/tools.md) | [`tools.md`](skills/mri-research/references/tools.md) | BART (now on Codeberg), SigPy, MIRT.jl, MRIReco.jl, torchkbnufft, mri-nufft, DIRECT, ATOMMIC, Gadgetron |
 | [Data](skills/mri-research/references/data-and-formats.md) | [`data-and-formats.md`](skills/mri-research/references/data-and-formats.md) | ISMRMRD & vendor raw (twix/P-file/Philips), DICOM/NIfTI/BIDS, open datasets |
 | [Analysis](skills/mri-research/references/analysis-processing.md) | [`analysis-processing.md`](skills/mri-research/references/analysis-processing.md) | Structural, fMRI, dMRI, segmentation, cardiac/body/MSK, radiomics — FreeSurfer, FSL, fMRIPrep, nnU-Net |
 | [Quantitative](skills/mri-research/references/quantitative-and-spectroscopy.md) | [`quantitative-and-spectroscopy.md`](skills/mri-research/references/quantitative-and-spectroscopy.md) | Relaxometry, QSM, perfusion/ASL, MT, Dixon/CEST, and MR spectroscopy |
@@ -153,12 +161,39 @@ of eleven reference files — click any to read it:
 - *"Design a golden-angle radial gradient-echo sequence in PyPulseq and simulate it first."*
 - *"Preprocess this task-fMRI dataset and run a first-level GLM — what pipeline should I use?"*
 
+<details>
+<summary>What a session actually looks like</summary>
+
+> **You:** I have `knee.cfl` — 8-channel, undersampled 4×. Reconstruct it.
+>
+> **Agent** *(with `mri-reconstruction` installed)*:
+> ```
+> $ bart show -m knee          # 320 320 1 8 — coils on dim 3, good
+> $ bart ecalib -m1 -r 24 knee sens
+> $ bart pics -l1 -r 0.01 knee sens img
+> ```
+> Used `-m1` because `ecalib` returns **two** ESPIRiT map sets by default, which
+> would have left you a size-2 MAPS dimension instead of an image. ESPIRiT needs
+> the fully-sampled ACS at k-space centre — your header has it.
+>
+> At R=4 this costs SNR as `g·√R`, so quote a g-factor, not just R: `g` is
+> analytic for SENSE but not for this L1 reconstruction, so use a pseudo-replica
+> estimate (Robson 2008). Raise `-r` if aliasing remains; lower it if the image
+> looks over-smoothed. Method background: ESPIRiT, Uecker 2014,
+> doi:10.1002/mrm.24751.
+
+The point isn't the commands — it's that the caveats (`-m1`, the ACS assumption,
+the SNR cost, the citation) arrive unprompted.
+</details>
+
 ## Design principles
 
 - **Point, don't vendor.** Link and summarize; never bundle datasets or copyrighted text.
 - **Primary sources first.** Cite the original paper/repo; use awesome-lists as living indexes.
 - **Decide, don't just enumerate.** Reference files help you choose the right method/tool.
-- **Verify load-bearing links.** Links rot; CI checks every one on each change.
+- **Verify load-bearing links.** Links rot and upstreams get archived. CI
+  link-checks the Markdown on every change and weekly, and flags linked repos that
+  have been archived, renamed, or moved.
 
 ## Scope & disclaimers
 
@@ -167,6 +202,9 @@ of eleven reference files — click any to read it:
 - **Respect dataset licenses.** fastMRI, HCP, UK Biobank, ADNI, OASIS, and BraTS
   require registration or a data-use agreement; this never helps bypass a gate.
 - **Links can rot.** Every link was verified at release and is re-checked in CI.
+  A few hosts bot-block link checkers (and three are excluded via
+  `.lycheeignore`), so CI catches most rot, not all of it — if a link is
+  load-bearing for your next step, confirm it resolves.
 
 ## Contributing
 
@@ -185,7 +223,7 @@ If this helps your research or tooling, please cite it (GitHub's
   author  = {Wang, Ke},
   title   = {mri-research: A curated knowledge hub for MRI research},
   year    = {2026},
-  version = {0.6.0},
+  version = {0.7.0},
   url     = {https://github.com/KeWang0622/mri-research-skill}
 }
 ```
