@@ -28,9 +28,9 @@ orientation (details vary by software baseline/version):
   `mapVBVD` (MATLAB) or `pymapVBVD`/`twixtools` (Python), or convert to
   ISMRMRD: https://github.com/ismrmrd/siemens_to_ismrmrd
 - **GE — "P-file" (`P#####.7`)** plus, on modern systems, ScanArchive
-  (`.h5`). Vendor SDK is **Orchestra**. Convert to ISMRMRD:
-  https://github.com/ismrmrd/ge_to_ismrmrd (GE's fork:
-  https://github.com/GEHealthCare, formerly `mrirecon`-adjacent tooling).
+  (`.h5`). Vendor SDK is **Orchestra** (requires a GE research agreement — the
+  converter below links against it). Convert to ISMRMRD:
+  https://github.com/ismrmrd/ge_to_ismrmrd
 - **Philips — raw is a triplet `.raw` / `.lab` / `.sin`** (data, labels,
   scan-info) — sometimes also `.cpx`/`.data`/`.list`. Convert to ISMRMRD:
   https://github.com/ismrmrd/philips_to_ismrmrd
@@ -133,8 +133,12 @@ Reconstructed-image datasets for analysis, segmentation, and machine learning
 ## Getting from raw to image (sanity pipeline)
 
 1. Convert vendor raw → ISMRMRD (or load the provided `.h5`).
-2. Read k-space + trajectory + coil data (BART `ismrmrd` import, SigPy, or
-   MRIReco.jl).
+2. Read k-space + trajectory + coil data. Options: the Python `ismrmrd` package,
+   MRIReco.jl (native ISMRMRD reader), or BART's `ismrmrd` tool — but note BART
+   builds that tool only when compiled with `ISMRMRD=1` (the Makefile defaults to
+   `ISMRMRD=0`), so on a stock build `bart ismrmrd` does not exist. Check with
+   `bart ismrmrd -h`; if it's missing, read in Python and write a `.cfl` with
+   BART's `cfl.py`.
 3. Estimate coil sensitivities (ESPIRiT: BART `ecalib` / SigPy `EspiritCalib`).
 4. Reconstruct (FFT/NUFFT for fully sampled; PICS/CS/DL for undersampled — see
    [`recon-methods.md`](recon-methods.md) and [`tools.md`](tools.md)).

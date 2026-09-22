@@ -8,10 +8,12 @@ description: >-
   estimation (CSD), tractography, white-matter bundle segmentation, and turnkey
   diffusion pipelines. Tools: MRtrix3, DIPY, FSL (eddy/topup/FDT), AMICO (NODDI),
   TractSeg, QSIPrep. Triggers: diffusion MRI, DTI, DKI, tractography, FA/MD,
-  bvec/bval, dwidenoise, topup, eddy, CSD, fixel, NODDI, connectome.
+  bvec/bval, dwidenoise, topup, eddy, CSD, fixel, NODDI, connectome. Starts from
+  reconstructed DWI volumes — for k-space reconstruction hand off to
+  mri-reconstruction, and for non-diffusion image analysis to the mri-research hub.
 metadata:
   author: Ke Wang
-  version: "0.1.0"
+  version: "0.7.0"
 ---
 
 # Diffusion MRI
@@ -62,6 +64,17 @@ reconstruction workflows.
 - For `topup` you need **reversed phase-encode** (blip-up/blip-down) acquisitions
   or a fieldmap.
 - Multi-shell (multiple b-values) enables DKI/NODDI/multi-tissue CSD.
+
+## Hand-offs
+
+- This skill starts from **reconstructed DWI volumes**. If the user has raw
+  k-space (twix/ISMRMRD/`.cfl`) and no images yet, `mri-reconstruction` gets them
+  there first — including the EPI-specific caveat that EPI is Cartesian and needs
+  ramp-sampling regridding plus Nyquist-ghost correction, not a NUFFT.
+- **Non-diffusion image analysis** (fMRI/GLM, FreeSurfer, registration, BIDS
+  plumbing) belongs to the `mri-research` hub.
+- **Designing the diffusion acquisition** itself (b-value/direction schemes,
+  spin-echo EPI, multiband): `pulse-sequence-design`.
 
 Deeper reference (analysis tooling, formats):
 https://github.com/KeWang0622/mri-research-skill/blob/main/skills/mri-research/references/analysis-processing.md

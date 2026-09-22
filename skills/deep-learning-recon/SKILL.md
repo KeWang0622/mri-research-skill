@@ -5,14 +5,16 @@ description: >-
   networks to reconstruct undersampled MRI — unrolled / variational networks
   (VarNet, MoDL, End-to-End VarNet, deep cascade), self-supervised training
   without fully-sampled data (SSDU), diffusion / score-based reconstruction, and
-  the frameworks and datasets to do it. Tools: DIRECT, fastMRI, mridc,
-  torchkbnufft; datasets fastMRI / mridata. Triggers: deep learning
+  the frameworks and datasets to do it. Tools: DIRECT, fastMRI, ATOMMIC,
+  torchkbnufft; datasets fastMRI / mridata. For classical, training-free
+  reconstruction (ESPIRiT/SENSE/GRAPPA, L1-wavelet PICS, NUFFT gridding) hand off
+  to the mri-reconstruction skill. Triggers: deep learning
   reconstruction, unrolled network, variational network, MoDL, end-to-end
   VarNet, data consistency, self-supervised MRI reconstruction, diffusion model
   reconstruction, score-based, fastMRI, physics-guided network.
 metadata:
   author: Ke Wang
-  version: "0.1.0"
+  version: "0.7.0"
 ---
 
 # Deep-Learning MRI Reconstruction
@@ -46,7 +48,12 @@ structure.
 - **DIRECT** — https://github.com/NKI-AI/direct — many baselines + training loops.
 - **fastMRI** — https://github.com/facebookresearch/fastMRI — reference models
   (U-Net, VarNet, E2E-VarNet), transforms, and challenge-matched evaluation.
-- **mridc** — https://github.com/wdika/mridc — data-consistency-focused toolbox.
+  **Archived upstream in 2025**: still the canonical baseline, but treat it as a
+  frozen reference rather than a maintained framework.
+- **ATOMMIC** — https://github.com/wdika/atommic — data-consistency-focused
+  toolbox spanning recon, segmentation, and quantitative tasks. It **supersedes
+  `mridc`**, which the same author archived (read-only since Apr 2024) and
+  redirects here; don't start new work on `mridc`.
 - **torchkbnufft** — https://github.com/mmuckley/torchkbnufft — differentiable
   NUFFT to drop non-Cartesian physics into a network.
 
@@ -64,6 +71,21 @@ prototyping: mridata.org.
 - **Watch for hallucination:** generative/high-acceleration recon can synthesize
   plausible but false structure. Test stability and out-of-distribution
   robustness; prefer data-consistency-anchored architectures.
+
+- **Name the shipping baseline.** Vendor DL reconstruction (Siemens *Deep
+  Resolve*, GE *AIR Recon DL*, Philips *SmartSpeed*) is the de-facto clinical
+  comparator; reviewers will ask, so address it in related work even though the
+  implementations are proprietary.
+
+## Hand-offs
+
+- **Classical / training-free recon** — ESPIRiT, SENSE, GRAPPA, L1-wavelet PICS,
+  NUFFT gridding, or "just get me an image from this k-space": use the
+  `mri-reconstruction` skill, which executes BART/SigPy pipelines. You also want
+  it for the *baseline* your network is compared against.
+- **Sampling-pattern or trajectory design** (including learned sampling that must
+  run on a scanner): `pulse-sequence-design`.
+- **Theory, citations, and the wider landscape:** the `mri-research` hub.
 
 Deeper reference:
 https://github.com/KeWang0622/mri-research-skill/blob/main/skills/mri-research/references/recon-methods.md

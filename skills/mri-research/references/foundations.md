@@ -21,7 +21,7 @@ words rather than reproducing copyrighted text.
   (especially for spiral/EPI). Undersampling trades scan time for artifacts
   that reconstruction must undo.
 - **Sequence families:** spin echo, gradient echo, EPI, bSSFP, fast/turbo spin
-  echo, inversion recovery, diffusion-weighted. Each is a recipe of RF + 
+  echo, inversion recovery, diffusion-weighted. Each is a recipe of RF +
   gradient events that produces a particular contrast and k-space trajectory.
 
 ## Free, open, high-quality learning resources
@@ -36,15 +36,17 @@ words rather than reproducing copyrighted text.
     https://inst.eecs.berkeley.edu/~ee225e/sp14/ ,
     https://inst.eecs.berkeley.edu/~ee225e/sp17/
   - Some lectures are on YouTube (search "EE225E Principles of MRI Berkeley").
-  - Note: this is the user's advisor's course — a natural first stop.
+  - A good first stop: it teaches MRI from a signal-processing / reconstruction
+    viewpoint, so it pairs directly with
+    [`recon-methods.md`](recon-methods.md).
 - **Stanford EE369B — Medical Imaging Systems II** (Dwight Nishimura; the MR
   systems course). Now often taught as **RAD 229** (Brian Hargreaves) with
   extensive open notes and MATLAB: https://web.stanford.edu/class/rad229/
 - **Stanford EE369C — Medical Image Reconstruction** (John Pauly). Builds recon
   tools from non-uniform sampling, projections, undersampling, autofocus:
   https://ee369c.stanford.edu/ (also https://web.stanford.edu/class/ee369c ).
-  Lustig did his PhD at Stanford under Pauly, so the Berkeley and Stanford
-  materials share lineage and notation.
+  Lustig trained at Stanford with Pauly, so the Berkeley and Stanford materials
+  share lineage and notation.
 
 **Free online books / references:**
 

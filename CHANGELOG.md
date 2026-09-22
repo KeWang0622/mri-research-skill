@@ -5,6 +5,101 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+*(nothing yet)*
+
+## [0.7.0] — 2026-09-22
+
+A second adversarial multi-agent review round, this time with every consequential
+claim checked against a primary source (Crossref, PyPI, the GitHub/Codeberg APIs)
+rather than taken from a reviewer's word. The headline finding: **BART moved to
+Codeberg** and the GitHub repository is archived, so the repo's central execution
+dependency was pointing at a frozen tree.
+
+### Fixed — correctness (found by verification, not opinion)
+- **BART now points at its active home**, https://codeberg.org/mrirecon/bart
+  (docs https://mrirecon.codeberg.page/), everywhere it appears; the archived
+  `github.com/mrirecon/bart` mirror is labelled as such.
+- **`ecalib` two-map bug.** `bart ecalib` returns **two** ESPIRiT map sets by
+  default, so `pics` emitted a soft-SENSE image with a size-2 MAPS dimension — a
+  silent wrong answer. `bart_recon.sh`, the hub, and `mri-reconstruction` now all
+  pass `-m1` and explain why (and note that `-r 24` is already BART's default).
+- **Non-Cartesian calibration used the wrong NUFFT.** Gridding for ESPIRiT now
+  uses the **inverse** NUFFT (`nufft -i`); the adjoint (`-a`) leaves sampling
+  density in the data and biases the coil maps.
+- **EPI is Cartesian.** The docs no longer imply EPI needs a trajectory/NUFFT; it
+  needs ramp-sampling regridding plus Nyquist-ghost/phase correction upstream.
+- **`bart_recon.sh` hygiene:** refuses to overwrite an existing output, writes
+  intermediates to `mktemp` scratch and cleans them up on exit, and prints the
+  output dimensions so a stray MAPS dimension is visible.
+- **Raw-data ingest was wrong in two places.** `bart twixread` needs `-A` (or
+  explicit `-x/-y/-z/-c/-s/-n`); `cfl.py` ships in BART's `python/` directory and
+  is **not** on PyPI (the `bartpy` package there is an unrelated decision-tree
+  library); and `bart ismrmrd` only exists when BART is built with `ISMRMRD=1`
+  (the Makefile defaults to `ISMRMRD=0`).
+- **MaRCoS was miscredited.** The system paper is Negnevitsky V, et al.,
+  *J Magn Reson* 2023;350:107424 (doi:10.1016/j.jmr.2023.107424); Guallart-Naval
+  et al. is the multi-site benchmarking paper (*NMR Biomed* 2023;36(1):e4825).
+- **SPIRiT was described as the SENSE/GRAPPA bridge** — that is ESPIRiT. SPIRiT is
+  GRAPPA generalized to enforce calibration consistency everywhere, with no
+  explicit sensitivity maps.
+- **`mridc` is archived** (read-only since Apr 2024) and its author redirects to
+  **ATOMMIC** (https://github.com/wdika/atommic); all three mentions updated.
+- **Papers with Code has been retired** — paperswithcode.com now redirects to
+  Hugging Face Papers; the workflow agent says so instead of linking a dead index.
+- **SPM is no longer "SPM12"** — development moved to github.com/spm/spm with
+  calendar versioning (25.01.02 stable, 26.01 in RC), which is not path- or
+  script-compatible with SPM12.
+- Removed a garbled GE parenthetical (the `GEHealthcare` org has no public repos)
+  and a private note that had leaked into `foundations.md`.
+- Dropped a stray trailing whitespace and pinned down Tarquin's status (source at
+  `martin3141/tarquin`, no commits since 2021 — dormant, baseline only).
+
+### Added
+- **The SNR cost of acceleration**, which the repo previously never quoted: a
+  g-factor section (`SNR_accel = SNR_full/(g·√R)`), noise prewhitening / optimal
+  coil combination (Roemer 1990), and pseudo-replica SNR for GRAPPA/ESPIRiT/
+  nonlinear recon where `g` has no analytic form (Robson 2008). The recon agent is
+  now required to report it.
+- **Structured low-rank split into its three distinct ideas** — SAKE
+  (block-Hankel, inter-coil dependency), LORAKS (limited support + phase, plus
+  P-LORAKS), ALOHA (annihilating filters) — each with its own citation.
+- **SMASH** (the k-space ancestor GRAPPA generalizes) and a fuller
+  **partial-Fourier** entry with the real-image/Hermitian caveat (Noll 1991).
+- **Controlled aliasing, properly separated:** CAIPIRINHA (multi-slice and 2D),
+  blipped-CAIPI for SMS-EPI, and Wave-CAIPI for 3D.
+- **Dixon/IDEAL untangled:** IDEAL is the species decomposition, graph cuts solve
+  the *field map* and its water/fat swap ambiguity, and quantitative PDFF needs a
+  multi-peak fat model with simultaneous R2\*.
+- **ASL needs a kinetic model:** the subtraction image is not CBF (Buxton 1998),
+  plus PCASL/PASL/VSASL, the post-labeling delay, the consensus implementation
+  (Alsop 2015), and ASLPrep.
+- **QSM dipole inversion** is the ill-posed step (zero cone in k-space) — review
+  and MEDI citations, with a note on why two pipelines disagree.
+- **MRSHub** (https://mrshub.org) as the MRS community index, and a full citation
+  for HFS-SDE diffusion recon.
+- **Explicit, bidirectional hand-offs** in every expert skill, so trained recon,
+  classical recon, acquisition design, hardware, and image analysis each have one
+  unambiguous owner. The hub now states that **it** owns image-level analysis
+  (fMRI/GLM, BIDS, DICOM/NIfTI, FreeSurfer, segmentation, registration) — no
+  sibling skill covered it, and the hub's description didn't trigger on it.
+
+### Changed
+- The hub description now fits the **1024-character limit** skill validators
+  enforce (it was over) and includes the analysis triggers it was missing.
+- All seven skills are on version 0.7.0 (previously five were still on 0.1.0).
+
+### CI
+- `validate_repo.py` now enforces what this round had to catch by hand:
+  description length ≤ 1024, one source of truth for the version across all seven
+  skills + `CITATION.cff` + README, frontmatter `name` matching its directory, and
+  routing-table rows that resolve to real files.
+- New **freshness** job: flags linked upstreams that have been archived, renamed,
+  or moved (this is what would have caught the BART migration), and checks that
+  every PyPI package and DOI the repo names actually exists.
+- Pinned the third-party ShellCheck action to a commit SHA.
+
 ## [0.6.0] — 2026-09-22
 
 More tools across sequence design and hardware/RF, a multi-agent red-team
@@ -34,7 +129,9 @@ improvement pass, and stronger CI + branch protection.
 - Rescoped the `mri-research` hub description to orientation/routing so it no
   longer over-triggers and collides with every expert.
 - Foundations: disambiguated ISMRM "MR Academy" (dropped the unrelated
-  "MRIcademy" brand). Aligned all version numbers.
+  "MRIcademy" brand). Bumped the hub and `skills.sh.json` to 0.6.0 — note this
+  release claimed to have "aligned all version numbers", but the five expert
+  skills were in fact left on 0.1.0; that was corrected in 0.7.0.
 
 ### Governance
 - Branch protection on `main`: PRs must pass the CI status checks before merge.
@@ -186,4 +283,11 @@ Initial public release.
 - Project scaffolding: `README.md`, `LICENSE` (MIT), `CITATION.cff`,
   `CONTRIBUTING.md`, `.gitignore`.
 
+[0.7.0]: https://github.com/KeWang0622/mri-research-skill/compare/v0.6.0...main
+[0.6.0]: https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.6.0
+[0.5.1]: https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.5.1
+[0.5.0]: https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.5.0
+[0.4.0]: https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.4.0
+[0.3.0]: https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.3.0
+[0.2.0]: https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.2.0
 [0.1.0]: https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.1.0

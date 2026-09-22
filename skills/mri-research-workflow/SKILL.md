@@ -14,7 +14,7 @@ description: >-
   reproducibility, paper draft, abstract.
 metadata:
   author: Ke Wang
-  version: "0.1.0"
+  version: "0.7.0"
 ---
 
 # MRI Research Workflow (idea → paper)
@@ -55,7 +55,7 @@ format.
 | Template | [cvpr-org/author-kit](https://github.com/cvpr-org/author-kit) | [LNCS guidelines](https://www.springer.com/gp/computer-science/lncs/conference-proceedings-guidelines) | [MRM class](https://onlinelibrary.wiley.com/journal/15222594/la_tex_class_file) |
 | Review | double-blind + rebuttal | double-blind + rebuttal | single-blind, revision cycles |
 | Emphasis | novelty, SOTA, benchmarks | method + clinical relevance | rigor, validation, physics, reproducibility |
-| Code | expected ([Papers with Code](https://paperswithcode.com/)) | encouraged | [ISMRM RRSG](https://ismrm.github.io/rrsg/) |
+| Code | expected (release on GitHub + a Zenodo DOI; index it on [Hugging Face Papers](https://huggingface.co/papers), which took over from the retired Papers with Code) | encouraged | [ISMRM RRSG](https://ismrm.github.io/rrsg/) |
 | Cadence | annual deadline (check the CFP) | annual (spring) | rolling |
 
 CVPR/NeurIPS reward a novel method beating strong baselines; MRM rewards
@@ -73,8 +73,10 @@ result differently for each.
 - **Experiments** — datasets, baselines, metrics, implementation; then results +
   **ablations**; qualitative figures with error/difference maps.
 - **Discussion & limitations** — where it fails, OOD behavior, clinical caveats.
-- **Reproducibility** — release code (see
-  [releasing-research-code](https://github.com/paperswithcode/releasing-research-code));
+- **Reproducibility** — release code (the ML Code Completeness Checklist in
+  [releasing-research-code](https://github.com/paperswithcode/releasing-research-code)
+  is still the best short guide, though the repo is unmaintained since 2023 and
+  paperswithcode.com itself now redirects to Hugging Face Papers);
   for ML-imaging follow **CLAIM**; for (f)MRI follow **COBIDAS** (both in the hub
   `publishing` reference). Archive a versioned release (e.g., Zenodo DOI).
 

@@ -9,10 +9,12 @@ description: >-
   and PyPulseq (vendor-neutral), KomaMRI (Bloch simulation), SigPy.RF (RF design).
   Triggers: pulse sequence, Pulseq, PyPulseq, gradient waveform, slew rate, PNS,
   k-space trajectory, spiral/radial/EPI, RF pulse, SLR, multiband/SMS, IDEA,
-  EPIC, Orchestra, `.seq`.
+  EPIC, Orchestra, `.seq`. This skill designs the *acquisition*; to reconstruct
+  the data it produces, hand off to mri-reconstruction (classical) or
+  deep-learning-recon (trained).
 metadata:
   author: Ke Wang
-  version: "0.1.0"
+  version: "0.7.0"
 ---
 
 # Pulse Sequence & Trajectory Design
@@ -54,11 +56,24 @@ parallel-transmit (pTx) pulses. Also **pulpy**
 (https://github.com/wgrissom/kpTx) for k-space pTx. Mind RF power / SAR for
 high-flip or refocusing-heavy designs.
 
-## SMS / multiband
+## SMS / multiband and controlled aliasing
 
-Excite multiple slices at once; unalias with coil sensitivities. Blipped-CAIPI
-reduces the g-factor penalty (Setsompop 2012, MRM). Product sequences from CMRR:
-https://www.cmrr.umn.edu/multiband/
+Excite multiple slices at once; unalias with coil sensitivities. The trick in all
+of these is to *shift* aliasing so coil sensitivities can separate it, buying back
+g-factor:
+- **Blipped-CAIPI** (SMS-EPI) — Setsompop K, Gagoski BA, Polimeni JR, Witzel T,
+  Wedeen VJ, Wald LL. *Magn Reson Med* 2012;67(5):1210–1224.
+  doi:10.1002/mrm.23097.
+- **CAIPIRINHA** — the parallel-imaging ancestor of the idea (shifted phase-encode
+  sampling across slices, then across partitions): Breuer FA, et al. *Magn Reson
+  Med* 2005;53(3):684–691 (multi-slice, doi:10.1002/mrm.20401) and
+  2006;55(3):549–556 (2D/volumetric, doi:10.1002/mrm.20787).
+- **Wave-CAIPI** — corkscrew (sinusoidal Gy/Gz) readout spreads aliasing in all
+  three directions for very high 3D acceleration at near-unity g-factor.
+  Bilgic B, Gagoski BA, Cauley SF, et al. *Magn Reson Med* 2015;73(6):2152–2162.
+  doi:10.1002/mrm.25347.
+
+Product SMS sequences from CMRR: https://www.cmrr.umn.edu/multiband/
 
 ## Gradient optimization, GIRF & simulation
 
@@ -86,6 +101,14 @@ https://www.cmrr.umn.edu/multiband/
 
 Steer method prototyping to Pulseq; use the native SDK only when you need vendor
 integration or features Pulseq can't express.
+
+## Hand-offs
+
+- **Reconstructing what you just acquired** — classical (ESPIRiT/SENSE/GRAPPA,
+  PICS, NUFFT gridding of your trajectory): `mri-reconstruction`, which runs
+  BART/SigPy. Trained/unrolled/diffusion recon: `deep-learning-recon`.
+- **Hardware limits, coils, consoles, SAR/PNS measurement:** `mri-hardware`.
+- **Physics background and the citation trail:** the `mri-research` hub.
 
 Deeper reference:
 https://github.com/KeWang0622/mri-research-skill/blob/main/skills/mri-research/references/sequences-and-trajectories.md

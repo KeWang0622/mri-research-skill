@@ -8,8 +8,9 @@ paste paper bodies — cite and summarize.
 ## Choosing a method (quick decision guide)
 
 - **Fully sampled, just need an image?** Inverse FFT (Cartesian) or NUFFT
-  (non-Cartesian) + coil combination (root-sum-of-squares or sensitivity-
-  weighted). See [`tools.md`](tools.md).
+  (non-Cartesian) + coil combination — sensitivity-weighted with noise
+  prewhitening is SNR-optimal (Roemer, below); root-sum-of-squares is the
+  map-free fallback. See [`tools.md`](tools.md).
 - **Undersampled, multi-coil, no training data?** Parallel imaging
   (ESPIRiT/SENSE/GRAPPA) — possibly combined with compressed sensing (L1-
   wavelet / TV) if acceleration is high and sampling is incoherent.
@@ -28,10 +29,15 @@ paste paper bodies — cite and summarize.
 - **GRAPPA** — k-space interpolation from autocalibration lines (no explicit
   sensitivity maps). Griswold MA, et al. "Generalized autocalibrating partially
   parallel acquisitions (GRAPPA)." *Magn Reson Med* 2002;47(6):1202–1210.
-- **SPIRiT** — iterative self-consistent k-space parallel imaging; unifies the
-  above and handles arbitrary sampling. Lustig M, Pauly JM. "SPIRiT: Iterative
+- **SPIRiT** — GRAPPA generalized: enforce the k-space calibration-consistency
+  relation at *every* k-space location together with data consistency, solved
+  iteratively. That is what makes arbitrary (including non-uniform) sampling
+  tractable, and it needs no explicit sensitivity maps. L1-SPIRiT adds
+  joint-sparsity CS regularization. Lustig M, Pauly JM. "SPIRiT: Iterative
   self-consistent parallel imaging reconstruction from arbitrary k-space."
-  *Magn Reson Med* 2010;64(2):457–471.
+  *Magn Reson Med* 2010;64(2):457–471. doi:10.1002/mrm.22428.
+  (It is **ESPIRiT**, below, that bridges the image-domain and k-space views —
+  "where SENSE meets GRAPPA".)
 - **ESPIRiT** — eigenvalue-based autocalibration for robust sensitivity maps;
   "where SENSE meets GRAPPA." The default way to estimate coil maps today.
   Uecker M, Lai P, Murphy MJ, Virtue P, Elad M, Pauly JM, Vasanawala SS,
@@ -48,9 +54,45 @@ paste paper bodies — cite and summarize.
   Pruessmann KP, Weiger M, Börnert P, Boesiger P. "Advances in sensitivity
   encoding with arbitrary k-space trajectories." *Magn Reson Med*
   2001;46(4):638–651.
+- **SMASH** — the original k-space parallel-imaging idea GRAPPA generalizes
+  (useful context when explaining why GRAPPA looks the way it does).
+  Sodickson DK, Manning WJ. *Magn Reson Med* 1997;38(4):591–603.
+  doi:10.1002/mrm.1910380414.
 - **Partial Fourier** — acquire just over half of k-space and recover the rest
-  from conjugate (Hermitian) symmetry via **homodyne** detection or **POCS**; a
-  classic partial-acquisition speed-up, often combined with the methods above.
+  from conjugate (Hermitian) symmetry via **homodyne** detection or **POCS**.
+  Crucial caveat: Hermitian symmetry holds only for a *real-valued* image, so
+  homodyne applies a low-pass **phase correction** first; phase errors are what
+  limit how far you can push it. Noll DC, Nishimura DG, Macovski A. "Homodyne
+  detection in magnetic resonance imaging." *IEEE Trans Med Imaging*
+  1991;10(2):154–163. doi:10.1109/42.79473.
+
+### What acceleration costs: the g-factor
+
+Never quote an acceleration factor without the SNR it costs. For SENSE-type
+reconstruction:
+
+```
+SNR_accel  =  SNR_full / (g · √R)
+```
+
+where the **geometry factor** `g ≥ 1` measures how ill-conditioned the unfolding
+problem is at each voxel (coil geometry, sampling pattern, R). `g` blows up where
+coil sensitivities are hard to distinguish — typically the image centre at high R
+— so it is a *map*, not a scalar. Report g maps alongside R.
+
+- **Coil combination and the array-SNR baseline** — optimal combination needs the
+  receive **noise covariance**, so *prewhiten* before reconstruction; root-sum-of-
+  squares is the map-free fallback and is not SNR-optimal. Roemer PB, Edelstein WA,
+  Hayes CE, Souza SP, Mueller OM. "The NMR phased array." *Magn Reson Med*
+  1990;16(2):192–225. doi:10.1002/mrm.1910160203.
+- **g is analytic for SENSE**; for GRAPPA, ESPIRiT, CS, and nonlinear or learned
+  reconstruction it generally is not — use Monte-Carlo **pseudo-replica** SNR
+  estimation instead. Robson PM, Grant AK, Madhuranthakam AJ, Lattanzi R,
+  Sodickson DK, McKenzie CA. *Magn Reson Med* 2008;60(4):895–907.
+  doi:10.1002/mrm.21728.
+- For learned reconstruction, note that regularization makes "SNR" ill-defined
+  (noise is traded for bias/hallucination) — see the metrics caveats at the end
+  of this file.
 
 ## Compressed sensing MRI
 
@@ -82,9 +124,23 @@ paste paper bodies — cite and summarize.
   data into extra motion dimensions (respiratory/cardiac) instead of fighting
   motion. Feng L, et al. *Magn Reson Med* 2016;75(2):775–788.
   doi:10.1002/mrm.25665.
-- **Structured low-rank matrix completion** — SAKE (Shin et al., *MRM* 2014)
-  and ALOHA (Jin et al., *IEEE TCI* 2016) exploit annihilating-filter / Hankel
-  structure; calibrationless. Good when calibration data is unavailable.
+- **Structured low-rank matrix completion** — build a structured (Hankel /
+  Casorati) matrix from local k-space neighbourhoods and complete it under a
+  low-rank constraint. Calibrationless, so it is the family to reach for when no
+  ACS exists. The three are distinct ideas, not variants of one:
+  - **SAKE** — multi-channel block-Hankel low-rank completion, motivated by
+    inter-coil linear dependency. Shin PJ, Larson PEZ, Ohliger MA, Elad M,
+    Pauly JM, Vigneron DB, Lustig M. *Magn Reson Med* 2014;72(4):959–970.
+    doi:10.1002/mrm.24997.
+  - **LORAKS** — low-rank modelling of local k-space neighbourhoods, additionally
+    exploiting **limited image support and phase** constraints (which neither SAKE
+    nor ALOHA does). Haldar JP. *IEEE Trans Med Imaging* 2014;33(3):668–681.
+    doi:10.1109/TMI.2013.2293974. Parallel-imaging extension **P-LORAKS**:
+    Haldar JP, Zhuo J. *Magn Reson Med* 2016;75(4):1499–1514.
+    doi:10.1002/mrm.25717.
+  - **ALOHA** — the **annihilating-filter**-based Hankel low-rank framework,
+    linking CS and parallel imaging. Jin KH, Lee D, Ye JC. *IEEE Trans Comput
+    Imaging* 2016;2(4):480–495. doi:10.1109/TCI.2016.2601296.
 
 ## Deep-learning reconstruction
 
@@ -120,10 +176,17 @@ measured data-consistency step.
   transform manifold learning." *Nature* 2018;555:487–492.
   doi:10.1038/nature25988 (arXiv:1704.08841).
 - **Frameworks that collect many DL methods:** DIRECT
-  (https://github.com/NKI-AI/direct), the fastMRI repo
-  (https://github.com/facebookresearch/fastMRI), mridc
-  (https://github.com/wdika/mridc), and the reproducible benchmark
-  (https://github.com/zaccharieramzi/fastmri-reproducible-benchmark).
+  (https://github.com/NKI-AI/direct), **ATOMMIC**
+  (https://github.com/wdika/atommic — supersedes the archived `mridc`), the
+  reproducible benchmark
+  (https://github.com/zaccharieramzi/fastmri-reproducible-benchmark), and the
+  fastMRI repo (https://github.com/facebookresearch/fastMRI — reference models
+  and evaluation code, **archived** upstream in 2025, so treat it as a stable
+  baseline rather than an actively maintained framework).
+- **Vendor DL reconstruction is the de-facto clinical baseline** — Siemens *Deep
+  Resolve*, GE *AIR Recon DL*, Philips *SmartSpeed*. Reviewers of a new learned-
+  recon paper will ask how you compare against what is already shipping, so name
+  it explicitly in related work even though the implementations are proprietary.
 
 ### fastMRI challenge (benchmarks & what won)
 
@@ -150,7 +213,9 @@ heavy at inference. Codebases the user specifically wants to know:
 - **Foundational (not MRI-specific) score-SDE** that these build on: Song Y, et
   al. "Score-Based Generative Modeling through SDEs." ICLR 2021.
   Code: https://github.com/yang-song/score_sde_pytorch
-- **High-frequency space diffusion (HFS-SDE)** — *IEEE TMI* 2024.
+- **High-frequency space diffusion (HFS-SDE)** — Cao C, et al. "High-Frequency
+  Space Diffusion Model for Accelerated MRI." *IEEE Trans Med Imaging*
+  2024;43(5):1853–1865. doi:10.1109/TMI.2024.3351702.
   Code: https://github.com/Aboriginer/HFS-SDE
 - Also watch **SPIRiT-Diffusion** (arXiv:2304.05060) for self-consistency-
   driven diffusion. For anything newer, check the awesome-lists and

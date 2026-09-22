@@ -8,12 +8,14 @@ description: >-
   (ESPIRiT/SENSE/GRAPPA), compressed sensing (PICS / L1-wavelet), coil
   sensitivity estimation, coil combination, or non-Cartesian / NUFFT
   reconstruction. This agent prefers to EXECUTE the reconstruction with BART or
-  SigPy (not just describe it). Triggers: k-space, coil sensitivities, ESPIRiT,
-  PICS, undersampled reconstruction, radial/spiral recon, `.cfl`/`.hdr`,
-  ISMRMRD, Siemens twix, GE P-file.
+  SigPy (not just describe it). It covers classical/analytic reconstruction —
+  for anything TRAINED (unrolled networks, VarNet, self-supervised, diffusion
+  priors, fastMRI models) hand off to the deep-learning-recon skill. Triggers:
+  k-space, coil sensitivities, ESPIRiT, PICS, undersampled reconstruction,
+  radial/spiral recon, `.cfl`/`.hdr`, ISMRMRD, Siemens twix, GE P-file.
 metadata:
   author: Ke Wang
-  version: "0.1.0"
+  version: "0.7.0"
 ---
 
 # MRI Reconstruction (actionable)
@@ -25,24 +27,35 @@ running, then execute and inspect.
 
 ## Workflow
 
-**0. Identify the k-space format** (ask or inspect). BART reads its own `.cfl`;
-it does **not** natively ingest NumPy or ISMRMRD, so those need an explicit
-write step:
+**0. Identify the k-space format** (ask or inspect). BART works in its own
+`.cfl`/`.hdr`, so other formats need a conversion step:
 - **BART `.cfl` + `.hdr`** — native; dims must be `[X Y Z COILS ...]` (coils on
   dim 3). Ready to use.
-- **Siemens twix `.dat`** — `bart twixread` writes a `.cfl` directly; or read in
-  Python with `twixtools`/`pymapVBVD` then write a `.cfl`.
-- **NumPy array** — write a `.cfl` with BART's Python helper
-  `cfl.writecfl(name, array)` (shipped in BART's `python/` dir; also `bartpy`).
+- **Siemens twix `.dat`** — `bart twixread -A meas.dat ksp` writes a `.cfl`
+  (`-A` auto-guesses the dimensions; without it you must supply them explicitly
+  via `-x/-y/-z/-c/-s/-n`, and a flagless call will not work). Then confirm with
+  `bart show -m ksp`. Alternative: read in Python with `twixtools`/`pymapVBVD`
+  and write a `.cfl`.
+- **NumPy array** — write a `.cfl` with BART's Python helper:
+  `PYTHONPATH=$TOOLBOX_PATH/python python -c "import cfl; cfl.writecfl(name, arr)"`
+  (`cfl.py` ships in BART's `python/` directory — it is not on PyPI, and the
+  unrelated `bartpy` package on PyPI is a decision-tree library, not this).
   Make sure coils land on dim 3.
-- **ISMRMRD `.h5`** — read with the Python `ismrmrd` package (or Gadgetron),
-  assemble the k-space array, then `cfl.writecfl`. Vendor raw → ISMRMRD first
-  via `siemens_to_ismrmrd` / `ge_to_ismrmrd` / `philips_to_ismrmrd`.
+- **ISMRMRD `.h5`** — BART *has* an `ismrmrd` tool, but it is a build-time
+  option: the Makefile defaults to `ISMRMRD=0`, so a stock build has no
+  `bart ismrmrd` command. Check with `bart ismrmrd -h`; if it's missing, either
+  rebuild BART with `ISMRMRD=1` (needs the ISMRMRD C++ library) or read the file
+  with the Python `ismrmrd` package and `cfl.writecfl`. Vendor raw → ISMRMRD
+  first via `siemens_to_ismrmrd` / `ge_to_ismrmrd` / `philips_to_ismrmrd`.
 
 **1. Estimate coil sensitivities (ESPIRiT):**
 ```
-bart ecalib -r 24 kspace sens        # -r = calibration region size
+bart ecalib -m1 -r 24 kspace sens
 ```
+`-m1` matters: `ecalib` computes **two** ESPIRiT map sets by default, and `pics`
+then returns a soft-SENSE result with a size-2 MAPS dimension instead of a single
+image — a silent wrong answer. `-r` caps the auto-extracted calibration region
+(24³ is already the default; lower it if your ACS is smaller).
 
 **2. Reconstruct:**
 ```
@@ -52,9 +65,15 @@ bart fft -iu 7 kspace img_coils && bart rss 8 img_coils img
 # Undersampled — parallel imaging + compressed sensing (the workhorse):
 bart pics -l1 -r 0.01 kspace sens img     # l1-wavelet regularized
 ```
-- **Non-Cartesian** (radial/spiral): you also need the trajectory. Use
-  `bart pics -t traj kspace sens img` (or `bart nufft` for the adjoint). Get the
+- **Non-Cartesian** (radial/spiral/cones/rosette): you also need the trajectory.
+  Use `bart pics -t traj kspace sens img`. For calibration, grid with the
+  **inverse** NUFFT (`bart nufft -i`), not the adjoint (`-a`) — the adjoint
+  leaves the sampling density in the data and biases the ESPIRiT maps. Get the
   trajectory from the sequence/ISMRMRD, or `bart traj` for nominal.
+- **EPI is Cartesian.** Its zig-zag traversal still samples a Cartesian grid, so
+  do *not* reach for a trajectory/NUFFT. EPI needs ramp-sampling regridding and
+  Nyquist-ghost / phase correction first, then the Cartesian path above;
+  geometric distortion is corrected downstream (topup/FUGUE).
 
 **3. Inspect:** check image dimensions, scaling, and orientation; look for
 residual aliasing (raise `-r`), over-smoothing (lower `-r`), or coil-combination
@@ -65,8 +84,9 @@ errors.
 `scripts/bart_recon.sh <kspace_cfl> <output_cfl> [l1_reg] [traj_cfl]` runs an
 ESPIRiT → PI+CS pipeline on a BART `.cfl` k-space file. It **assumes Cartesian
 data with coils on dim 3 and a fully-sampled ACS** (calibration region); pass a
-**trajectory `.cfl`** as the 4th argument for radial/spiral/EPI. It warns about
-these assumptions but can't fully verify them — check the header and adapt the
+**trajectory `.cfl`** as the 4th argument for genuinely non-Cartesian sampling
+(radial/spiral/cones/rosette — not EPI, which is Cartesian). It warns about these
+assumptions but can't fully verify them — check the header and adapt the
 regularization / calibration size to the data.
 
 ## SigPy (Python) alternative
@@ -82,8 +102,16 @@ img  = mr.app.L1WaveletRecon(ksp, maps, lamda=0.01).run() # PI + CS
 
 - Confirm the acceleration factor and sampling (Cartesian vs non-Cartesian)
   before choosing a method — the wrong forward model gives garbage.
-- If BART isn't installed: https://mrirecon.github.io/bart/ (docs) — offer to
-  install or fall back to SigPy.
+- If BART isn't installed: https://codeberg.org/mrirecon/bart (source, active)
+  with docs at https://mrirecon.codeberg.page/ — offer to install or fall back to
+  SigPy. Note the `github.com/mrirecon/bart` mirror is archived as of 2026.
+- **Report the SNR cost, not just the image.** Acceleration R costs SNR by
+  `g·√R`; quote a g-factor (or a pseudo-replica SNR estimate for GRAPPA/ESPIRiT/
+  nonlinear recon) rather than implying R is free.
+- **Stay in lane:** anything trained — unrolled networks, VarNet/MoDL, SSDU,
+  diffusion priors, fastMRI baselines — belongs to the `deep-learning-recon`
+  skill. Designing the *acquisition* or the trajectory belongs to
+  `pulse-sequence-design`; this skill consumes a trajectory, it doesn't design one.
 - For method theory and citations, see the hub:
   https://github.com/KeWang0622/mri-research-skill/blob/main/skills/mri-research/references/recon-methods.md
   and tool details at
