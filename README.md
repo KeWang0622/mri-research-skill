@@ -1,9 +1,23 @@
-<h1 align="center">MRI Research</h1>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/logo-light.svg">
+    <img alt="mri-research" src="./assets/logo-dark.svg" width="460">
+  </picture>
+</p>
+
+<h3 align="center">A curated, verified knowledge hub for MRI research — built for AI agents</h3>
+<p align="center">One command makes any coding agent fluent in MRI — so the field's knowledge is open to everyone.</p>
 
 <p align="center">
-  <strong>A curated, verified knowledge hub for magnetic resonance imaging research — built for AI agents.</strong><br>
-  <a href="skills/mri-research/references/foundations.md">Physics</a> · <a href="skills/mri-research/references/sequences-and-trajectories.md">acquisition</a> · <a href="skills/mri-research/references/recon-methods.md">reconstruction</a> · <a href="skills/mri-research/references/analysis-processing.md">analysis</a> · <a href="skills/mri-research/references/quantitative-and-spectroscopy.md">quantitative MRI</a> · <a href="skills/mri-research/references/quantitative-and-spectroscopy.md">spectroscopy</a> · <a href="skills/mri-research/references/hardware.md">hardware</a>.<br>
-  One command makes any AI agent fluent in MRI — so the field's knowledge is open to everyone.
+  <a href="#install"><strong>Install</strong></a>
+  &nbsp;&bull;&nbsp;
+  <a href="#the-expert-team"><strong>Agents</strong></a>
+  &nbsp;&bull;&nbsp;
+  <a href="#whats-inside"><strong>References</strong></a>
+  &nbsp;&bull;&nbsp;
+  <a href="CONTRIBUTING.md"><strong>Contribute</strong></a>
+  &nbsp;&bull;&nbsp;
+  <a href="CHANGELOG.md"><strong>Changelog</strong></a>
 </p>
 
 <p align="center">
@@ -11,6 +25,20 @@
   <img alt="Version" src="https://img.shields.io/badge/version-0.6.0-1f6feb?style=for-the-badge&labelColor=000000">
   <img alt="Install: npx skills add" src="https://img.shields.io/badge/install-npx%20skills%20add-000000?style=for-the-badge">
   <a href="https://github.com/KeWang0622/mri-research-skill"><img alt="Stars" src="https://img.shields.io/github/stars/KeWang0622/mri-research-skill?style=for-the-badge&labelColor=000000"></a>
+</p>
+
+<p align="center">
+  <a href="skills/mri-research/references/foundations.md">Physics</a> ·
+  <a href="skills/mri-research/references/sequences-and-trajectories.md">Acquisition</a> ·
+  <a href="skills/mri-research/references/recon-methods.md">Reconstruction</a> ·
+  <a href="skills/mri-research/references/analysis-processing.md">Analysis</a> ·
+  <a href="skills/mri-research/references/quantitative-and-spectroscopy.md">Quantitative</a> ·
+  <a href="skills/mri-research/references/hardware.md">Hardware</a> ·
+  <a href="skills/mri-research/references/publishing.md">Publishing</a>
+</p>
+
+<p align="center">
+  ⭐ <em>If this helps your research, a star helps other researchers find it.</em>
 </p>
 
 ---
