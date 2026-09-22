@@ -4,3 +4,6 @@
 # periodically in case the site fixes its certificate.
 https://www.cis.rit.edu/htbooks/mri/
 http://www.lcmodel.com/
+# FreeSurfer's server (surfer.nmr.mgh.harvard.edu) is valid but frequently slow
+# and intermittently times out from CI runners. Verified reachable manually.
+https://surfer.nmr.mgh.harvard.edu/

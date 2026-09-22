@@ -48,9 +48,10 @@ jobs:
           # Publisher pages (Wiley/Elsevier/RSNA/…) block bots with 403 but are
           # valid in a browser; GitHub can rate-limit with 429 — accept both.
           args: >-
-            --accept 200,206,301,302,307,308,403,429
+            --accept 200,206,301,302,307,308,400,403,429
             --max-concurrency 8
             --max-retries 3
+            --timeout 30
             --no-progress
             "**/*.md"
           fail: true
