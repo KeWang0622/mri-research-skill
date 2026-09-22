@@ -283,7 +283,7 @@ Initial public release.
 - Project scaffolding: `README.md`, `LICENSE` (MIT), `CITATION.cff`,
   `CONTRIBUTING.md`, `.gitignore`.
 
-[0.7.0]: https://github.com/KeWang0622/mri-research-skill/compare/v0.6.0...main
+[0.7.0]: https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.7.0
 [0.6.0]: https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.6.0
 [0.5.1]: https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.5.1
 [0.5.0]: https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.5.0
