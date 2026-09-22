@@ -1,8 +1,11 @@
 <div align="center" id="top">
 
-<img src="assets/logo.svg" alt="mri-research" width="88" height="88">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/wordmark-dark.png">
+  <img alt="mri-research" src="assets/wordmark-light.png" width="420">
+</picture>
 
-# mri-research
+<br>
 
 **A curated, verified knowledge hub for MRI research — built for AI agents.**
 
