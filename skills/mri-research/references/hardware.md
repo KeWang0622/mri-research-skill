@@ -26,35 +26,53 @@ their communities.
 ## Open-source hardware community
 
 - **Open Source Imaging Initiative (OSI²)** — https://www.opensourceimaging.org
-  — the hub for open-source MRI hardware projects (consoles, coils, magnets,
-  low-field systems), with a projects directory and community. Overview paper:
-  Winter L, et al. "Open-source magnetic resonance imaging: Improving access,
-  science, and education through global collaboration." *NMR in Biomedicine*
-  2024;37: e5052.
-- **MaRCoS** — MAgnetic Resonance COntrol System: open electronic control
-  system for (mostly low-field) MRI. Cycle-accurate sequences, arbitrary
-  waveforms, Python GUI for sequences/recon. Paper: Guallart-Naval T, et al.,
-  *J Magn Reson* 2023. Community & code via OSI² and
-  https://github.com/vnegnev (MaRCoS repos) — verify current org before citing.
-- **OCRA** — Open-source Console for Real-time Acquisition: low-cost (~$500)
-  console built on the STEMLab/Red Pitaya (Zynq SoC, 125 Msps ADC/DAC),
-  capable of closed-loop/real-time sequence updates.
-  Project page: https://www.opensourceimaging.org/project/ocra-open-source-console-for-real-time-acquisition/
+  — the hub for open-source MRI hardware (consoles, coils, magnets, low-field
+  systems), with a projects directory and community. Note: OSI² design files and
+  code live on **GitLab** (https://gitlab.com/osii), including the complete open
+  low-field scanner **OSI² ONE** (https://gitlab.com/osii/mri-scanners/osii-one).
+  Overview: Winter L, et al. "Open-source magnetic resonance imaging: Improving
+  access, science, and education through global collaboration." *NMR in
+  Biomedicine* 2024;37:e5052.
+- **MaRCoS** — MAgnetic Resonance COntrol System: open control for (mostly
+  low-field) MRI; cycle-accurate sequences and arbitrary waveforms. Canonical
+  repos: **marcos_client** (https://github.com/vnegnev/marcos_client),
+  **marcos_server** (https://github.com/vnegnev/marcos_server), **marcos_extras**
+  (https://github.com/vnegnev/marcos_extras); streaming successor **marga**
+  (https://github.com/vnegnev/marga). Paper: Guallart-Naval T, et al., *J Magn
+  Reson* 2023.
+- **OCRA** — low-cost (~$500) real-time console on the STEMLab/Red Pitaya (Zynq
+  SoC, 125 Msps ADC/DAC). Pulseq interpreter: **ocra-pulseq**
+  (https://github.com/LincolnCB/ocra-pulseq). Project page:
+  https://www.opensourceimaging.org/project/ocra-open-source-console-for-real-time-acquisition/
+- **Gradient power amplifier:** **GPA-FHDO** — open 4-channel GPA for low-field
+  MRI: https://github.com/menkueclab/GPA-FHDO .
+- **MRI4ALL** — community-built open scanner (Zeugmatron Z1): console software
+  (https://github.com/mri4all/console) and magnet/gradient/shim design repos at
+  https://github.com/mri4all .
 
 Low-field + open hardware is the most active place for hands-on, buildable MRI
 research; the OSI² projects directory is the best living index.
 
-## Coil design & simulation references
+## Coil, gradient & shim design
 
-- **RF coil / EM simulation:** full-wave EM solvers (commercial: HFSS, CST;
-  open: openEMS — https://www.openems.de) for coil and SAR modeling.
-- **Gradient coil design:** stream-function / target-field methods; look to the
-  bioelectromagnetism/coil-design literature and tools like CoilGen
-  (open-source gradient/shim coil design — verify current repo home).
+- **Gradient / shim coil design:** **CoilGen** — BEM stream-function coil-layout
+  generator (Amrein et al., *MRM* 2022): https://github.com/Philipp-MR/CoilGen ,
+  with a Python port **pyCoilGen** (https://github.com/kev-m/pyCoilGen).
+- **RF coil EM simulation & SAR:** **openEMS** (FDTD;
+  https://github.com/thliebig/openEMS · https://www.openems.de); **MARIE** —
+  integral-equation full-wave solver for MRI RF coils + body
+  (https://github.com/thanospol/MARIE) and its Python port **mariepy** (SAR /
+  virtual-observation-point modeling, https://github.com/pulserver/mariepy);
+  **CoSimPy** — EM/circuit co-simulation incl. SAR
+  (https://github.com/umbertozanovello/CoSimPy). Commercial: HFSS, CST, Sim4Life.
+- **RF matching / networks:** **scikit-rf**
+  (https://github.com/scikit-rf/scikit-rf) — S-parameters and impedance matching;
+  general-purpose but standard for coil tuning.
+- **B0 shimming:** **Shimming Toolbox** — static, dynamic, and real-time shimming
+  in Python: https://github.com/shimming-toolbox/shimming-toolbox .
 - **Safety:** SAR (RF heating) and PNS (gradient) limits are regulatory and
-  safety-critical. For anything involving a real system or subjects, defer to
-  the site's physicist, IRB/ethics approval, and vendor/hardware safety specs —
-  never improvise around safety limits.
+  safety-critical — see the MRI safety section below; never improvise around
+  limits.
 
 ## MRI safety (research orientation — not clinical guidance)
 

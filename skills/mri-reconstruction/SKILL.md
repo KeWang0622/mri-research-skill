@@ -25,13 +25,19 @@ running, then execute and inspect.
 
 ## Workflow
 
-**0. Identify the k-space format** (ask or inspect):
-- **BART `.cfl` + `.hdr`** — native BART; dims are `[X Y Z COILS ...]`. Ready to use.
-- **ISMRMRD `.h5`** — vendor-neutral raw. Read with the ISMRMRD API, or convert
-  to `.cfl`. (Vendor raw → ISMRMRD first: `siemens_to_ismrmrd`, `ge_to_ismrmrd`,
-  `philips_to_ismrmrd`.)
-- **Siemens twix `.dat`** — read with `twixtools`/`pymapVBVD` (Python) or convert.
-- **NumPy `.npy`** — load in Python/SigPy; wrap as a BART file with `bart` if needed.
+**0. Identify the k-space format** (ask or inspect). BART reads its own `.cfl`;
+it does **not** natively ingest NumPy or ISMRMRD, so those need an explicit
+write step:
+- **BART `.cfl` + `.hdr`** — native; dims must be `[X Y Z COILS ...]` (coils on
+  dim 3). Ready to use.
+- **Siemens twix `.dat`** — `bart twixread` writes a `.cfl` directly; or read in
+  Python with `twixtools`/`pymapVBVD` then write a `.cfl`.
+- **NumPy array** — write a `.cfl` with BART's Python helper
+  `cfl.writecfl(name, array)` (shipped in BART's `python/` dir; also `bartpy`).
+  Make sure coils land on dim 3.
+- **ISMRMRD `.h5`** — read with the Python `ismrmrd` package (or Gadgetron),
+  assemble the k-space array, then `cfl.writecfl`. Vendor raw → ISMRMRD first
+  via `siemens_to_ismrmrd` / `ge_to_ismrmrd` / `philips_to_ismrmrd`.
 
 **1. Estimate coil sensitivities (ESPIRiT):**
 ```
@@ -56,9 +62,11 @@ errors.
 
 ## Runnable helper
 
-`scripts/bart_recon.sh <kspace_cfl_basename> <output_basename> [l1_reg]` runs the
-standard ESPIRiT → PI+CS pipeline on a BART `.cfl` k-space file. It checks that
-BART is installed and prints the output location. Read it and adapt the
+`scripts/bart_recon.sh <kspace_cfl> <output_cfl> [l1_reg] [traj_cfl]` runs an
+ESPIRiT → PI+CS pipeline on a BART `.cfl` k-space file. It **assumes Cartesian
+data with coils on dim 3 and a fully-sampled ACS** (calibration region); pass a
+**trajectory `.cfl`** as the 4th argument for radial/spiral/EPI. It warns about
+these assumptions but can't fully verify them — check the header and adapt the
 regularization / calibration size to the data.
 
 ## SigPy (Python) alternative

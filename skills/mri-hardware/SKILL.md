@@ -33,17 +33,28 @@ safety first.
 
 ## Low-field & open-source hardware
 
-- **Open Source Imaging Initiative (OSI²)** — https://www.opensourceimaging.org
-  — hub for open MRI hardware (consoles, coils, magnets).
-- **MaRCoS** — open control system for (mostly low-field) MRI; cycle-accurate
-  sequences, Python GUI. Community via OSI².
-- **OCRA** — low-cost (~$500) real-time console on STEMLab/Red Pitaya.
+- **OSI²** — https://www.opensourceimaging.org — hub for open MRI hardware. Design
+  files/code live on GitLab (https://gitlab.com/osii), incl. the full **OSI² ONE**
+  low-field scanner.
+- **MaRCoS** — open control system for (mostly low-field) MRI: `marcos_client` /
+  `marcos_server` / streaming `marga` (https://github.com/vnegnev).
+- **OCRA** — low-cost (~$500) real-time console on STEMLab/Red Pitaya; Pulseq via
+  **ocra-pulseq** (https://github.com/LincolnCB/ocra-pulseq).
+- **GPA-FHDO** — open gradient power amplifier
+  (https://github.com/menkueclab/GPA-FHDO). **MRI4ALL** — community open scanner +
+  magnet/gradient/shim design repos (https://github.com/mri4all).
 
-## Coil & gradient design
+## Coil, gradient & shim design
 
-- **RF coil / EM simulation:** openEMS (https://www.openems.de), or commercial
-  HFSS/CST, for coil and SAR modeling.
-- **Gradient coil design:** stream-function / target-field methods.
+- **Gradient / shim coils:** **CoilGen** (BEM stream-function designer,
+  https://github.com/Philipp-MR/CoilGen) and its Python port **pyCoilGen**
+  (https://github.com/kev-m/pyCoilGen).
+- **RF coil EM / SAR:** **openEMS** (https://github.com/thliebig/openEMS),
+  **MARIE** / **mariepy** (https://github.com/thanospol/MARIE), **CoSimPy**
+  (https://github.com/umbertozanovello/CoSimPy); **scikit-rf** for impedance
+  matching. Commercial: HFSS, CST, Sim4Life.
+- **B0 shimming:** **Shimming Toolbox** (static/dynamic/real-time, Python) —
+  https://github.com/shimming-toolbox/shimming-toolbox.
 
 ## MR safety (research orientation — NOT clinical guidance)
 

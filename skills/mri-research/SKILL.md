@@ -1,33 +1,25 @@
 ---
 name: mri-research
 description: >-
-  Fluent, well-oriented assistant for magnetic resonance imaging (MRI) research
-  across the whole pipeline — physics, acquisition, reconstruction, analysis,
-  and quantification. Use this WHENEVER a conversation touches MRI, even if the
-  word "MRI" isn't said. Triggers include: MR physics (T1/T2/T2*, relaxation,
-  contrast, spin/gradient echo, bSSFP, EPI), k-space and Fourier imaging, pulse
-  sequence design and pulse programming (Pulseq, PyPulseq, vendor IDEA/EPIC),
-  k-space trajectory design (Cartesian, radial, spiral, EPI, golden-angle),
-  image reconstruction (parallel imaging — SENSE/GRAPPA/ESPIRiT/SPIRiT/NLINV,
-  compressed sensing, low-rank, deep learning, diffusion/score-based, MR
-  fingerprinting), reconstruction toolboxes (BART, SigPy, MIRT.jl, MRIReco.jl,
-  torchkbnufft, DIRECT, Gadgetron), raw and image data formats (ISMRMRD,
-  Siemens twix, GE P-file, Philips raw, DICOM, NIfTI, BIDS), image analysis and
-  processing (FreeSurfer, FSL, SPM, AFNI, ANTs, fMRIPrep, nilearn), functional
-  MRI, diffusion MRI and tractography (MRtrix3, DIPY), segmentation and
-  registration (nnU-Net, TotalSegmentator, MONAI), quantitative MRI
-  (relaxometry, QSM, perfusion/ASL, MT) and MR spectroscopy (LCModel, Osprey,
-  FSL-MRS), datasets (fastMRI, mridata.org, HCP, OpenNeuro, UK Biobank, ADNI,
-  BraTS), MRI hardware (low-field, open-source consoles, coils, gradients),
-  finding the right paper/course/handbook for an MR topic, MRI safety, writing
-  up and submitting a paper (journals, LaTeX templates, reporting standards), or
-  reading MR image contrast. This resource knows WHERE the authoritative
-  resources live and WHICH
-  tool fits a given task; it points to external repos, papers, courses, and
-  datasets rather than bundling them.
+  The generalist navigator and curated reference hub for magnetic resonance
+  imaging (MRI) research — use it for orientation, cross-domain questions, and
+  finding the right resource across the whole MRI pipeline: MR physics and
+  k-space, acquisition, reconstruction, analysis, quantitative MRI and
+  spectroscopy, hardware, data formats, and publishing. Reach for this skill
+  when a question spans several MRI sub-areas, when you need the canonical
+  paper / course / handbook / dataset / toolbox for an MR topic, when explaining
+  how MRI concepts relate, or when it isn't yet clear which specialist applies.
+  It ships alongside focused expert skills — mri-reconstruction, diffusion-mri,
+  pulse-sequence-design, deep-learning-recon, mri-hardware, and
+  mri-research-workflow — and defers to whichever is squarely in-lane for a
+  given task; this hub owns the map, the overview, and the hand-off. Triggers:
+  MRI / magnetic-resonance research questions, "where do I find…", "which MRI
+  tool / paper / dataset / course for…", k-space and MR-physics orientation, and
+  cross-cutting MR reconstruction/analysis workflows. It points to external
+  repos, papers, courses, and datasets rather than bundling them.
 metadata:
   author: Ke Wang
-  version: "0.5.0"
+  version: "0.6.0"
 ---
 
 # MRI Research Hub

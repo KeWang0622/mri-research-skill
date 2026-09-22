@@ -56,11 +56,10 @@ words rather than reproducing copyrighted text.
 - **Elster, MRIquestions.com ("Questions and Answers in MRI")** — free, deep,
   and beloved Q&A reference on MR physics and technology; excellent for
   clarifying specific points of confusion: https://www.mriquestions.com/
-- **MRIcademy / ISMRM educational materials** — the **ISMRM**
-  (https://www.ismrm.org) runs the field's main meeting and publishes weekend
-  educational course content, "MR Academy," and the *MR Pulse* resources.
-  Its journals *Magnetic Resonance in Medicine* (MRM) and *JMRI* are where most
-  landmark methods appear.
+- **ISMRM educational materials** — the **ISMRM** (https://www.ismrm.org) runs
+  the field's main annual meeting and publishes educational course content
+  through its online learning portal, "MR Academy." Its journals *Magnetic
+  Resonance in Medicine* (MRM) and *JMRI* are where most landmark methods appear.
 
 **Canonical textbooks & handbooks (not free, but the standard references):**
 

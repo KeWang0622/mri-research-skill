@@ -39,6 +39,12 @@ scanner. This decouples research sequences from proprietary environments.
 - Interpreters exist for **Siemens, GE, Bruker, and (more recently) Philips**;
   a `.seq` file is portable across scanner software versions once the
   interpreter is installed.
+- **Ecosystem:** **TOPPE** (https://github.com/toppeMRI/toppe) runs Pulseq/TOPPE
+  sequences on **GE** scanners; **pulseq-CEST**
+  (https://github.com/kherz/pulseq-cest) adds CEST saturation blocks +
+  Bloch–McConnell simulation (with a preset library, `pulseq-cest-library`);
+  **MR-Physics-with-Pulseq** (https://github.com/pulseq/MR-Physics-with-Pulseq)
+  is an excellent tutorial collection for learning sequence design.
 
 ## Vendor-native sequence environments (when Pulseq isn't enough)
 
@@ -64,6 +70,14 @@ adiabatic, multiband, and parallel-transmit/pTx pulses).
 - **SigPy.RF** (`sigpy.mri.rf`) — a Python RF-pulse-design toolbox within SigPy:
   SLR pulses, adiabatic pulses, multiband, small-tip and large-tip designs, and
   pTx. Docs via https://sigpy.readthedocs.io/ ; SigPy repo in [`tools.md`](tools.md).
+- **pulpy** — https://github.com/jonbmartin/pulpy — Python RF/gradient pulse
+  design (SLR, adiabatic, multiband, pTx) from the Grissom lab.
+- **Spectral-Spatial-RF-Pulse-Design** —
+  https://github.com/LarsonLab/Spectral-Spatial-RF-Pulse-Design — spectral-spatial
+  (SPSP) pulse design (MATLAB).
+- **Multiband-RF** (https://github.com/mriphysics/Multiband-RF) and **kpTx**
+  (https://github.com/wgrissom/kpTx) — multiband/SMS and k-space-domain
+  parallel-transmit (pTx) pulse design.
 - **PyPulseq** defines the RF and gradient *events* that make up the sequence,
   so RF design and sequence assembly live in the same Python workflow.
 - Be mindful of **RF power / SAR** limits (a safety constraint), especially for
@@ -74,8 +88,14 @@ adiabatic, multiband, and parallel-transmit/pTx pulses).
 - **KomaMRI.jl** — https://github.com/JuliaHealth/KomaMRI.jl — GPU-accelerated,
   Pulseq-compatible Bloch simulator; purpose-built for pulse-sequence
   development. Feed it a `.seq` and a phantom, get simulated signal/images.
-- **MRzero / MRiLab / JEMRIS** — other open Bloch simulators worth knowing
-  (JEMRIS is a long-standing C++/MATLAB simulator; MRiLab is GPU-based).
+- **JEMRIS** (https://github.com/JEMRIS/jemris) and **MRiLab**
+  (https://github.com/leoliuf/MRiLab) — established open Bloch simulators
+  (long-standing C++/GUI, and GPU-accelerated, respectively).
+- **sycomore** (https://github.com/lamyj/sycomore) and **EPG-X**
+  (https://github.com/mriphysics/EPG-X) — Bloch + extended-phase-graph (EPG)
+  signal modeling; EPG-X adds magnetization transfer / chemical exchange.
+- **MRzero-Core** (https://github.com/MRsources/MRzero-Core) — differentiable
+  Bloch simulation + Pulseq, for sequence optimization and learning.
 - BART includes analytical phantoms for quick recon testing.
 
 ## Designing/analyzing trajectories in code
@@ -90,6 +110,18 @@ adiabatic, multiband, and parallel-transmit/pTx pulses).
 - Always check **hardware constraints**: max gradient amplitude, max slew rate,
   PNS (peripheral nerve stimulation) limits, and duty cycle. A trajectory that
   violates these can't be played (or is unsafe). KomaMRI/PyPulseq help validate.
+- **Gradient & trajectory optimization:** **GrOpt**
+  (https://github.com/mloecher/gropt) for time-optimal gradient-waveform design,
+  and Lustig's **minTimeGradient / tOptGrad**
+  (https://people.eecs.berkeley.edu/~mlustig/Software.html) for time-optimal
+  gradients along an arbitrary k-space path. Validate against PNS with
+  **safe_pns_prediction**
+  (https://github.com/filip-szczepankiewicz/safe_pns_prediction).
+- **GIRF (gradient impulse response function):** measure/apply with
+  **MRI-gradient/GIRF** (https://github.com/MRI-gradient/GIRF); **GIRFReco.jl**
+  (https://github.com/BRAIN-TO/GIRFReco.jl) is a Julia spiral-recon pipeline with
+  GIRF trajectory correction — important for accurate spiral/non-Cartesian
+  trajectories.
 
 ## Acceleration & correction (acquisition side)
 

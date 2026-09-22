@@ -36,6 +36,17 @@ field removal → dipole inversion).
   established QSM algorithms into a reproducible pipeline; good for
   standardizing a QSM workflow rather than reimplementing each step.
 
+## Fat–water separation (Dixon) & CEST
+
+- **Fat–water (Dixon)** — multi-echo chemical-shift encoding separates fat and
+  water and quantifies **proton-density fat fraction (PDFF)** and **R2\***.
+  Graph-cut / **IDEAL** field-map estimation is the standard approach; the ISMRM
+  fat–water toolbox collects reference implementations.
+- **CEST (chemical exchange saturation transfer)** — saturation-transfer
+  contrast sensitive to exchangeable protons (e.g., amide proton transfer, APT).
+  Design/simulate with **pulseq-CEST** (https://github.com/kherz/pulseq-cest) and
+  its preset library.
+
 ## Perfusion
 
 - **Arterial spin labeling (ASL)** — magnetically labels arterial blood as an

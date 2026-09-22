@@ -43,6 +43,14 @@ paste paper bodies — cite and summarize.
   nonlinear inversion—joint estimation of coil sensitivities and image
   content." *Magn Reson Med* 2008;60(3):674–682. doi:10.1002/mrm.21691.
   Available as BART `nlinv`.
+- **CG-SENSE** — iterative SENSE for **arbitrary (non-Cartesian) k-space** via
+  conjugate gradient; the foundation of non-Cartesian parallel imaging.
+  Pruessmann KP, Weiger M, Börnert P, Boesiger P. "Advances in sensitivity
+  encoding with arbitrary k-space trajectories." *Magn Reson Med*
+  2001;46(4):638–651.
+- **Partial Fourier** — acquire just over half of k-space and recover the rest
+  from conjugate (Hermitian) symmetry via **homodyne** detection or **POCS**; a
+  classic partial-acquisition speed-up, often combined with the methods above.
 
 ## Compressed sensing MRI
 

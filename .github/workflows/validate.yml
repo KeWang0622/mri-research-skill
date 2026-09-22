@@ -17,18 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate skills.sh.json
+      - name: Validate structure (JSON, frontmatter, registry vs folders)
         run: |
-          python3 -c "import json; json.load(open('skills.sh.json')); print('skills.sh.json valid JSON')"
-      - name: Every SKILL.md has name + description
-        run: |
-          fail=0
-          for f in skills/*/SKILL.md; do
-            grep -qE '^name:' "$f"        || { echo "::error file=$f::missing 'name' in frontmatter"; fail=1; }
-            grep -qE '^description:' "$f" || { echo "::error file=$f::missing 'description' in frontmatter"; fail=1; }
-          done
-          [ "$fail" -eq 0 ] && echo "all SKILL.md frontmatter OK"
-          exit $fail
+          python3 .github/scripts/validate_repo.py
 
   shellcheck:
     name: ShellCheck
@@ -36,6 +27,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ludeeus/action-shellcheck@master
+
+  skills-cli:
+    name: skills CLI detects all skills
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: List skills via the skills CLI
+        run: |
+          npx -y skills@latest add . --list
 
   links:
     name: Link check

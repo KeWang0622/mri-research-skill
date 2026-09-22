@@ -5,6 +5,40 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] — 2026-09-22
+
+More tools across sequence design and hardware/RF, a multi-agent red-team
+improvement pass, and stronger CI + branch protection.
+
+### Added
+- **Sequence design:** gradient/trajectory optimization (GrOpt, Lustig
+  minTimeGradient, safe_pns_prediction), GIRF (MRI-gradient/GIRF, GIRFReco.jl),
+  Pulseq ecosystem (TOPPE for GE, pulseq-CEST, MR-Physics-with-Pulseq), more
+  simulators (JEMRIS, MRiLab, sycomore, EPG-X, MRzero-Core), and RF design
+  (pulpy, Spectral-Spatial-RF-Pulse-Design, Multiband-RF, kpTx).
+- **Hardware / RF:** coil design (CoilGen, pyCoilGen), EM/SAR (MARIE, mariepy,
+  CoSimPy, scikit-rf), B0 shimming (Shimming Toolbox), the MaRCoS ecosystem
+  (marcos_client/server, marga, ocra-pulseq), GPA-FHDO, MRI4ALL, and OSI² ONE
+  (with the correction that OSI² code lives on GitLab).
+- **Reconstruction:** CG-SENSE and partial-Fourier/homodyne. **Quantitative:**
+  fat–water (Dixon / IDEAL / PDFF / R2*) and CEST.
+- **CI:** a committed `validate_repo.py` (frontmatter + registry↔folder
+  consistency) and a "skills CLI detects all skills" job.
+
+### Changed / Fixed (multi-agent red-team pass)
+- `mri-reconstruction`: `bart_recon.sh` now states its assumptions (Cartesian,
+  coils on dim 3, ACS required), adds an explicit **trajectory path** for
+  non-Cartesian data instead of silently FFT-ing it, and the docs no longer
+  overclaim ("just works" → scoped to Cartesian; non-Cartesian needs a
+  trajectory). Named the real `.cfl` conversion mechanisms.
+- Rescoped the `mri-research` hub description to orientation/routing so it no
+  longer over-triggers and collides with every expert.
+- Foundations: disambiguated ISMRM "MR Academy" (dropped the unrelated
+  "MRIcademy" brand). Aligned all version numbers.
+
+### Governance
+- Branch protection on `main`: PRs must pass the CI status checks before merge.
+
 ## [0.5.1] — 2026-09-19
 
 Industry-standard hardening (no skill-content changes).

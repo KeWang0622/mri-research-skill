@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://github.com/KeWang0622/mri-research-skill/blob/main/LICENSE"><img alt="License: MIT" src="https://img.shields.io/github/license/KeWang0622/mri-research-skill?style=for-the-badge&labelColor=000000"></a>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.5.1-1f6feb?style=for-the-badge&labelColor=000000">
+  <img alt="Version" src="https://img.shields.io/badge/version-0.6.0-1f6feb?style=for-the-badge&labelColor=000000">
   <img alt="Install: npx skills add" src="https://img.shields.io/badge/install-npx%20skills%20add-000000?style=for-the-badge">
   <a href="https://github.com/KeWang0622/mri-research-skill"><img alt="Stars" src="https://img.shields.io/github/stars/KeWang0622/mri-research-skill?style=for-the-badge&labelColor=000000"></a>
 </p>
@@ -121,8 +121,9 @@ to read it:
 
 Beyond the generalist hub, the repo ships focused **expert agents** — each an
 installable skill a coding agent invokes when the task fits. `mri-reconstruction`
-is **actionable**: it runs BART/SigPy (bundled script included), so
-*"reconstruct this k-space with BART"* just works. And `mri-research-workflow`
+is **actionable**: it runs BART/SigPy (a bundled script included), so
+*"reconstruct this Cartesian k-space with BART"* works out of the box —
+non-Cartesian data just needs a trajectory. And `mri-research-workflow`
 shepherds a whole study from idea to a submitted paper (CVPR / MICCAI / MRM),
 coordinating the other agents and helping you write it.
 

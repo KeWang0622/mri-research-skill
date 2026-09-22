@@ -29,7 +29,10 @@ integration.
    cycle; verify the implied k-space trajectory (`calculate_kspace`).
 3. **Simulate** with **KomaMRI** (GPU Bloch, Pulseq-compatible):
    https://github.com/JuliaHealth/KomaMRI.jl — feed a `.seq` + phantom, get signal.
-4. **Export** a `.seq` file → play via the vendor's Pulseq interpreter.
+4. **Export** a `.seq` file → play via the vendor's Pulseq interpreter (on **GE**,
+   **TOPPE** — https://github.com/toppeMRI/toppe). New to Pulseq? The
+   **MR-Physics-with-Pulseq** tutorials
+   (https://github.com/pulseq/MR-Physics-with-Pulseq) are the best on-ramp.
 5. **Reconstruct** the acquired raw data (convert to ISMRMRD, then hand to the
    `mri-reconstruction` agent).
 
@@ -43,14 +46,32 @@ reconstruction (NUFFT).
 ## RF pulse design
 
 **SigPy.RF** (`sigpy.mri.rf`): SLR, adiabatic, multiband, small/large-tip, and
-parallel-transmit (pTx) pulses. Mind RF power / SAR for high-flip or refocusing-
-heavy designs.
+parallel-transmit (pTx) pulses. Also **pulpy**
+(https://github.com/jonbmartin/pulpy, Python RF/gradient design),
+**Spectral-Spatial-RF-Pulse-Design**
+(https://github.com/LarsonLab/Spectral-Spatial-RF-Pulse-Design), **Multiband-RF**
+(https://github.com/mriphysics/Multiband-RF), and **kpTx**
+(https://github.com/wgrissom/kpTx) for k-space pTx. Mind RF power / SAR for
+high-flip or refocusing-heavy designs.
 
 ## SMS / multiband
 
 Excite multiple slices at once; unalias with coil sensitivities. Blipped-CAIPI
 reduces the g-factor penalty (Setsompop 2012, MRM). Product sequences from CMRR:
 https://www.cmrr.umn.edu/multiband/
+
+## Gradient optimization, GIRF & simulation
+
+- **Time-optimal gradients:** **GrOpt** (https://github.com/mloecher/gropt) and
+  Lustig's **minTimeGradient**
+  (https://people.eecs.berkeley.edu/~mlustig/Software.html); validate PNS with
+  **safe_pns_prediction** (https://github.com/filip-szczepankiewicz/safe_pns_prediction).
+- **GIRF (gradient impulse response):** **MRI-gradient/GIRF**
+  (https://github.com/MRI-gradient/GIRF); Julia spiral recon with correction:
+  **GIRFReco.jl** (https://github.com/BRAIN-TO/GIRFReco.jl).
+- **Bloch / EPG simulation** (besides KomaMRI): **JEMRIS**, **MRiLab**,
+  **sycomore**, **EPG-X** (EPG with MT/exchange), and **MRzero-Core**
+  (differentiable Bloch + Pulseq for sequence optimization).
 
 ## Vendor environments (proprietary — engage your vendor research agreement)
 
