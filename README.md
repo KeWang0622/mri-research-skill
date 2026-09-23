@@ -2,20 +2,16 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/wordmark-dark.png">
-  <img alt="mri-research" src="assets/wordmark-light.png" width="420">
+  <img alt="mri-research" src="assets/wordmark-light.png" width="360" align="middle">
 </picture>
+&nbsp;&nbsp;
+<img src="assets/mri-mascot-transparent.png" alt="The mri-research MRI mascot" width="115" align="middle">
 
 <br>
 
 **A curated, verified knowledge hub for MRI research — built for AI agents.**
 
-<img src="assets/mri-mascot.png" alt="The mri-research mascot: a friendly illustrated MRI scanner" width="300">
-
-[![CI](https://img.shields.io/github/actions/workflow/status/KeWang0622/mri-research-skill/validate.yml?branch=main&style=flat-square&labelColor=000000&label=CI)](https://github.com/KeWang0622/mri-research-skill/actions/workflows/validate.yml)
-[![License: MIT](https://img.shields.io/github/license/KeWang0622/mri-research-skill?style=flat-square&labelColor=000000)](LICENSE)
-![Version](https://img.shields.io/badge/version-0.7.0-1f6feb?style=flat-square&labelColor=000000)
-![Install](https://img.shields.io/badge/install-npx%20skills%20add-000000?style=flat-square)
-[![Stars](https://img.shields.io/github/stars/KeWang0622/mri-research-skill?style=flat-square&labelColor=000000)](https://github.com/KeWang0622/mri-research-skill)
+[![CI](https://img.shields.io/github/actions/workflow/status/KeWang0622/mri-research-skill/validate.yml?branch=main&style=flat-square&labelColor=000000&label=CI)](https://github.com/KeWang0622/mri-research-skill/actions/workflows/validate.yml) [![License: MIT](https://img.shields.io/github/license/KeWang0622/mri-research-skill?style=flat-square&labelColor=000000)](LICENSE) ![Version](https://img.shields.io/badge/version-0.7.0-1f6feb?style=flat-square&labelColor=000000) ![Install](https://img.shields.io/badge/install-npx%20skills%20add-000000?style=flat-square) [![Stars](https://img.shields.io/github/stars/KeWang0622/mri-research-skill?style=flat-square&labelColor=000000)](https://github.com/KeWang0622/mri-research-skill)
 
 </div>
 
