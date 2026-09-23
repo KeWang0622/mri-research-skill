@@ -9,6 +9,8 @@
 
 **A curated, verified knowledge hub for MRI research — built for AI agents.**
 
+<img src="assets/mri-mascot.png" alt="The mri-research mascot: a friendly illustrated MRI scanner" width="300">
+
 [![CI](https://img.shields.io/github/actions/workflow/status/KeWang0622/mri-research-skill/validate.yml?branch=main&style=flat-square&labelColor=000000&label=CI)](https://github.com/KeWang0622/mri-research-skill/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/github/license/KeWang0622/mri-research-skill?style=flat-square&labelColor=000000)](LICENSE)
 ![Version](https://img.shields.io/badge/version-0.7.0-1f6feb?style=flat-square&labelColor=000000)
