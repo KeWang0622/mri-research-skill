@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Compact README header with a transparent mascot beside the wordmark, replacing the large black-background image.
+
 ### Added
 - A 3D-style MRI mascot illustration, displayed in the README, with its generation prompt and provenance in `assets/`.
 
