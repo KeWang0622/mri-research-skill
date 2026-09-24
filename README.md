@@ -9,142 +9,138 @@
 
 <br>
 
-**A curated, verified knowledge hub for MRI research — built for AI agents.**
+**MRI research guidance for your coding agent — from the question to the paper.**
 
 [![CI](https://img.shields.io/github/actions/workflow/status/KeWang0622/mri-research-skill/validate.yml?branch=main&style=flat-square&labelColor=000000&label=CI)](https://github.com/KeWang0622/mri-research-skill/actions/workflows/validate.yml) [![License: MIT](https://img.shields.io/github/license/KeWang0622/mri-research-skill?style=flat-square&labelColor=000000)](LICENSE) ![Version](https://img.shields.io/badge/version-0.7.0-1f6feb?style=flat-square&labelColor=000000) ![Install](https://img.shields.io/badge/install-npx%20skills%20add-000000?style=flat-square) [![Stars](https://img.shields.io/github/stars/KeWang0622/mri-research-skill?style=flat-square&labelColor=000000)](https://github.com/KeWang0622/mri-research-skill)
 
 </div>
 
----
-
 <p align="center">
-| <a href="#install"><b>Install</b></a> | <a href="#the-expert-team"><b>Agents</b></a> | <a href="#whats-inside"><b>References</b></a> | <a href="CONTRIBUTING.md"><b>Contribute</b></a> | <a href="#citation"><b>Cite</b></a> |
+<a href="#quick-start">Quick start</a> · <a href="#how-it-works">Workflow</a> · <a href="#choose-your-skills">Skills</a> · <a href="#research-memory">Research memory</a> · <a href="https://kewang0622.github.io/slides/mri-research/">Interactive tutorial</a> · <a href="#contributing">Contribute</a>
 </p>
 
-<p align="center">
-One command makes any coding agent — Claude Code, Codex, Cursor, and 20+ more —
-fluent in magnetic resonance imaging, from k-space to publication.
-</p>
+Coding agents can write MRI code, but choosing the right signal model, data convention, tool and validation takes domain knowledge. **mri-research** gives your agent curated guidance and primary references across MRI physics, acquisition, reconstruction, analysis and publishing.
 
-## Interactive tutorial
+**Seven installable skills · Established scientific tools · Project-local research memory**
 
-Explore MRI research with AI agents through a 24-slide presentation with interactive MRI examples.
+## Quick start
 
-**[View the interactive slides](https://kewang0622.github.io/slides/mri-research/)** · [Presentation information](presentations/README.md)
-
-## News
-
-- **[v0.7.0]** Second verified review round: **BART moved to Codeberg** (the GitHub repo is archived), the `ecalib` two-map trap is fixed, g-factor/SNR reporting is now required, and CI watches upstreams for archival. ([release](https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.7.0))
-- **[v0.6.0]** More sequence-design and hardware/RF tooling; a multi-agent red-team pass; branch protection + hardened CI. ([release](https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.6.0))
-- **[v0.5.0]** End-to-end **research-workflow** agent — idea → experiments → paper (CVPR / MICCAI / MRM). ([release](https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.5.0))
-- **[v0.4.0]** Split into a **7-skill multi-agent team**; the reconstruction agent runs BART/SigPy. ([release](https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.4.0))
-- **[v0.2.0]** Broadened from reconstruction into a **general-MRI** hub; `npx skills` distribution. ([release](https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.2.0))
-
-Full history in the [CHANGELOG](CHANGELOG.md).
-
-## About
-
-**mri-research** packages the sprawling MRI research landscape — physics, papers,
-toolboxes, data formats, courses, and hardware — into a form an AI agent can use
-directly. Install it once and your agent starts already fluent: it knows the
-canonical reference, which tool fits a task, how vendor raw data differs, and how
-to run a reconstruction — pointing to primary sources rather than bundling them.
-
-```mermaid
-flowchart LR
-  P[Physics and k-space] --> ACQ[Acquisition - sequences, trajectories, RF]
-  ACQ --> HW[Hardware]
-  ACQ --> RAW[Raw data - ISMRMRD, twix, P-file]
-  RAW --> REC[Reconstruction]
-  REC --> IMG[Images - DICOM, NIfTI, BIDS]
-  IMG --> AN[Analysis - structural, fMRI, dMRI, segmentation]
-  REC --> Q[Quantitative MRI and MR spectroscopy]
-  AN --> APP[Interpretation and applications]
-  Q --> APP
-```
-
-**Your agent gets:**
-
-- **Orientation across the whole pipeline** — physics & k-space, acquisition,
-  reconstruction, analysis, quantitative MRI, spectroscopy, hardware, and publishing.
-- **A team of expert agents** — focused skills for reconstruction, diffusion,
-  sequence design, deep-learning recon, and hardware, plus an end-to-end
-  research-workflow agent.
-- **Actionable tools** — e.g. *"reconstruct this Cartesian k-space with BART"*
-  runs a real ESPIRiT + PI/CS pipeline (bundled script).
-- **268 verified pointers** — 218 links (136 code repositories) plus 50 papers
-  cited by DOI or arXiv id. Each was checked against the source when written, and
-  CI re-checks links on every change and weekly, so dead ends surface fast.
-
-**Built for researchers:**
-
-- Points to the community's primary papers, courses, handbooks, datasets, and
-  toolboxes — and credits them; it bundles no datasets or copyrighted text.
-- Respects dataset data-use agreements and keeps clinical reading non-diagnostic.
-- Agent-agnostic: the same skills work across every agent the `skills` CLI supports.
-
-**Tool setup is part of the work:** agents check/install the required official applications, run an upstream example, and reuse established scientific implementations. See the [application setup guide](skills/mri-research/references/tool-setup.md).
-
-**Learn from project experience:** keep a private `.mri-research/` notebook of experiments, verified lessons and researcher preferences. The [project memory workflow](skills/mri-research/references/project-memory.md) connects it to Claude Code, Codex and other agents without changing global instructions.
-
-## Install
-
-Using the open [`skills`](https://github.com/vercel-labs/skills) CLI — works
-across Claude Code, Codex, Cursor, OpenCode, and many more:
+Install with the open [skills CLI](https://github.com/vercel-labs/skills), then select the skills and supported coding agents you want to use:
 
 ```bash
-npx skills add KeWang0622/mri-research-skill -g      # -g = install for all your projects
+npx skills add KeWang0622/mri-research-skill -g
 ```
 
-You'll be asked which skills and which agents to install — the repo ships a
-**team of skills** (a generalist hub + focused experts), so take one, several, or
-all. Browse them first at
-[skills.sh/KeWang0622/mri-research-skill](https://skills.sh/KeWang0622/mri-research-skill).
+Start with a request in your agent:
+
+> Design a golden-angle radial gradient-echo in PyPulseq and simulate it first. Then reconstruct the simulated data and check whether the image meets the research goal.
+
+The skills guide tool selection, setup, execution and checks. Scientific applications such as PyPulseq, KomaMRI and BART are installed separately as needed; the agent is instructed to handle routine setup in an isolated environment and test an upstream example before use.
+
+**[Explore the interactive tutorial →](https://kewang0622.github.io/slides/mri-research/)** — agents, skills, MRI examples and the self-improvement workflow. [Presentation information](presentations/README.md).
 
 <details>
-<summary>More install options</summary>
+<summary>Install one skill, choose an agent, or update</summary>
 
 ```bash
-# Project-local instead of global: just drop -g
+# Install only for the current project
 npx skills add KeWang0622/mri-research-skill
 
-# Just one expert (e.g. the actionable reconstruction agent)
+# Choose one skill
 npx skills add KeWang0622/mri-research-skill --skill mri-reconstruction
 
-# Every skill, for every agent detected, no prompts
-#   (--all is shorthand for --skill '*' --agent '*' -y)
-npx skills add KeWang0622/mri-research-skill --all
-
-# Target a specific agent, or list the skills without installing
+# Target a supported agent
 npx skills add KeWang0622/mri-research-skill -a claude-code
+
+# Browse without installing
 npx skills add KeWang0622/mri-research-skill --list
 
-# Pull a new release later
-npx skills update mri-research
+# Update installed global skills
+npx skills update -g
 ```
 
-No dependencies — the skills are Markdown. Or clone `skills/mri-research/` into
-your agent's skills directory (e.g. `~/.claude/skills/`).
+Choose one, several or all seven skills. Browse the [skills directory](https://skills.sh/KeWang0622/mri-research-skill). These are Markdown instructions and supporting helpers; installing them does not install every scientific application or grant access to restricted datasets.
+
 </details>
 
-## The expert team
+## How it works
 
-Each agent is an installable skill a coding agent invokes when the task fits.
+**You set the research goal. The agent uses skills as guidance and tools to take action.** A task may need several skills; the seven skills are not seven separate models.
 
-| Agent | Skill | What it does |
+```mermaid
+flowchart TB
+  U["Your request<br/>Question, data, constraints"] --> A["Agent<br/>Plan and select knowledge"]
+  S["MRI skills<br/>Methods, sources, caveats"] --> A
+  A --> T["Scientific tools<br/>Install, test, execute"]
+  T --> E["Evidence<br/>Outputs and checks"]
+  E --> R["Researcher review<br/>Does it meet the goal?"]
+  R -->|Revise| A
+  R --> M["Project memory<br/>Lessons and preferences"]
+  M -.->|Retrieve and recheck| A
+```
+
+Tools include **PyPulseq** for sequence definitions, **KomaMRI** for simulation, **BART / SigPy** for reconstruction, and **MRtrix3 / DIPY** for diffusion analysis. Data resources and papers supply inputs and evidence; skills help the agent choose and use them.
+
+### Research phases
+
+| Phase | What the agent helps with | What to inspect |
 |---|---|---|
-| Generalist hub | [`mri-research`](skills/mri-research/SKILL.md) | Navigator + curated reference across the whole pipeline |
-| Research workflow | [`mri-research-workflow`](skills/mri-research-workflow/SKILL.md) | **End-to-end**: idea → experiments → analysis → paper (CVPR / MICCAI / MRM) |
-| Reconstruction | [`mri-reconstruction`](skills/mri-reconstruction/SKILL.md) | **Runs** ESPIRiT + PI/CS reconstruction with BART/SigPy on your k-space |
-| Diffusion MRI | [`diffusion-mri`](skills/diffusion-mri/SKILL.md) | DTI/DKI/NODDI, preprocessing (topup/eddy), tractography (MRtrix3, DIPY) |
-| Sequence design | [`pulse-sequence-design`](skills/pulse-sequence-design/SKILL.md) | Pulseq/PyPulseq + Siemens/GE/Philips dev, RF, SMS, GIRF, simulators |
-| DL reconstruction | [`deep-learning-recon`](skills/deep-learning-recon/SKILL.md) | Unrolled / self-supervised / diffusion recon; DIRECT, fastMRI |
-| Hardware | [`mri-hardware`](skills/mri-hardware/SKILL.md) | Low-field, open consoles (MaRCoS/OCRA), coils, gradients, MR safety |
+| **1 · Frame the question** | Read primary literature, identify the gap, combine relevant skills. | A specific question, assumptions and success criteria. |
+| **2 · Design the study** | Choose data, acquisition or simulation, baselines and metrics. | A feasible plan with controls and comparison conditions. |
+| **3 · Run the work** | Set up established tools; simulate, reconstruct or analyze. | Commands, versions, outputs and failed attempts. |
+| **4 · Evaluate the evidence** | Inspect images and results; test assumptions, accuracy and robustness. | Whether the result supports the claim—not just whether code ran. |
+| **5 · Write and improve** | Draft figures and methods; record scoped lessons for the next task. | Traceable claims, limitations and reusable project knowledge. |
 
-## What's inside
+These phases are iterative. New evidence or user feedback can send the work back to an earlier decision. The [research-workflow skill](skills/mri-research-workflow/SKILL.md) connects the phases; specialist skills supply the domain guidance.
 
-The hub ([`SKILL.md`](skills/mri-research/SKILL.md)) routes each question to one
-of eleven reference files — click any to read it:
+## Choose your skills
+
+Start with **mri-research** for orientation, **mri-research-workflow** for a study, or a specialist for a focused task.
+
+| Skill | Use it for | Typical tools or resources |
+|---|---|---|
+| [MRI research](skills/mri-research/SKILL.md) | Physics, references, cross-domain questions and image-level analysis | Courses, papers, BIDS, FSL, FreeSurfer |
+| [Research workflow](skills/mri-research-workflow/SKILL.md) | Question → study design → experiments → manuscript | Literature, baselines, metrics, venue guidance |
+| [Reconstruction](skills/mri-reconstruction/SKILL.md) | Raw k-space, coil maps, parallel imaging, compressed sensing, non-Cartesian recon | BART, SigPy, ISMRMRD |
+| [Sequence design](skills/pulse-sequence-design/SKILL.md) | RF/gradient events, trajectories, timing and simulation | Pulseq/PyPulseq, KomaMRI, vendor references |
+| [Deep-learning reconstruction](skills/deep-learning-recon/SKILL.md) | Trained, unrolled, self-supervised and diffusion-based recon | DIRECT, ATOMMIC, fastMRI |
+| [Diffusion MRI](skills/diffusion-mri/SKILL.md) | DWI preprocessing, models, fiber orientations and tractography | MRtrix3, DIPY, FSL, QSIPrep |
+| [Hardware](skills/mri-hardware/SKILL.md) | Coils, gradients, low-field systems, shimming and safety orientation | MaRCoS, OCRA, EM and shim tools |
+
+## Research memory
+
+Each project can keep a private **`.mri-research/`** notebook. The improvement loop is **retrieve → execute → evaluate → update → reuse and verify**.
+
+```text
+.mri-research/
+├── INDEX.md          # Relevant work and next steps
+├── preferences.md    # Your explicit research habits
+├── environment.md    # Working tools, versions and setup checks
+├── runs/             # Experiments, outcomes and failures
+└── lessons.md        # Reusable findings with evidence and limits
+```
+
+A lesson should change a concrete decision in the next task, then be checked again. Keep user preferences separate from scientific conclusions, and retain failed or superseded findings. Project `CLAUDE.md` / `AGENTS.md` can point agents to the notebook; this is instruction-based memory, not model retraining or guaranteed automatic learning.
+
+[Set up project memory →](skills/mri-research/references/project-memory.md) · [How agents set up scientific tools →](skills/mri-research/references/tool-setup.md)
+
+## Try a research question
+
+| Your request | Knowledge the agent needs to combine |
+|---|---|
+| “Why do my eight receive channels look different, and how can reconstruction use that?” | Coil sensitivity and hardware + reconstruction's encoding model |
+| “Design a golden-angle GRE, simulate it, then reconstruct its data.” | Sequence timing + hardware constraints + Bloch simulation + non-Cartesian reconstruction |
+| “Plan a reproducible MRI reconstruction study for MRM.” | Literature + data conventions + baselines + evaluation + scientific writing |
+| “Could free water explain this change in diffusion metrics?” | Diffusion models + confounds + controlled experiment design |
+
+These are example requests, not prerecorded successful runs. Results depend on the agent, tool access, data and validation.
+
+## Reference library
+
+The hub links to primary papers, courses, datasets and software across MRI. It summarizes when a resource is useful rather than redistributing it.
+
+<details>
+<summary>Browse the MRI reference areas</summary>
 
 | Stage | Reference | Covers |
 |---|---|---|
@@ -160,66 +156,40 @@ of eleven reference files — click any to read it:
 | [Publishing](skills/mri-research/references/publishing.md) | [`publishing.md`](skills/mri-research/references/publishing.md) | MR journals + author guidelines, LaTeX templates, reporting standards, abstracts |
 | [Interpretation](skills/mri-research/references/radiology-primer.md) | [`radiology-primer.md`](skills/mri-research/references/radiology-primer.md) | How MR contrast reads (T1/T2/FLAIR/DWI) — background orientation only |
 
-## Example prompts
-
-- *"I want to run reconstruction experiments and publish in MRM (or CVPR) — help me plan the study, run baselines, analyze results, and draft the paper."*
-- *"I have 8-channel knee k-space undersampled 4×. Walk me through a PI+CS reconstruction with BART."*
-- *"What's the canonical paper for ESPIRiT, and how does it differ from SENSE and GRAPPA?"*
-- *"I was handed a `meas.dat` file — what is it and how do I reconstruct it in Python?"*
-- *"Design a golden-angle radial gradient-echo sequence in PyPulseq and simulate it first."*
-- *"Preprocess this task-fMRI dataset and run a first-level GLM — what pipeline should I use?"*
-
-<details>
-<summary>What a session actually looks like</summary>
-
-> **You:** I have `knee.cfl` — 8-channel, undersampled 4×. Reconstruct it.
->
-> **Agent** *(with `mri-reconstruction` installed)*:
-> ```
-> $ bart show -m knee          # 320 320 1 8 — coils on dim 3, good
-> $ bart ecalib -m1 -r 24 knee sens
-> $ bart pics -l1 -r 0.01 knee sens img
-> ```
-> Used `-m1` because `ecalib` returns **two** ESPIRiT map sets by default, which
-> would have left you a size-2 MAPS dimension instead of an image. ESPIRiT needs
-> the fully-sampled ACS at k-space centre — your header has it.
->
-> At R=4 this costs SNR as `g·√R`, so quote a g-factor, not just R: `g` is
-> analytic for SENSE but not for this L1 reconstruction, so use a pseudo-replica
-> estimate (Robson 2008). Raise `-r` if aliasing remains; lower it if the image
-> looks over-smoothed. Method background: ESPIRiT, Uecker 2014,
-> doi:10.1002/mrm.24751.
-
-The point isn't the commands — it's that the caveats (`-m1`, the ACS assumption,
-the SNR cost, the citation) arrive unprompted.
 </details>
 
-## Design principles
+## Reliability and scope
 
-- **Point, don't vendor.** Link and summarize; never bundle datasets or copyrighted text.
-- **Primary sources first.** Cite the original paper/repo; use awesome-lists as living indexes.
-- **Decide, don't just enumerate.** Reference files help you choose the right method/tool.
-- **Verify load-bearing links.** Links rot and upstreams get archived. CI
-  link-checks the Markdown on every change and weekly, and flags linked repos that
-  have been archived, renamed, or moved.
-
-## Scope & disclaimers
-
-- **Image reading is orientation, not diagnosis.** The reading primer helps
-  follow research conversations about contrast; it is not clinical advice.
-- **Respect dataset licenses.** fastMRI, HCP, UK Biobank, ADNI, OASIS, and BraTS
-  require registration or a data-use agreement; this never helps bypass a gate.
-- **Links can rot.** Every link was verified at release and is re-checked in CI.
-  A few hosts bot-block link checkers (and three are excluded via
-  `.lycheeignore`), so CI catches most rot, not all of it — if a link is
-  load-bearing for your next step, confirm it resolves.
+- **Established implementations.** Use the scientific tool's official setup and examples; do not replace missing dependencies with an improvised simulator or solver.
+- **Evidence before claims.** Execution, data consistency, image quality and scientific validity need different checks. Researcher judgment remains essential.
+- **Checked references.** CI checks structure, version consistency, links and upstream availability; scheduled checks flag archival and drift. Passing CI does not validate scientific conclusions, and some hosts block automated link checks.
+- **Appropriate use.** Image-reading material is research orientation, not clinical diagnosis. Scanner operation needs local validation. External software and datasets retain their own licenses and access requirements.
 
 ## Contributing
 
-Issues and PRs are welcome — see [`CONTRIBUTING.md`](CONTRIBUTING.md). `main` is
-branch-protected: contributions land via a PR that passes CI (structure,
-ShellCheck, and link-checking) and review. By participating you agree to our
-[Code of Conduct](CODE_OF_CONDUCT.md); report vulnerabilities via [SECURITY.md](SECURITY.md).
+Bring a correction, a useful primary reference or a workflow you have tested. A strong contribution includes **the problem, supporting evidence and the proposed change**. Share reviewed, generalizable lessons; keep personal research notebooks private unless intentionally shared.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md), [Code of Conduct](CODE_OF_CONDUCT.md) and [SECURITY.md](SECURITY.md). Contributions go through pull requests and CI.
+
+## Updates
+
+- **On main:** agent-owned application setup and project research memory across all seven skills.
+- **[v0.7.0](https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.7.0):** updated BART upstream guidance, reconstruction caveats and upstream monitoring.
+- [Full changelog](CHANGELOG.md) · [Releases](https://github.com/KeWang0622/mri-research-skill/releases)
+
+## Star history
+
+If this is useful to your research group, a star helps others discover it.
+
+<a href="https://www.star-history.com/?repos=KeWang0622%2Fmri-research-skill&amp;type=date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=KeWang0622/mri-research-skill&amp;type=Date&amp;theme=dark">
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=KeWang0622/mri-research-skill&amp;type=Date">
+    <img alt="GitHub star history for mri-research-skill" src="https://api.star-history.com/svg?repos=KeWang0622/mri-research-skill&amp;type=Date" width="760">
+  </picture>
+</a>
+
+Chart provided by [Star History](https://github.com/star-history/star-history); updates depend on its service and GitHub's image cache.
 
 ## Citation
 
@@ -251,4 +221,4 @@ Distribution uses the open [`skills`](https://github.com/vercel-labs/skills) CLI
 Released under the [MIT License](LICENSE). External resources this hub links to
 (papers, datasets, software) are governed by their own licenses and terms.
 
-<div align="center"><sub><a href="#top">↑ back to top</a> · ⭐ a star helps other researchers find this</sub></div>
+<div align="center"><sub><a href="#top">↑ back to top</a></sub></div>
