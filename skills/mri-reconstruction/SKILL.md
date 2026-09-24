@@ -25,6 +25,20 @@ pipeline, don't just talk about it. Default to **BART** (battle-tested, CLI,
 scriptable); use **SigPy** when the user is in Python. Confirm the data before
 running, then execute and inspect.
 
+
+## Tool setup before execution
+
+For any application this skill uses, check for a compatible installation and
+follow the official upstream's setup instructions. Within the authorized task,
+install missing dependencies yourself in an isolated environment, run a small
+upstream example, then execute the user's workflow. Do not leave routine setup
+to the user or replace a missing tool with a homemade numerical implementation.
+Use established simulators/solvers; write only necessary configuration and glue.
+If blocked, report the actual obstacle and an established alternative.
+Read the [tool setup guide](../mri-research/references/tool-setup.md) when installing,
+repairing, or choosing an execution environment. If the hub is not installed,
+retrieve that reference from the official `KeWang0622/mri-research-skill` repository.
+
 ## Workflow
 
 **0. Identify the k-space format** (ask or inspect). BART works in its own
@@ -103,8 +117,8 @@ img  = mr.app.L1WaveletRecon(ksp, maps, lamda=0.01).run() # PI + CS
 - Confirm the acceleration factor and sampling (Cartesian vs non-Cartesian)
   before choosing a method — the wrong forward model gives garbage.
 - If BART isn't installed: https://codeberg.org/mrirecon/bart (source, active)
-  with docs at https://mrirecon.codeberg.page/ — offer to install or fall back to
-  SigPy. Note the `github.com/mrirecon/bart` mirror is archived as of 2026.
+  with docs at https://mrirecon.codeberg.page/ — install and validate it when needed. If blocked, explain the
+  limitation before switching to SigPy. Note the `github.com/mrirecon/bart` mirror is archived as of 2026.
 - **Report the SNR cost, not just the image.** Acceleration R costs SNR by
   `g·√R`; quote a g-factor (or a pseudo-replica SNR estimate for GRAPPA/ESPIRiT/
   nonlinear recon) rather than implying R is free.
