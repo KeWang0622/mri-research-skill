@@ -28,7 +28,7 @@ fluent in magnetic resonance imaging, from k-space to publication.
 
 ## News
 
-- **[v0.7.0]** Second verified review round: **BART moved to Codeberg** (the GitHub repo is archived), the `ecalib` two-map trap is fixed, g-factor/SNR reporting is now required, and CI watches upstreams for archival. ([changelog](CHANGELOG.md))
+- **[v0.7.0]** Second verified review round: **BART moved to Codeberg** (the GitHub repo is archived), the `ecalib` two-map trap is fixed, g-factor/SNR reporting is now required, and CI watches upstreams for archival. ([release](https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.7.0))
 - **[v0.6.0]** More sequence-design and hardware/RF tooling; a multi-agent red-team pass; branch protection + hardened CI. ([release](https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.6.0))
 - **[v0.5.0]** End-to-end **research-workflow** agent — idea → experiments → paper (CVPR / MICCAI / MRM). ([release](https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.5.0))
 - **[v0.4.0]** Split into a **7-skill multi-agent team**; the reconstruction agent runs BART/SigPy. ([release](https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.4.0))
