@@ -85,6 +85,8 @@ flowchart LR
 
 **Tool setup is part of the work:** agents check/install the required official applications, run an upstream example, and reuse established scientific implementations. See the [application setup guide](skills/mri-research/references/tool-setup.md).
 
+**Learn from project experience:** keep a private `.mri-research/` notebook of experiments, verified lessons and researcher preferences. The [project memory workflow](skills/mri-research/references/project-memory.md) connects it to Claude Code, Codex and other agents without changing global instructions.
+
 ## Install
 
 Using the open [`skills`](https://github.com/vercel-labs/skills) CLI — works

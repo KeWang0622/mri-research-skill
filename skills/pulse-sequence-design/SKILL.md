@@ -24,6 +24,16 @@ first (fast to iterate, portable, open); reserve vendor SDKs for product-level
 integration.
 
 
+## Project research memory
+
+For project experiments, read `.mri-research/INDEX.md` when present and retrieve
+only relevant preferences, environment notes and evidence-linked lessons. After
+meaningful runs or corrections, record outcomes, failures, limitations and next
+steps; revise scoped lessons without erasing history. Keep user preferences
+separate from scientific findings. Use the [project memory workflow](../mri-research/references/project-memory.md)
+to initialize the folder or connect project `CLAUDE.md` / `AGENTS.md`. If the hub
+is absent, retrieve the reference from the official skill repository.
+
 ## Tool setup before execution
 
 For any application this skill uses, check for a compatible installation and
