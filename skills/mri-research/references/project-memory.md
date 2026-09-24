@@ -57,6 +57,13 @@ user feedback:
    retain the original run, mark the old lesson superseded and link the new
    evidence. Do not silently overwrite history or repeat disproven assumptions.
 
+On the next relevant task, apply a saved lesson to a concrete decision: tool
+selection, setup, assumptions, experiment design or validation. Check whether
+that change meets the current task's success criteria. Record whether the
+lesson helped, needs narrowing, or is contradicted; writing a retrospective
+alone does not close the improvement loop. User corrections should update the
+next action as well as the notebook.
+
 Keep the index and lessons short. Archive historical detail in run notes rather
 than appending the entire conversation. Memory guides choices; it does not
 override the current user request, actual permissions, or tool documentation.
