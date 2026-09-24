@@ -1,0 +1,9 @@
+{
+  "point_phase_axis_relative_error": 4.360467099716161e-06,
+  "resolution_matched_image_error": 0.0001366161873124087,
+  "excluded_high_frequency_energy_norm": 0.2507266701806845,
+  "reference": "Shepp-Logan projected to a Fourier disk of radius 30 grid units; original sharp phantom is NOT the reconstruction target",
+  "iterations_max": 1500,
+  "pass_phase": true,
+  "pass_image": true
+}

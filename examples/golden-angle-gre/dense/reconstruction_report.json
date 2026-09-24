@@ -1,0 +1,39 @@
+{
+  "method": "SigPy NUFFT + Fourier-disk constraint + L2 CG",
+  "fourier_disk_radius": 30,
+  "effective_diameter_samples": 60,
+  "nominal_resolution_mm": 3.6666666666666665,
+  "lambda_l2": 0.01,
+  "max_iterations": 800,
+  "per_grid": {
+    "4": {
+      "data_relative_residual": 0.01894529917836638,
+      "additional_iterations_image_change": 2.456688957603081e-16,
+      "signal_scale": 1.7181527542747326e-06
+    },
+    "2": {
+      "data_relative_residual": 0.009090878541251967,
+      "additional_iterations_image_change": 2.1621126749453054e-16,
+      "signal_scale": 1.716119488605469e-06
+    },
+    "1": {
+      "data_relative_residual": 0.00785702652830821,
+      "additional_iterations_image_change": 2.2085953752628387e-16,
+      "signal_scale": 1.717198304552901e-06
+    },
+    "0.5": {
+      "data_relative_residual": 0.007772247191098791,
+      "additional_iterations_image_change": 2.4768698746654943e-16,
+      "signal_scale": 1.7172450259692103e-06
+    }
+  },
+  "complex_image_grid_change": 0.12940197569806428,
+  "magnitude_image_grid_change": 0.10104880056605264,
+  "signal_grid_change": 0.024149680510163307,
+  "1mm_to_0p5mm_magnitude_image_change": 0.05478439728632924,
+  "1mm_to_0p5mm_complex_image_change": 0.06309216686564732,
+  "1mm_to_0p5mm_signal_change": 0.011124258860945702,
+  "native_voxel_quadrature_magnitude_change": 0.016002377127727688,
+  "native_voxel_quadrature_complex_change": 0.022508135161209922,
+  "quadrature_check_pass": true
+}

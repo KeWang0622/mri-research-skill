@@ -1,0 +1,14 @@
+{
+  "backend": "Metal",
+  "precision": "f32",
+  "ss": 1,
+  "spins": 3430812,
+  "in_plane_spins": 103964,
+  "dx_mm": 0.5000000000000004,
+  "dy_mm": 0.5000000000000004,
+  "z_positions": 33,
+  "z_step_mm": 0.2500000000000002,
+  "seconds": 32.671024799346924,
+  "rf_step_us": 5,
+  "gradient_step_us": 10
+}
