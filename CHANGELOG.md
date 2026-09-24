@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+- Add the interactive MRI research presentation as a standalone HTML deck, with online and local viewing links in the README.
+
 ### Changed
 - Compact README header with a transparent mascot beside the wordmark, replacing the large black-background image.
 
