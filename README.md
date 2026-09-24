@@ -26,6 +26,12 @@ One command makes any coding agent — Claude Code, Codex, Cursor, and 20+ more 
 fluent in magnetic resonance imaging, from k-space to publication.
 </p>
 
+## Interactive tutorial
+
+Explore MRI research with AI agents through a 24-slide presentation with interactive MRI examples.
+
+**[View the slides](https://kewang0622.github.io/slides/mri-research/)** · [Download the standalone deck](presentations/mri-research-talk.html) · [Local viewing instructions](presentations/README.md)
+
 ## News
 
 - **[v0.7.0]** Second verified review round: **BART moved to Codeberg** (the GitHub repo is archived), the `ecalib` two-map trap is fixed, g-factor/SNR reporting is now required, and CI watches upstreams for archival. ([release](https://github.com/KeWang0622/mri-research-skill/releases/tag/v0.7.0))
