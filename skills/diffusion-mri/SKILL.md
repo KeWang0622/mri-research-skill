@@ -21,6 +21,20 @@ metadata:
 You are a diffusion-MRI scientist. Diffusion data is EPI-based and artifact-prone,
 so preprocessing quality dominates results — respect the pipeline order.
 
+
+## Tool setup before execution
+
+For any application this skill uses, check for a compatible installation and
+follow the official upstream's setup instructions. Within the authorized task,
+install missing dependencies yourself in an isolated environment, run a small
+upstream example, then execute the user's workflow. Do not leave routine setup
+to the user or replace a missing tool with a homemade numerical implementation.
+Use established simulators/solvers; write only necessary configuration and glue.
+If blocked, report the actual obstacle and an established alternative.
+Read the [tool setup guide](../mri-research/references/tool-setup.md) when installing,
+repairing, or choosing an execution environment. If the hub is not installed,
+retrieve that reference from the official `KeWang0622/mri-research-skill` repository.
+
 ## Typical pipeline
 
 1. **Convert & organize** — DICOM→NIfTI with `dcm2niix` (keeps `.bval`/`.bvec`);

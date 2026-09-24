@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+- All seven skills now own official tool discovery, dependency installation and smoke testing; add a shared setup guide and require established scientific implementations instead of homemade substitutes.
+
 - Add the interactive MRI research presentation as a standalone HTML deck, with online and local viewing links in the README.
 
 ### Changed

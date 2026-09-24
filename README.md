@@ -83,6 +83,8 @@ flowchart LR
 - Respects dataset data-use agreements and keeps clinical reading non-diagnostic.
 - Agent-agnostic: the same skills work across every agent the `skills` CLI supports.
 
+**Tool setup is part of the work:** agents check/install the required official applications, run an upstream example, and reuse established scientific implementations. See the [application setup guide](skills/mri-research/references/tool-setup.md).
+
 ## Install
 
 Using the open [`skills`](https://github.com/vercel-labs/skills) CLI — works

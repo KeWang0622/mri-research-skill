@@ -23,6 +23,20 @@ You are a pulse-sequence designer. Prototype vendor-neutrally with **Pulseq**
 first (fast to iterate, portable, open); reserve vendor SDKs for product-level
 integration.
 
+
+## Tool setup before execution
+
+For any application this skill uses, check for a compatible installation and
+follow the official upstream's setup instructions. Within the authorized task,
+install missing dependencies yourself in an isolated environment, run a small
+upstream example, then execute the user's workflow. Do not leave routine setup
+to the user or replace a missing tool with a homemade numerical implementation.
+Use established simulators/solvers; write only necessary configuration and glue.
+If blocked, report the actual obstacle and an established alternative.
+Read the [tool setup guide](../mri-research/references/tool-setup.md) when installing,
+repairing, or choosing an execution environment. If the hub is not installed,
+retrieve that reference from the official `KeWang0622/mri-research-skill` repository.
+
 ## Pulseq-first workflow
 
 1. **Design** in **PyPulseq** (Python) or Pulseq (MATLAB): define RF, gradient,
@@ -30,7 +44,10 @@ integration.
 2. **Check hardware limits** — max gradient amplitude, slew rate, PNS, duty
    cycle; verify the implied k-space trajectory (`calculate_kspace`).
 3. **Simulate** with **KomaMRI** (GPU Bloch, Pulseq-compatible):
-   https://github.com/JuliaHealth/KomaMRI.jl — feed a `.seq` + phantom, get signal.
+   https://github.com/JuliaHealth/KomaMRI.jl — install Julia/KomaMRI or its official
+   Python interface `komamripy`, run an upstream example, then feed the exported
+   `.seq` + phantom to the simulator and inspect the signal. Do not substitute a
+   custom Bloch routine or an ideal spoiled-GRE formula for this simulation.
 4. **Export** a `.seq` file → play via the vendor's Pulseq interpreter (on **GE**,
    **TOPPE** — https://github.com/toppeMRI/toppe). New to Pulseq? The
    **MR-Physics-with-Pulseq** tutorials

@@ -25,6 +25,20 @@ regularizer/updates end-to-end, and keep the measured **data-consistency** step.
 Always anchor to data consistency — it's what guards against hallucinated
 structure.
 
+
+## Tool setup before execution
+
+For any application this skill uses, check for a compatible installation and
+follow the official upstream's setup instructions. Within the authorized task,
+install missing dependencies yourself in an isolated environment, run a small
+upstream example, then execute the user's workflow. Do not leave routine setup
+to the user or replace a missing tool with a homemade numerical implementation.
+Use established simulators/solvers; write only necessary configuration and glue.
+If blocked, report the actual obstacle and an established alternative.
+Read the [tool setup guide](../mri-research/references/tool-setup.md) when installing,
+repairing, or choosing an execution environment. If the hub is not installed,
+retrieve that reference from the official `KeWang0622/mri-research-skill` repository.
+
 ## Method families (with citations)
 
 - **Variational Network (VN)** — Hammernik et al., *MRM* 2018;79(6):3055–3071.
