@@ -20,3 +20,6 @@ venv/
 *.token
 .env
 .env.*
+
+# Presentation builds belong in the website repository.
+/presentations/*.html

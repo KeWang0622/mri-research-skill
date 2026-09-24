@@ -30,7 +30,7 @@ fluent in magnetic resonance imaging, from k-space to publication.
 
 Explore MRI research with AI agents through a 24-slide presentation with interactive MRI examples.
 
-**[View the slides](https://kewang0622.github.io/slides/mri-research/)** · [Download the standalone deck](presentations/mri-research-talk.html) · [Local viewing instructions](presentations/README.md)
+**[View the interactive slides](https://kewang0622.github.io/slides/mri-research/)** · [Presentation information](presentations/README.md)
 
 ## News
 
