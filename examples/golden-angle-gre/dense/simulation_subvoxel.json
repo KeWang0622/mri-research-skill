@@ -1,8 +1,0 @@
-{
-  "engine": "KomaMRI Metal f32",
-  "native_tissue_map_mm": 0.5,
-  "quadrature_spacing_mm": 0.25,
-  "quadrature_points": 13723248,
-  "seconds": 114.47728395462036,
-  "assumption": "Piecewise constant tissue parameters within each native 0.5-mm voxel; four equally weighted samples at +/-0.125 mm in x/y. No added anatomical detail."
-}
