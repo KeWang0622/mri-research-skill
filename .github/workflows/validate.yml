@@ -20,6 +20,8 @@ jobs:
       - name: Validate structure (JSON, frontmatter, registry vs folders)
         run: |
           python3 .github/scripts/validate_repo.py
+      - name: Check project memory preservation
+        run: python3 -m unittest discover -s .github/tests
 
   shellcheck:
     name: ShellCheck
