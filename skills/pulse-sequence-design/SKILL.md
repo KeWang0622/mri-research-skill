@@ -125,10 +125,10 @@ Product SMS sequences from CMRR: https://www.cmrr.umn.edu/multiband/
 ## Gradient optimization, GIRF & simulation
 
 - **Time-optimal gradients:** **GrOpt** (https://github.com/mloecher/gropt) and
-  Lustig's **minTimeGradient / tOptGrad** on the
-  [author's software page](https://people.eecs.berkeley.edu/~mlustig/Software.html).
-  Use its **Time Optimal Gradient Design** section for the package and demo;
-  verify the current download before installing. Validate PNS with
+  [SigPy's **min_time_gradient**](https://sigpy.readthedocs.io/en/latest/generated/sigpy.mri.rf.min_time_gradient.html),
+  which implements Lustig, Kim and Pauly's method (TMI 2008;
+  doi:10.1109/TMI.2008.922699). Use the documented units; this is the SigPy
+  implementation, not the former MATLAB/C download. Validate PNS with
   **safe_pns_prediction** (https://github.com/filip-szczepankiewicz/safe_pns_prediction).
 - **GIRF (gradient impulse response):** **MRI-gradient/GIRF**
   (https://github.com/MRI-gradient/GIRF); Julia spiral recon with correction:
