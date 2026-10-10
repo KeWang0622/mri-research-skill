@@ -2,7 +2,7 @@
 
 Status: planning / drafting / revising (choose one). Empty fields are unknown,
 not completed experiments. Keep this document with the manuscript or in the
-project's private `.mri-research/` notebook.
+project's private `.mrfoundry/` notebook.
 
 ## Question and fit
 - User's research question:

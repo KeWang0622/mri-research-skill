@@ -115,10 +115,10 @@ Start with **mri-research** for orientation, **mri-research-workflow** for a stu
 
 ## Research memory
 
-Each project can keep a private **`.mri-research/`** notebook. The improvement loop is **retrieve → execute → evaluate → update → reuse and verify**.
+Each project can keep a private **`.mrfoundry/`** notebook. The improvement loop is **retrieve → execute → evaluate → update → reuse and verify**.
 
 ```text
-.mri-research/
+.mrfoundry/
 ├── INDEX.md          # Relevant work and next steps
 ├── preferences.md    # Your explicit research habits
 ├── environment.md    # Working tools, versions and setup checks
@@ -127,6 +127,8 @@ Each project can keep a private **`.mri-research/`** notebook. The improvement l
 ```
 
 A lesson should change a concrete decision in the next task, then be checked again. Keep user preferences separate from scientific conclusions, and retain failed or superseded findings. Project `CLAUDE.md` / `AGENTS.md` can point agents to the notebook; this is instruction-based memory, not model retraining or guaranteed automatic learning.
+
+Existing `.mri-research/` notebooks migrate to `.mrfoundry/` with the same initializer; existing notes are preserved. If both folders exist, reconcile them before migrating.
 
 [Set up project memory →](skills/mri-research/references/project-memory.md) · [How agents set up scientific tools →](skills/mri-research/references/tool-setup.md)
 

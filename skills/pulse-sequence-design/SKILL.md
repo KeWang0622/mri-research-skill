@@ -35,7 +35,9 @@ software instructions and current venue/safety requirements.
 
 ## Project research memory
 
-For project experiments, read `.mri-research/INDEX.md` when present and retrieve
+If only the legacy `.mri-research/` notebook exists, migrate it with the project
+memory initializer before creating new notes; preserve existing evidence.
+For project experiments, read `.mrfoundry/INDEX.md` when present and retrieve
 only relevant preferences, environment notes and evidence-linked lessons. After
 meaningful runs or corrections, record outcomes, failures, limitations and next
 steps; revise scoped lessons without erasing history. Keep user preferences
