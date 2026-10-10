@@ -8,7 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 
 ### Changed
-- Rebrand the collection as **MRFoundry**, with a compact native-text README header, updated repository/install/citation links, and the renamed interactive tutorial. Existing skill identifiers and `.mri-research/` project-memory paths stay compatible.
+- Rebrand the collection as **MRFoundry**, with a two-tone vector logo, updated repository/install/citation links, and the renamed interactive tutorial. Existing skill identifiers stay compatible.
+- Rename the canonical project notebook to `.mrfoundry/`; migrate legacy `.mri-research/` notebooks without overwriting notes, and update managed agent entrypoints in place. Conflicting dual notebooks stop migration for reconciliation.
+
+- Replace the unavailable Berkeley time-optimal gradient software page with the official SigPy implementation reference, retaining original-method credit.
 
 ## [0.8.0] — 2026-10-07
 

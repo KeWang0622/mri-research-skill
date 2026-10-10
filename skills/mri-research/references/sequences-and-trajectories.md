@@ -114,11 +114,11 @@ adiabatic, multiband, and parallel-transmit/pTx pulses).
   violates these can't be played (or is unsafe). KomaMRI/PyPulseq help validate.
 - **Gradient & trajectory optimization:** **GrOpt**
   (https://github.com/mloecher/gropt) for time-optimal gradient-waveform design,
-  and Lustig's **minTimeGradient / tOptGrad**
-  on the [author's software page](https://people.eecs.berkeley.edu/~mlustig/Software.html)
-  for time-optimal gradients along an arbitrary k-space path. Use its
-  **Time Optimal Gradient Design** section for the package and demo; verify the
-  current download before installing. Validate against PNS with
+  and [SigPy's **min_time_gradient**](https://sigpy.readthedocs.io/en/latest/generated/sigpy.mri.rf.min_time_gradient.html),
+  an implementation of Lustig, Kim and Pauly's time-optimal gradient method
+  (TMI 2008; doi:10.1109/TMI.2008.922699), for an arbitrary k-space path.
+  Follow the documented units (1/cm, G/cm, G/cm/ms and ms); this is the SigPy
+  implementation, not the former MATLAB/C download. Validate against PNS with
   **safe_pns_prediction**
   (https://github.com/filip-szczepankiewicz/safe_pns_prediction).
 - **GIRF (gradient impulse response function):** measure/apply with

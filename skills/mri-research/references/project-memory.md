@@ -2,7 +2,7 @@
 
 [MRFoundry](https://github.com/KeWang0622/MRFoundry) · [Reference index](https://github.com/KeWang0622/MRFoundry/blob/main/REFERENCES.md)
 
-Each project can keep `.mri-research/` as its small, durable research notebook.
+Each project can keep `.mrfoundry/` as its small, durable research notebook.
 Use it to carry findings and the researcher's working preferences across tasks
 and agents. This is an explicit read → experiment → record → reassess loop,
 not model training or permission to rewrite global instructions autonomously.
@@ -10,7 +10,8 @@ not model training or permission to rewrite global instructions autonomously.
 ## Start and reuse
 
 For an MRI experiment, inspect the actual project root and any existing
-`.mri-research/INDEX.md`. Use that project's memory, not the skills installation
+`.mrfoundry/INDEX.md` (or a legacy `.mri-research/INDEX.md` pending migration).
+Use that project's memory, not the skills installation
 directory or an unrelated checkout. For a new research project, initialize it
 when local project-file creation is within the task:
 
@@ -19,14 +20,40 @@ python3 <path-to-installed-mri-research>/scripts/init_research_memory.py --proje
 ```
 
 The initializer uses only Python's standard library, preserves existing files,
-and excludes memory contents from Git by default. It does not untrack files that
-were already committed. Share selected, reviewed lessons only when requested;
+and excludes memory contents from Git by default. It does not edit the Git index
+or erase previously committed history. Share selected, reviewed lessons only when requested;
 do not publish a researcher's notebook automatically with a repository change.
 Do not initialize memory for a simple factual question with no project work.
 
 Read the index first; load only relevant notes. Recheck version-sensitive claims
 with the installed tool or upstream documentation. A previous successful command
 is evidence for its recorded environment, not a guarantee in every environment.
+
+## Migrate an existing notebook
+
+The canonical folder is **`.mrfoundry/`**, matching MRFoundry. Run the same
+initializer for projects that still use `.mri-research/`; add
+`--link-agent-files` to add project instruction entrypoints if absent:
+
+```bash
+python3 <path-to-installed-mri-research>/scripts/init_research_memory.py --project-root <project-root> --link-agent-files
+```
+
+When only the legacy folder exists, the initializer renames it without rewriting
+existing notebook contents, then adds only missing starter files. Old managed
+memory blocks in `AGENTS.md` and `CLAUDE.md` are refreshed in place automatically;
+the flag only adds blocks to new or unmanaged agent files. Unrelated instructions
+are preserved. Update any additional custom scripts or links that name the old folder. Previously recorded run notes remain
+historical evidence; do not rewrite their scientific findings during migration.
+
+If both notebook folders exist, the initializer stops before changing either.
+Review and reconcile them explicitly, preserving conflicting records; do not
+silently overwrite one notebook or start a second empty one. Symlinked notebooks
+are rejected rather than followed. If legacy notes were Git-tracked, migration
+leaves their old paths reported as deleted while the preserved new paths are
+ignored and untracked. Inspect `git status` and decide separately how to record
+that change; the initializer does not stage or commit anything. Ignore rules
+do not remove notes from existing commits. No notebook is uploaded.
 
 ## Small, useful structure
 
@@ -83,7 +110,7 @@ python3 <path-to-installed-mri-research>/scripts/init_research_memory.py --proje
 
 This preserves existing content and is idempotent. It does not modify global
 agent configuration or claim that every agent automatically reads both files.
-For other agents, point their project instructions to `.mri-research/INDEX.md`.
+For other agents, point their project instructions to `.mrfoundry/INDEX.md`.
 
 Generalizable skill improvements can be proposed separately from private notes.
 Do not automatically push notebooks, change shared skills, or apply one user's
